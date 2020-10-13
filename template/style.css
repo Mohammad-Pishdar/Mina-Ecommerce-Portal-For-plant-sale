@@ -1,0 +1,12 @@
+body {
+    padding-top: 56px;
+  }
+
+a:hover {
+    color: #ff8000;
+}
+
+.navbar-brand{
+    font-family: 'Sansita Swashed', cursive;
+    font-size: 2rem;
+}
