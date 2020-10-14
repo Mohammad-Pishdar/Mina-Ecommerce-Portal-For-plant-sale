@@ -1,4 +1,5 @@
 import React from 'react';
+import data from './data';
 import { faShoppingCart, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -7,17 +8,17 @@ function App() {
     <div>
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container">
-      <a className="navbar-brand" href="index.html">Mina</a>
+      <a className="navbar-brand" href="/">Mina</a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="cart.html">Cart  <FontAwesomeIcon icon={faShoppingCart} /></a>
+            <a className="nav-link" href="/shoppingcart">Cart  <FontAwesomeIcon icon={faShoppingCart} /></a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="login.html">Log in <FontAwesomeIcon icon={faSignInAlt} /></a>
+            <a className="nav-link" href="/login">Log in <FontAwesomeIcon icon={faSignInAlt} /></a>
           </li>
         </ul>
       </div>
@@ -70,17 +71,19 @@ function App() {
 
         <div className="row">
 
-          <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card h-100">
-              <a href="#"><img className="card-img-top" src="images/item-1.jpg" alt=""/></a>
-              <div className="card-body">
-                <h4 className="card-title">
-                  <a href="item.html">Crassula ovata</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div className="card-footer">
+          {
+            data.items.map(item =>(
+              <div key={item.id} className="col-lg-4 col-md-6 mb-4">
+                <div className="card h-100">
+                  <a href={`/item/${item._id}`}><img className="card-img-top" src={item.image} alt={item.name}/></a>
+                  <div className="card-body">
+                    <h4 className="card-title">
+                      <a href={`/item/${item._id}`}>{item.name}</a>
+                    </h4>
+                    <h5>${item.price}</h5>
+                    <p className="card-text">{item.description}</p>
+                  </div>
+                <div className="card-footer">
                 <span>
                     <i className="fa fa-star"></i>
                 </span>
@@ -99,156 +102,8 @@ function App() {
               </div>
             </div>
           </div>
-
-          <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card h-100">
-              <a href="#"><img className="card-img-top" src="images/item-1.jpg" alt=""/></a>
-              <div className="card-body">
-                <h4 className="card-title">
-                  <a href="item.html">Crassula ovata</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div className="card-footer">
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card h-100">
-              <a href="#"><img className="card-img-top" src="images/item-1.jpg" alt=""/></a>
-              <div className="card-body">
-                <h4 className="card-title">
-                  <a href="item.html">Crassula ovata</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div className="card-footer">
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card h-100">
-              <a href="#"><img className="card-img-top" src="images/item-1.jpg" alt=""/></a>
-              <div className="card-body">
-                <h4 className="card-title">
-                  <a href="item.html">Crassula ovata</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div className="card-footer">
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card h-100">
-              <a href="#"><img className="card-img-top" src="images/item-1.jpg" alt=""/></a>
-              <div className="card-body">
-                <h4 className="card-title">
-                  <a href="item.html">Crassula ovata</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div className="card-footer">
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-4 col-md-6 mb-4">
-            <div className="card h-100">
-              <a href="#"><img className="card-img-top" src="images/item-1.jpg" alt=""/></a>
-              <div className="card-body">
-                <h4 className="card-title">
-                  <a href="item.html">Crassula ovata</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div className="card-footer">
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-              </div>
-            </div>
-          </div>
+            ))
+          }
 
         </div>
 
