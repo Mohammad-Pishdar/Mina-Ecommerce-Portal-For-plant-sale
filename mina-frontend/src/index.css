@@ -1,13 +1,28 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding-top: 56px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  height: 100%;
+}
+
+a:hover {
+  color: #ff8000;
+}
+
+.navbar-brand{
+  font-family: 'Sansita Swashed', cursive;
+  font-size: 2rem;
+}
+
+.card-img-top{
+  width: 100%;
+  max-width: 29rem;
+  height: 15rem;
+}
+
+.card-footer span{
+  color: #f0c040;
 }
