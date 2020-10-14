@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { faShoppingCart, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
   return (
@@ -14,10 +14,10 @@ function App() {
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="cart.html">Cart <i className="fas fa-shopping-cart"></i></a>
+            <a className="nav-link" href="cart.html">Cart  <FontAwesomeIcon icon={faShoppingCart} /></a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="login.html">Log in <i className="fas fa-sign-in-alt"></i></a>
+            <a className="nav-link" href="login.html">Log in <FontAwesomeIcon icon={faSignInAlt} /></a>
           </li>
         </ul>
       </div>

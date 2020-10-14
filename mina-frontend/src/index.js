@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import './fontAwesome';
 
 ReactDOM.render(
   <React.StrictMode>
