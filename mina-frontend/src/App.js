@@ -2,13 +2,16 @@ import React from 'react';
 import data from './data';
 import { faShoppingCart, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Item from './components/Item';
 
 function App() {
   return (
     <div>
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container">
-      <a className="navbar-brand" href="/">Mina</a>
+      <a className="navbar-brand" href="/">Mina Wholesale Plants</a>
+        <p className="text-light">Awesome Deals on All Your Green Needs</p>
+   
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -68,45 +71,13 @@ function App() {
             <span className="sr-only">Next</span>
           </a>
         </div>
-
-        <div className="row">
-
+        <div class="row">
           {
             data.items.map(item =>(
-              <div key={item.id} className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                  <a href={`/item/${item._id}`}><img className="card-img-top" src={item.image} alt={item.name}/></a>
-                  <div className="card-body">
-                    <h4 className="card-title">
-                      <a href={`/item/${item._id}`}>{item.name}</a>
-                    </h4>
-                    <h5>${item.price}</h5>
-                    <p className="card-text">{item.description}</p>
-                  </div>
-                <div className="card-footer">
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star"></i>
-                </span>
-                <span>
-                    <i className="fa fa-star-half-o"></i>
-                </span>
-              </div>
-            </div>
-          </div>
+              <Item key={item._id} item={item}></Item>
             ))
           }
-
-        </div>
-
+          </div>
       </div>
 
     </div>
