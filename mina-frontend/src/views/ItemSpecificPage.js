@@ -1,0 +1,92 @@
+import React from 'react';
+import data from '../data';
+
+export default function ItemSpecificPage(props) {
+	const item = data.items.find(item => item._id === props.match.params.id);
+
+    return (
+        <div className=" itemDetailsContainer container mt-5 mb-5">
+        <div className="row">
+            <div className="col">
+                <img src={item.image} className="img-fluid" alt={item.name} />
+            </div>
+            <div className="col">
+                <ul>
+                    <li>
+                        <h1>Crassula ovata</h1>
+                    </li>
+                    <li>
+                        <a href="#reviews">
+                            <div className="rating">
+                                <span><i className="fa fa-star"></i></span><span><i className="fa fa-star"></i></span><span><i
+                                        className="fa fa-star"></i></span><span><i className="fa fa-star"></i></span><span><i
+                                        className="fa fa-star-o"></i></span><span> 1 reviews</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>Price: $60</li>
+                    <li>
+                        Description:
+                        <p>This is a great product.</p>
+                    </li>
+                    <li>
+                        Status: In stock
+                    </li>
+                    <li>
+                        <div className="form-group">
+                            <label for="filter">Quantity:</label>
+                            <select className="form-control">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="button" className="btn btn-warning">Add to Cart</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col">
+                <h2 id="reviews">Reviews</h2>
+                <strong>Hans</strong>
+                <div className="rating">
+                    <span><i className="fa fa-star"></i></span><span><i className="fa fa-star"></i></span><span><i
+                            className="fa fa-star"></i></span><span><i className="fa fa-star"></i></span><span><i
+                            className="fa fa-star-o"></i></span><span></span>
+                </div>
+                <p>2020-10-10</p>
+                <p>that is really awesome</p>
+            </div>
+        </div>
+        <div className="row">
+            <div className="col">
+                <h2>Write a customer review</h2>
+                <form className="form-horizontal" role="form">
+                    <div className="form-group">
+                        <label for="filter">Rating:</label>
+                        <select className="form-control">
+                            <option value="0" selected>Poor</option>
+                            <option value="1">Fair</option>
+                            <option value="2">Good</option>
+                            <option value="3">Very Good</option>
+                            <option value="4">Excellent</option>
+                        </select>
+                    </div>
+                    <div className="input-group">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">Comments:</span>
+                        </div>
+                        <textarea className="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                    <button type="button" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    )
+}
