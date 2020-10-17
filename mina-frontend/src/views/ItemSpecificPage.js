@@ -31,7 +31,7 @@ export default function ItemSpecificPage(props) {
                     </li>
 					<li>
 						<div>Status:</div>
-	<div>{item.itemCount > 0 ? <span className="inStock"> In stock</span> : <span className="outOfStock">Out of stok</span>}</div>
+						<div>{item.numberOfItemInInvetory > 0 ? <span className="inStock"> In stock</span> : <span className="outOfStock">Out of stok</span>}</div>
 					</li>
                     <li>
                         <div className="form-group">
