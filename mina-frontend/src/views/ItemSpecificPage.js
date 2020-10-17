@@ -1,37 +1,38 @@
 import React from 'react';
+import Ratings from '../components/Ratings';
 import data from '../data';
 
 export default function ItemSpecificPage(props) {
+
 	const item = data.items.find(item => item._id === props.match.params.id);
+	if(!item) {
+		return <div> This item is out of stock</div>
+	}
 
     return (
         <div className=" itemDetailsContainer container mt-5 mb-5">
         <div className="row">
             <div className="col">
-                <img src={item.image} className="img-fluid" alt={item.name} />
+                <img src={item.image} className="img-fluid largeScaleImage" alt={item.name} />
             </div>
             <div className="col">
-                <ul>
+                <ul className="itemDetailsList">
                     <li>
-                        <h1>Crassula ovata</h1>
+                        <h1>{item.name}</h1>
                     </li>
                     <li>
-                        <a href="#reviews">
-                            <div className="rating">
-                                <span><i className="fa fa-star"></i></span><span><i className="fa fa-star"></i></span><span><i
-                                        className="fa fa-star"></i></span><span><i className="fa fa-star"></i></span><span><i
-                                        className="fa fa-star-o"></i></span><span> 1 reviews</span>
-                            </div>
-                        </a>
+                        <Ratings rating={item.rating} reviews={item.reviews}></Ratings>
                     </li>
-                    <li>Price: $60</li>
+                    <li className="priceTag">Price: ${item.price}</li>
+					<br/>
                     <li>
-                        Description:
-                        <p>This is a great product.</p>
+                        <strong>Description:</strong>
+                        <p>{item.description}</p>
                     </li>
-                    <li>
-                        Status: In stock
-                    </li>
+					<li>
+						<div>Status:</div>
+	<div>{item.itemCount > 0 ? <span className="inStock"> In stock</span> : <span className="outOfStock">Out of stok</span>}</div>
+					</li>
                     <li>
                         <div className="form-group">
                             <label for="filter">Quantity:</label>

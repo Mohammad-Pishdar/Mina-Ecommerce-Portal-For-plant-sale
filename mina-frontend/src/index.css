@@ -25,10 +25,16 @@ a:hover {
   height: 15rem;
 }
 
+.card-footer{
+  background-color: white;
+  border-top: none;
+}
+
 .card-footer span{
   color: #f0c040;
 }
 
-.itemDetailContainer {
-  height: 30vw;
+.itemDetailsList {
+  list-style: none;
+  font-size: 1.3rem;
 }
