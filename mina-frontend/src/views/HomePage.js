@@ -47,7 +47,7 @@ export default function HomePage() {
             <span className="sr-only">Next</span>
           </a>
         </div>
-        <div class="row">
+        <div className="row">
           {
             data.items.map(item =>(
               <Item key={item._id} item={item}></Item>

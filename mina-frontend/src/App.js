@@ -11,8 +11,12 @@ function App() {
     <div>
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container">
-      <a className="navbar-brand" href="/">Mina Wholesale Plants</a>
+      
+        <a className="navbar-brand" href="/">Mina Wholesale Plants</a>
+        <br/>
         <p className="text-light">Awesome Deals on All Your Green Needs</p>
+    
+        
    
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
