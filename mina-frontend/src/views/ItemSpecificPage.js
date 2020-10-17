@@ -12,10 +12,10 @@ export default function ItemSpecificPage(props) {
     return (
         <div className=" itemDetailsContainer container mt-5 mb-5">
         <div className="row">
-            <div className="col">
-                <img src={item.image} className="img-fluid largeScaleImage" alt={item.name} />
+            <div className="col-sm">
+                <img style={{width: '100vw', height: '100%'}} src={item.image} className="img-fluid largeScaleImage" alt={item.name} />
             </div>
-            <div className="col">
+            <div className="col-sm">
                 <ul className="itemDetailsList">
                     <li>
                         <h1>{item.name}</h1>
