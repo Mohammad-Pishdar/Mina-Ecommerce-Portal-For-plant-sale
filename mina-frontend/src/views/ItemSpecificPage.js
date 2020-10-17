@@ -35,9 +35,9 @@ export default function ItemSpecificPage(props) {
 					</li>
                     <li>
                         <div className="form-group">
-                            <label for="filter">Quantity:</label>
+                            <label>Quantity:</label>
                             <select className="form-control">
-                                <option value="1" selected>1</option>
+                                <option value="1" defaultValue>1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -69,9 +69,9 @@ export default function ItemSpecificPage(props) {
                 <h2>Write a customer review</h2>
                 <form className="form-horizontal" role="form">
                     <div className="form-group">
-                        <label for="filter">Rating:</label>
+                        <label>Rating:</label>
                         <select className="form-control">
-                            <option value="0" selected>Poor</option>
+                            <option value="0" defaultValue>Poor</option>
                             <option value="1">Fair</option>
                             <option value="2">Good</option>
                             <option value="3">Very Good</option>
