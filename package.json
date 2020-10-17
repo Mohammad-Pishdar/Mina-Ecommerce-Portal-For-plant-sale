@@ -5,7 +5,7 @@
   "description": "This is my final project for the University City of Sydney Coding Bootcamp class of 2020. It's a fully functional e-commerce portal designed for the sale of plants created using the principles of MERN full stack web development.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+    "start": "nodemon --watch backend --exec node --experimental-modules mina-backend/server.js"
   },
   "repository": {
     "type": "git",
