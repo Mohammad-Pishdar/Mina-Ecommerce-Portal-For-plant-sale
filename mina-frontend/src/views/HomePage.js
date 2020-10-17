@@ -1,8 +1,18 @@
-import React from 'react';
-import data from '../data';
+import React, { useEffect, useState } from 'react';
 import Item from '../components/Item';
+import axios from 'axios';
 
 export default function HomePage() {
+
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const {data} = await axios.get('/api/items');
+      setItems(data);
+    };
+    getData();
+  }, [])
+
     return (
         <div className="container">
 
@@ -49,7 +59,7 @@ export default function HomePage() {
         </div>
         <div className="row">
           {
-            data.items.map(item =>(
+            items.map(item =>(
               <Item key={item._id} item={item}></Item>
             ))
           }
