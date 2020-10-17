@@ -1,0 +1,23 @@
+{
+  "name": "mina-ecommerce-portal-for-plant-sale",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "This is my final project for the University City of Sydney Coding Bootcamp class of 2020. It's a fully functional e-commerce portal designed for the sale of plants created using the principles of MERN full stack web development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohammad-Pishdar/Mina-Ecommerce-Portal-For-plant-sale.git"
+  },
+  "author": "Mo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohammad-Pishdar/Mina-Ecommerce-Portal-For-plant-sale/issues"
+  },
+  "homepage": "https://github.com/Mohammad-Pishdar/Mina-Ecommerce-Portal-For-plant-sale#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
