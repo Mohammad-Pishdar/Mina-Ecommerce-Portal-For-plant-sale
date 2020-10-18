@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Item from '../components/Item';
-import axios from 'axios';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { listItems } from '../actions/itemActions';
 
 export default function HomePage() {
 
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const itemList = useSelector(state => state.itemList);
+  const {loading, error, items} = itemList;
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        setLoading(true);
-        const {data} = await axios.get('/api/items');
-        setLoading(false);
-        setItems(data);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      } 
-    };
-    getData();
+    dispatch(listItems());
   }, [])
 
     return (

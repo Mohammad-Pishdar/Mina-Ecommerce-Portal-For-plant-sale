@@ -8,11 +8,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import './fontAwesome';
+import store from './store';
+import {Provider} from 'react-redux';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
