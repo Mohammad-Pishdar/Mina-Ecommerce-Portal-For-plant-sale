@@ -4,6 +4,7 @@ import { faShoppingCart, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HomePage from './views/HomePage';
 import ItemSpecificPage from './views/ItemSpecificPage';
+import ShoppingCartPage from './views/ShoppingCartPage';
 
 function App() {
   return (
@@ -30,8 +31,9 @@ function App() {
     </div>
   </nav>
 
-    <Route path="/item/:id" component={ItemSpecificPage}></Route>
     <Route path="/" component={HomePage} exact></Route>
+    <Route path="/item/:id" component={ItemSpecificPage}></Route>
+    <Route path="/shoppingcart/:id?" component={ShoppingCartPage}></Route>
 
   <footer className="py-5 bg-dark">
     <div className="container">

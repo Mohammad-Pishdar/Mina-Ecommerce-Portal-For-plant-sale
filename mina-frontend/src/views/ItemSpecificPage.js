@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getItemDetails } from '../actions/itemActions';
 import LoadingBox from '../components/LoadingBox';
@@ -11,6 +12,10 @@ export default function ItemSpecificPage(props) {
     const itemId = props.match.params.id;
     const itemDetails = useSelector( state => state.itemDetails);
     const {loading, error, item} = itemDetails;
+    const [quantity, setQunatity] = useState(1);
+    const addToShoopingCart = () => {
+        props.history.push(`/shoppingcart/${itemId} ? quantity = ${quantity}`)
+    }
 
     useEffect(() => {
         dispatch(getItemDetails(itemId));
@@ -42,21 +47,39 @@ export default function ItemSpecificPage(props) {
                          <div>Status:</div>
                          <div>{item.numberOfItemInInvetory > 0 ? <span className="inStock"> In stock</span> : <span className="outOfStock">Out of stok</span>}</div>
                      </li>
-                     <li>
-                         <div className="form-group">
-                             <label>Quantity:</label>
-                             <select className="form-control">
-                                 <option value="1" defaultValue>1</option>
-                                 <option value="2">2</option>
-                                 <option value="3">3</option>
-                                 <option value="4">4</option>
-                                 <option value="5">5</option>
-                             </select>
-                         </div>
-                     </li>
-                     <li>
-                         <button type="button" className="btn btn-warning">Add to Cart</button>
-                     </li>
+                     {item.numberOfItemInInvetory > 0 && (
+                    <>
+                      <li>
+                        <div className="form-group">
+                          <div>Quantity</div>
+                          <div>
+                            <select
+                            className="form-control"
+                              value={quantity}
+                              onChange={(e) => setQunatity(e.target.value)}
+                            >
+                              {[...Array(item.numberOfItemInInvetory).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <button
+                            type="button"
+                          onClick={addToShoopingCart}
+                          className="btn btn-warning"
+                        >
+                          Add to Cart
+                        </button>
+                      </li>
+                    </>
+                  )}
                  </ul>
              </div>
          </div>
