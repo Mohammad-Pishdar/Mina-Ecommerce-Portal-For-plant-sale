@@ -5,11 +5,15 @@ import {
     createStore
 } from 'redux';
 import thunk from 'redux-thunk';
-import { itemListReducer } from './reducers/itemsReducers';
+import {
+    itemDetailsReducer,
+    itemListReducer
+} from './reducers/itemsReducers';
 
 const initialState = {};
 const reducer = combineReducers({
-    itemList: itemListReducer
+    itemList: itemListReducer,
+    itemDetails: itemDetailsReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
