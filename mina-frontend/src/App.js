@@ -1,19 +1,25 @@
 import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import { BrowserRouter, Link, Route} from 'react-router-dom';
 import { faShoppingCart, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HomePage from './views/HomePage';
 import ItemSpecificPage from './views/ItemSpecificPage';
 import ShoppingCartPage from './views/ShoppingCartPage';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  //accessing cart items from redux 
+  const cartItems = useSelector(state => state.shoppingCart);
+  //object-destructure shopping cart items from cart items
+  const {shoppingCartItems} = cartItems;
   return (
     <BrowserRouter>
     <div>
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container">
-      
-        <a className="navbar-brand" href="/">Mina Wholesale Plants</a>
+        {/* repalcing anchors with Links form react-router-dom throughount app.js and changing href attributes to 'to's */}
+        <Link className="navbar-brand" to="/">Mina Wholesale Plants</Link>
         
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
@@ -21,10 +27,18 @@ function App() {
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="/shoppingcart">Cart  <FontAwesomeIcon icon={faShoppingCart} /></a>
+            <Link className="nav-link" to="/shoppingcart">Cart  <FontAwesomeIcon icon={faShoppingCart} />
+            {/* creating a conditional rendering section here */
+              shoppingCartItems.length > 0 && (
+                <span className="shoppingCartBadge rounded-circle ml-2">
+                  {shoppingCartItems.length}
+                </span>
+              )
+            }
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/login">Log in <FontAwesomeIcon icon={faSignInAlt} /></a>
+            <Link className="nav-link" to="/login">Log in <FontAwesomeIcon icon={faSignInAlt} /></Link>
           </li>
         </ul>
       </div>
