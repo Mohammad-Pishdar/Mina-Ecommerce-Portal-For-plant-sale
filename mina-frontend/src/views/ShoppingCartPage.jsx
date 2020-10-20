@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { addToCart } from "../actions/shoppinCartActions";
+import { addToCart, removeFromCart } from "../actions/shoppinCartActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MessageBox from "../components/MessageBox";
@@ -24,11 +24,14 @@ export default function ShoppingCartPage(props) {
   }, [dispatch, itemId, quantity]);
 
   //defining the function to be used as an event listener function on remove button
-  const removeFromCart = (id) => {};
-    //defining the function that redirects the user to the checkout page after clicking the checkout button. This function takes the user to the sign in page and after sign in will redirect them to the shipping page
+  const removeFromCartHandler = (id) => {
+    //now that we created a constant for remove from cart, defined an action and implemented a rducer it's time to complete this functiona. We use dispatch to access the appropriate reducer here
+    dispatch(removeFromCart(id));
+  };
+  //defining the function that redirects the user to the checkout page after clicking the checkout button. This function takes the user to the sign in page and after sign in will redirect them to the shipping page
   const goToCheckout = () => {
-    props.history.push('/signin?redirect=shipping');
-  }
+    props.history.push("/signin?redirect=shipping");
+  };
   return (
     //listing contents of the shoping cart on screen
     <div className="container mt-5 mb-5">
@@ -105,7 +108,7 @@ export default function ShoppingCartPage(props) {
                 <td className="actions" data-th="">
                   <button
                     className="btn btn-danger btn-sm"
-                    onClick={() => removeFromCart(cartItem.item)}
+                    onClick={() => removeFromCartHandler(cartItem.item)}
                   >
                     <i className="fa fa-trash-o"></i>
                   </button>
@@ -122,11 +125,24 @@ export default function ShoppingCartPage(props) {
               </td>
               <td colSpan="2" className="hidden-xs"></td>
               <td className="hidden-xs text-center">
-                  {/* using reduce fucntion to execute a custom reducer funtion on each item in our shopping cart. The default value for the accumulator here should be 0 so it returns the total value of all the subtotals. We limit the results to two decimals */}
-                      <strong>Total ${shoppingCartItems.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0).toFixed(2)}</strong>
+                {/* using reduce fucntion to execute a custom reducer funtion on each item in our shopping cart. The default value for the accumulator here should be 0 so it returns the total value of all the subtotals. We limit the results to two decimals */}
+                <strong>
+                  Total $
+                  {shoppingCartItems
+                    .reduce(
+                      (accumulator, item) =>
+                        accumulator + item.price * item.quantity,
+                      0
+                    )
+                    .toFixed(2)}
+                </strong>
               </td>
               <td>
-                <button onClick={goToCheckout} className="btn btn-success btn-block" disabled={shoppingCartItems.length === 0}>
+                <button
+                  onClick={goToCheckout}
+                  className="btn btn-success btn-block"
+                  disabled={shoppingCartItems.length === 0}
+                >
                   Checkout <i className="fa fa-angle-right"></i>
                 </button>
               </td>

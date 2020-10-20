@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../constants/shoppingCartConstants";
+import { ADD_TO_CART, REMOVE_FROM_CART } from "../constants/shoppingCartConstants";
 import Axios from "axios";
 
 // dispatch and getState are functions of redux thunk used to dipatch an action and also get the state of redux store
@@ -23,3 +23,15 @@ export const addToCart = (itemId, quantity) => async (dispatch, getState) => {
     //saving the items in shopping cart to the local storage each time we dispatch add to cart
     localStorage.setItem('cartItems', JSON.stringify(getState().shoppingCart.shoppingCartItems));
 };
+
+//creating an action to remove items from the shopping cart
+export const removeFromCart = (itemId) => (dispatch, getState) => {
+    //dispatching the remove action
+    dispatch({
+        type: REMOVE_FROM_CART,
+        //the payload of this action is the item ID
+        payload: itemId
+    });
+    //we update local storage after dispatching the remove action. We use getState to access cart items in redux store
+    localStorage.setItem('cartItems', JSON.stringify(getState().shoppingCart.shoppingCartItems));
+}
