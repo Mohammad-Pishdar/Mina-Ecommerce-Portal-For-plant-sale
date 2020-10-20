@@ -1,10 +1,24 @@
+import bcrypt from "bcryptjs";
+
 const data = {
-    items: [
-        {
+    //now that we created our user model it's time to add some sample users to our data.js file
+    users: [{
+        name: 'Mo',
+        email: 'mohpish@gmail.com',
+        //we should not save plain text password in our databse since it is not secure. So we use bcrypt library.The hashSync method of this library accept two parameters. The first one is the password you want to be hashed. The second parameter is what they call salt rounds 
+        password: bcrypt.hashSync('1234', 8),
+        isAdmin: true,
+    }, {
+        name: 'Toby',
+        email: 'toby@example.com',
+        password: bcrypt.hashSync('1234', 8),
+        isAdmin: true,
+    }],
+    items: [{
             _id: '1',
             name: 'Crassula ovata',
-            category:'Cactus & Succulents',
-            image:'/images/item-1.jpg',
+            category: 'Cactus & Succulents',
+            image: '/images/item-1.jpg',
             price: 24.99,
             rating: 4.5,
             reviews: 10,
@@ -14,8 +28,8 @@ const data = {
         {
             _id: '2',
             name: 'Cordyline fruticosa',
-            category:'Indoor Plants',
-            image:'/images/item-2.jpg',
+            category: 'Indoor Plants',
+            image: '/images/item-2.jpg',
             price: 38.88,
             rating: 4.0,
             reviews: 10,
@@ -25,8 +39,8 @@ const data = {
         {
             _id: '3',
             name: 'Vriesia (Bromeliad)',
-            category:'Cactus & Succulents',
-            image:'/images/item-3.jpg',
+            category: 'Cactus & Succulents',
+            image: '/images/item-3.jpg',
             price: 18.98,
             rating: 4.8,
             reviews: 17,
@@ -36,8 +50,8 @@ const data = {
         {
             _id: '4',
             name: 'Aglaonema hybrid',
-            category:'Indoor Plants',
-            image:'/images/item-4.jpg',
+            category: 'Indoor Plants',
+            image: '/images/item-4.jpg',
             price: 21.77,
             rating: 4.5,
             reviews: 14,
@@ -47,8 +61,8 @@ const data = {
         {
             _id: '5',
             name: 'Callistemon',
-            category:'Australian Native Plants',
-            image:'/images/item-5.jpg',
+            category: 'Australian Native Plants',
+            image: '/images/item-5.jpg',
             price: 22.95,
             rating: 4.5,
             reviews: 10,
@@ -58,8 +72,8 @@ const data = {
         {
             _id: '6',
             name: 'Dichondra Repens',
-            category:'Australian Native Plants',
-            image:'/images/item-6.jpg',
+            category: 'Australian Native Plants',
+            image: '/images/item-6.jpg',
             price: 5.88,
             rating: 4.5,
             reviews: 15,
