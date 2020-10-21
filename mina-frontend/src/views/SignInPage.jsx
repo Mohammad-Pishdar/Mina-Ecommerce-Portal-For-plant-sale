@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 //importing the link to be used in our links on the page
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import { signIn } from '../actions/userActions';
 
 
 export default function SignInPage() {
@@ -8,12 +10,15 @@ export default function SignInPage() {
     const submitForm = (event) => {
         //preventing the page from being refreshed when user submits 
         event.preventDefault();
+        //we dispatch sign in action when user submits form
+        dispatch(signIn(email, password));
 
     }
     //creating react hooks for setEmail and setPassword
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    //getting dispatch from useDispatch hook in react redux 
+    const dispatch = useDispatch();
     return (
         <div>
             <div className="container mt-5 mb-5">
