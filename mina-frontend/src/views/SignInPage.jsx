@@ -23,7 +23,7 @@ export default function SignInPage() {
         <div>
             <div className="container mt-5 mb-5">
                 <div className="d-flex justify-content-center h-100">
-                    <div className="card">
+                    <div className="card sign-in-card">
                         <div className="card-header">
                             <h3>Sign In</h3>
                         </div>
