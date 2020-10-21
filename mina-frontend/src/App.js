@@ -6,6 +6,7 @@ import HomePage from './views/HomePage';
 import ItemSpecificPage from './views/ItemSpecificPage';
 import ShoppingCartPage from './views/ShoppingCartPage';
 import { useSelector } from 'react-redux';
+import SignInPage from './views/SignInPage';
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/login">Log in <FontAwesomeIcon icon={faSignInAlt} /></Link>
+            <Link className="nav-link" to="/signin">Log in <FontAwesomeIcon icon={faSignInAlt} /></Link>
           </li>
         </ul>
       </div>
@@ -47,6 +48,8 @@ function App() {
 
     <Route path="/" component={HomePage} exact></Route>
     <Route path="/item/:id" component={ItemSpecificPage}></Route>
+    {/* adding another route this time for sign in page */}
+    <Route path="/signin" component={SignInPage}></Route>
     <Route path="/shoppingcart/:id?" component={ShoppingCartPage}></Route>
 
   <footer className="py-5 bg-dark">
