@@ -15,7 +15,8 @@ const data = {
         isAdmin: true,
     }],
     items: [{
-            _id: '1',
+            //Now that we have created a model for an item and defined the route to populate the item list using that model we can comment out the _id of the items since it will be created automatically by mongoDB
+            // _id: '1',
             name: 'Crassula ovata',
             category: 'Cactus & Succulents',
             image: '/images/item-1.jpg',
@@ -26,7 +27,7 @@ const data = {
             numberOfItemInInvetory: 3
         },
         {
-            _id: '2',
+            // _id: '2',
             name: 'Cordyline fruticosa',
             category: 'Indoor Plants',
             image: '/images/item-2.jpg',
@@ -37,7 +38,7 @@ const data = {
             numberOfItemInInvetory: 15
         },
         {
-            _id: '3',
+            // _id: '3',
             name: 'Vriesia (Bromeliad)',
             category: 'Cactus & Succulents',
             image: '/images/item-3.jpg',
@@ -48,7 +49,7 @@ const data = {
             numberOfItemInInvetory: 5
         },
         {
-            _id: '4',
+            // _id: '4',
             name: 'Aglaonema hybrid',
             category: 'Indoor Plants',
             image: '/images/item-4.jpg',
@@ -59,7 +60,7 @@ const data = {
             numberOfItemInInvetory: 7
         },
         {
-            _id: '5',
+            // _id: '5',
             name: 'Callistemon',
             category: 'Australian Native Plants',
             image: '/images/item-5.jpg',
@@ -70,7 +71,7 @@ const data = {
             numberOfItemInInvetory: 1
         },
         {
-            _id: '6',
+            // _id: '6',
             name: 'Dichondra Repens',
             category: 'Australian Native Plants',
             image: '/images/item-6.jpg',
