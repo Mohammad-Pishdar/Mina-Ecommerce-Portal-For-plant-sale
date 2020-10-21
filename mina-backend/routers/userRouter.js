@@ -4,6 +4,9 @@ import data from '../data.js';
 import User from '../models/user.js';
 //we have to import bcryptjs so the authentication process works
 import bcrypt from 'bcryptjs';
+import {
+    generateToken
+} from '../utils.js';
 
 
 //we use express.router() to make our code modular instead of creating all the routes inside the server.js
@@ -43,10 +46,12 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
                 token: generateToken(user)
             });
             return;
-        } else {
-            res.status(401).send({message: 'Invalid email address or password'});
         }
+
     }
+    res.status(401).send({
+        message: 'Invalid email address or password'
+    });
 }));
 
 //and export user router

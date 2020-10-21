@@ -10,6 +10,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
+//parsing the body of http request. This middleware parses json data in the body of request so it could be recognized by services like postman when testing requests.
+app.use(express.json());
+// we also add this middleware too. Combined with the middleware above, all request that contains data like those sent by postman to test will be translated to req.body in our node application.
+app.use(express.urlencoded({
+    extended: true
+}));
+
 //connecting to mongoDB databse. By adding the name of your databse at the end of the URI of mongoDB you create a databse. Here we also make the URI dynamci instead a hard coded static one just like we did with our port down below 
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/minaPlantSale', {
     //having options as second parameters for mongoose.connect to get rid of duplicated warnings

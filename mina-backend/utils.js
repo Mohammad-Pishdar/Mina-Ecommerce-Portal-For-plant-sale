@@ -11,8 +11,8 @@ export const generateToken = (user) => {
             email: user.email,
             isAdmin: user.isAdmin
         },
-        //second parameter is json web token secret which acts like a key to encrypt our data and generate a token. Since it is very sensitive data we don't put it directly here for security reasons and instead use a .env file to keep this in a secure place away from the user. 
-        process.env.JWT_SECRET,
+        //second parameter is json web token secret which acts like a key to encrypt our data and generate a token. Since it is very sensitive data we don't put it directly here for security reasons and instead use a .env file to keep this in a secure place away from the user. Here we also set an alternative text for JWT_SECRET if it does not exist in .env. We just add it here so in case we wanted to have the source code copied somewhere else we won't get an error because of not having the .env file in our root folder.
+        process.env.JWT_SECRET || 'secureText',
         //the last paramete of sign function is options. Here we put an expirey date for this token to 30 days
         {
             expiresIn: '30d',
