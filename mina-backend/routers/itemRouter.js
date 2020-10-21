@@ -21,4 +21,16 @@ itemRouter.get('/', expressAsyncHandler(async (req, res) => {
     res.send(items);
 }));
 
+//creating another API to send back the data for the item details page. The placement of APIs in this file is also important and this one should always come after the /seed API otherwise /seed will be treated as an id for this API which is unwanted behaviour
+itemRouter.get('/:id', expressAsyncHandler(async (req, res) => {
+    const item = await Item.findById(req.params.id);
+    if (item) {
+        res.send(item);
+    } else {
+        res.status(404).send({
+            message: 'Item not found'
+        });
+    }
+}));
+
 export default itemRouter;
