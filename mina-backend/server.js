@@ -4,6 +4,10 @@ import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routers/userRouter.js";
 import itemRouter from "./routers/itemRouter.js";
+//importing dotenv package to be able to use it to read the contents inside our .env file
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 //connecting to mongoDB databse. By adding the name of your databse at the end of the URI of mongoDB you create a databse. Here we also make the URI dynamci instead a hard coded static one just like we did with our port down below 
