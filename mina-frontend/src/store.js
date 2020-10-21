@@ -10,6 +10,7 @@ import {
     itemListReducer
 } from './reducers/itemsReducers';
 import { shoppingCartReducer } from './reducers/shoppingCartReducers';
+import { userSignInReducer } from './reducers/userReducers';
 
 const initialState = {
     //defining a default value for our shopping cart and read content of the local storage to populate our shopping cart if there is something in local storage upon each refresh of the page or make the shopping cart empty if there is not
@@ -21,7 +22,9 @@ const reducer = combineReducers({
     itemList: itemListReducer,
     itemDetails: itemDetailsReducer,
     //adding shooping cart reducer here 
-    shoppingCart: shoppingCartReducer
+    shoppingCart: shoppingCartReducer,
+    //adding user reducer to the combined reducers
+    signIn: userSignInReducer,
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
