@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 import userRouter from "./routers/userRouter.js";
 
 const app = express();
-//connecting to mongoDB databse. By adding the name of your databse at the end of the URI of mongoDB you create a databse 
-mongoose.connect('mongodb://localhost/minaPlantSale', {
+//connecting to mongoDB databse. By adding the name of your databse at the end of the URI of mongoDB you create a databse. Here we also make the URI dynamci instead a hard coded static one just like we did with our port down below 
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/minaPlantSale', {
     //having options as second parameters for mongoose.connect to get rid of duplicated warnings
     useNewUrlParser: true,
     useUnifiedTopology: true,
