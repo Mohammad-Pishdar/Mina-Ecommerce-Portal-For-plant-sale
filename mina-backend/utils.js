@@ -1,7 +1,7 @@
 //we have to import json web token so we can use it to generate a token
 import jwt from "jsonwebtoken";
 
-//we use this file to define our utility functions
+//we use this file to define our utility (helper) functions
 //We first create our generateToken function which is used to send back a unique token when authenticating users in our sign in route defined in user router file
 export const generateToken = (user) => {
     //jwt stands for jason web token and we use the sign method of it to generate a token. The first parameter here is the object we're going to use to generate a token.
