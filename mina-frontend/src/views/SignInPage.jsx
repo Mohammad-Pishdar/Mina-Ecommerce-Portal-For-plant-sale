@@ -6,6 +6,8 @@ import { signIn } from '../actions/userActions';
 
 
 export default function SignInPage() {
+    //getting dispatch from useDispatch hook in react redux 
+    const dispatch = useDispatch();
     //defining submitForm function
     const submitForm = (event) => {
         //preventing the page from being refreshed when user submits 
@@ -17,8 +19,7 @@ export default function SignInPage() {
     //creating react hooks for setEmail and setPassword
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    //getting dispatch from useDispatch hook in react redux 
-    const dispatch = useDispatch();
+    
     return (
         <div>
             <div className="container mt-5 mb-5">

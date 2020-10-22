@@ -15,7 +15,10 @@ function App() {
   //object-destructure shopping cart items from cart items
   const { shoppingCartItems } = cartItems;
   //getting user info from redux store
-  const userSignInInfo = useSelector(state => state.userInfo);
+  const userSignInInfo = useSelector(state => state.signIn);
+  //object-destructure user info from the signIn branch in state
+  const { userInfo } = userSignInInfo;
+
   return (
     <BrowserRouter>
       <div>
@@ -41,7 +44,14 @@ function App() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/signin">Log in <FontAwesomeIcon icon={faSignInAlt} /></Link>
+                  {/* creating a conditional rendering. If we have userInfo in state show user's name as a link else just render the sign in link */}
+                  {
+                    userInfo ? (
+                      //render user's name
+                      <Link className="nav-link" to="#">{userInfo.name}</Link>
+                    ) :
+                      <Link className="nav-link" to="/signin">Sign in <FontAwesomeIcon icon={faSignInAlt} /></Link>
+                  }
                 </li>
               </ul>
             </div>
