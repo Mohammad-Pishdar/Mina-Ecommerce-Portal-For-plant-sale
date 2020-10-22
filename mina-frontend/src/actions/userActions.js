@@ -2,7 +2,8 @@ import Axios from "axios"
 import {
     USER_SIGNIN_FAILURE,
     USER_SIGNIN_REQUEST,
-    USER_SIGNIN_SUCCESS
+    USER_SIGNIN_SUCCESS,
+    USER_SIGNOUT
 } from "../constants/userConstants"
 
 //defining a sign-in action. Like all the other actions, this function also returns an async function and passes redux thunk dispatch function as its argument.
@@ -40,4 +41,13 @@ export const signIn = (email, password) => async (dispatch) => {
                 error.response.data.message : error.message,
         })
     }
+}
+
+//Defining signout action 
+export const signout = () => async (dispatch) => {
+    //we want to remove userInfo from localStorage when we sign out
+    localStorage.removeItem('userInfo');
+    //we should also remove shopping cart items from localStorage upon user logout
+    localStorage.removeItem('cartItems');
+    dispatch({ type: USER_SIGNOUT});
 }
