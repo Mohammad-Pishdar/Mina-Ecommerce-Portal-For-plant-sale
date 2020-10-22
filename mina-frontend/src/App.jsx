@@ -72,23 +72,33 @@ function App() {
                 {userInfo ? (
                   <div className="dropdown show">
                     <li className="nav-item">
-                      <Link className="nav-link text-warning dropdown-toggle" to="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <Link
+                        className="nav-link text-warning dropdown-toggle"
+                        to="#"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
                         {userInfo.name}
                       </Link>
-                      <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-                      <Link
-                        className="nav-link bg-dark text-white"
-                        to="#signout"
-                        onClick={signoutHandler}
+                      <div
+                        class="dropdown-menu bg-dark"
+                        aria-labelledby="dropdownMenuLink"
                       >
-                        Sign Out
-                        <FontAwesomeIcon className="ml-1" icon={faSignOutAlt} />
-                      </Link>
+                        <Link
+                          className="nav-link bg-dark text-white"
+                          to="#signout"
+                          onClick={signoutHandler}
+                        >
+                          Sign Out
+                          <FontAwesomeIcon
+                            className="ml-1"
+                            icon={faSignOutAlt}
+                          />
+                        </Link>
                       </div>
                     </li>
-                   
-                     
-                    
                   </div>
                 ) : (
                   <li className="nav-item">
