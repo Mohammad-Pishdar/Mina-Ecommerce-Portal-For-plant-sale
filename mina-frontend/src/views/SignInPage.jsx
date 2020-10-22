@@ -57,7 +57,7 @@ export default function SignInPage(props) {
 
   <div className="row"><div className="card sign-in-card">
             <div className="card-header">
-            <h3 className="row" >Sign In</h3>
+            <h3 className="row">Sign In</h3>
             </div>
             <div className="card-body">
               <form onSubmit={submitForm}>
@@ -91,8 +91,8 @@ export default function SignInPage(props) {
               </form>
             </div>
             <div className="card-footer">
-              <div className="d-flex justify-content-center links">
-                Don't have an account?<Link to="/signup">Sign Up</Link>
+              <div>
+                Don't have an account?<a href="/signup">Sign Up</a>
               </div>
             </div>
           </div></div>

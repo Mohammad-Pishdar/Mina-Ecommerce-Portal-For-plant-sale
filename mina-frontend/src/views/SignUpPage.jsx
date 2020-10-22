@@ -58,7 +58,7 @@ export default function SignUpPage(props) {
               {error && <MessageBox variant="danger">{error}</MessageBox>}
             </div>
             <div className="row">
-              <div className="card sign-in-card">
+              <div className="card sign-in-card" style={{height: "fit-content"}}>
                 <div className="card-header">
                   <h3 className="row">Register</h3>
                 </div>

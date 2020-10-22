@@ -84,7 +84,7 @@ function App() {
                         {userInfo.name}
                       </Link>
                       <div
-                        class="dropdown-menu bg-dark"
+                        className="dropdown-menu bg-dark"
                         aria-labelledby="dropdownMenuLink"
                       >
                         <Link
