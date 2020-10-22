@@ -12,6 +12,7 @@ import ShoppingCartPage from "./views/ShoppingCartPage";
 import { useDispatch, useSelector } from "react-redux";
 import SignInPage from "./views/SignInPage";
 import { signout } from "./actions/userActions";
+import SignUpPage from "./views/SignUpPage";
 
 function App() {
   //accessing cart items from redux
@@ -118,6 +119,8 @@ function App() {
         {/* adding another route this time for sign in page */}
         <Route path="/signin" component={SignInPage}></Route>
         <Route path="/shoppingcart/:id?" component={ShoppingCartPage}></Route>
+        {/* adding another route this time for sign up page */}
+        <Route path="/signup" component={SignUpPage}></Route>
 
         <footer className="py-5 bg-dark">
           <div className="container">
