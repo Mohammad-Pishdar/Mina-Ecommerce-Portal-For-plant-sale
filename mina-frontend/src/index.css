@@ -1,11 +1,10 @@
-
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
-  width:100%;
+  width: 100%;
   padding-top: 10vh;
   position: absolute;
 }
@@ -14,25 +13,25 @@ a:hover {
   color: #ff8000;
 }
 
-.navbar-brand{
+.navbar-brand {
   font-family: 'Sansita Swashed', cursive;
   font-size: 2rem;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
 
-.card-img-top{
+.card-img-top {
   width: 100%;
   max-width: 29rem;
   height: 15rem;
 }
 
-.card-footer{
+.card-footer {
   background-color: white;
   border-top: none;
 }
 
-.card-footer span{
+.card-footer span {
   color: #f0c040;
 }
 
@@ -43,136 +42,156 @@ a:hover {
   margin: 0;
 }
 
-.outOfStock{
+.outOfStock {
   color: red;
 }
 
-.inStock{
+.inStock {
   color: green;
 }
 
-.alert{
+.alert {
   padding: 1rem;
   border: 0.1rem solid transparent;
   border-radius: 0.5rem;
 }
 
-.alert-info{
+.alert-info {
   color: blue;
   background-color: white;
 }
 
-.alert-danger{
+.alert-danger {
   color: red;
   background-color: pink;
 }
 
-.loading{
+.loading {
   margin-top: 50vh;
   margin-bottom: 40vh;
 }
 
-.alert{
+.alert {
   margin-top: 30vh;
   margin-bottom: 40vh;
 }
 
 @media only screen and (max-width: 700px) {
-  .mainPageContainer{
+  .mainPageContainer {
     margin-top: 25vw;
   }
-  .loading{
+
+  .loading {
     margin-top: 70%;
     margin-bottom: 70%;
   }
 }
 
-.shoppingCartBadge{
-  background-color:green;
+.shoppingCartBadge {
+  background-color: green;
   color: white;
   padding: 0.2rem 0.7rem;
 }
 
 /* shopping cart page styles */
-.table>tbody>tr>td, .table>tfoot>tr>td{
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
   vertical-align: middle;
 }
+
 @media screen and (max-width: 600px) {
-  table#cart tbody td .form-control{
-  width:20%;
-  display: inline !important;
-}
-.actions .btn{
-  width:36%;
-  margin:1.5em 0;
-}
+  table#cart tbody td .form-control {
+    width: 20%;
+    display: inline !important;
+  }
 
-.actions .btn-info{
-  float:left;
-}
-.actions .btn-danger{
-  float:right;
-}
+  .actions .btn {
+    width: 36%;
+    margin: 1.5em 0;
+  }
 
-table#cart thead { display: none; }
-table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
-table#cart tbody tr td:first-child { background: #333; color: #fff; }
-table#cart tbody td:before {
-  content: attr(data-th); font-weight: bold;
-  display: inline-block; width: 8rem;
-}
+  .actions .btn-info {
+    float: left;
+  }
+
+  .actions .btn-danger {
+    float: right;
+  }
+
+  table#cart thead {
+    display: none;
+  }
+
+  table#cart tbody td {
+    display: block;
+    padding: .6rem;
+    min-width: 320px;
+  }
+
+  table#cart tbody tr td:first-child {
+    background: #333;
+    color: #fff;
+  }
+
+  table#cart tbody td:before {
+    content: attr(data-th);
+    font-weight: bold;
+    display: inline-block;
+    width: 8rem;
+  }
 
 
 
-table#cart tfoot td{display:block; }
-table#cart tfoot td .btn{display:block;}
+  table#cart tfoot td {
+    display: block;
+  }
+
+  table#cart tfoot td .btn {
+    display: block;
+  }
 
 }
 
 /* sign in page styles */
-.container{
-height: 100%;
-align-content: center;
+.container {
+  height: 100%;
+  align-content: center;
 }
 
-.sign-in-card{
-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+.sign-in-card {
+  height: 370px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-.card-header h3{
-color: white;
+.card-header h3 {
+  color: white;
 }
 
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
 
 }
 
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
+.login_btn {
+  color: black;
+  background-color: #FFC312;
+  width: 100px;
 }
 
-.login_btn:hover{
-color: black;
-background-color: white;
+.login_btn:hover {
+  color: black;
+  background-color: white;
 }
 
-.links{
-color: black;
+.links {
+  color: black;
 }
 
-.links a{
-margin-left: 4px;
+.links a {
+  margin-left: 4px;
 }
-
-
-
-
 

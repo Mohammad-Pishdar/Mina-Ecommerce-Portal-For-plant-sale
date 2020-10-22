@@ -46,12 +46,12 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
                 token: generateToken(user)
             });
             return;
-        }
-
-    }
+        } 
+    } 
     res.status(401).send({
         message: 'Invalid email address or password'
     });
+    
 }));
 
 //and export user router

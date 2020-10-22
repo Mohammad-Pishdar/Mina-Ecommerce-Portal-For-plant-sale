@@ -1,12 +1,17 @@
 import React from "react";
 import { BrowserRouter, Link, Route } from "react-router-dom";
-import { faShoppingCart, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingCart,
+  faSignInAlt,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HomePage from "./views/HomePage";
 import ItemSpecificPage from "./views/ItemSpecificPage";
 import ShoppingCartPage from "./views/ShoppingCartPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SignInPage from "./views/SignInPage";
+import { signout } from "./actions/userActions";
 
 function App() {
   //accessing cart items from redux
@@ -18,10 +23,14 @@ function App() {
   //object-destructure user info from the signIn branch in state
   const { userInfo } = userSignInInfo;
 
+  //definign dispatch to be used by our handler function
+  const dispatch = useDispatch();
+
   //defining signout handler function
   const signoutHandler = () => {
-    
-  }
+    //dispatch user signout action
+    dispatch(signout());
+  };
 
   return (
     <BrowserRouter>
@@ -59,26 +68,32 @@ function App() {
                     }
                   </Link>
                 </li>
-                <li className="nav-item">
-                  {/* creating a conditional rendering. If we have userInfo in state show user's name as a link else just render the sign in link */}
-                  {userInfo ? (
-                    //render user's name
-                    <div className="dropdown">
-                      <Link className="nav-link" to="#">
-                        {userInfo.name} <i className="fa fa-caret-down"></i>
-                      </Link>
-                      <ul className="dropdown-content">
-                        <Link to="#signout" onClick={signoutHandler}>
-                          Sign Out
-                        </Link>
-                      </ul>
-                    </div>
-                  ) : (
-                    <Link className="nav-link" to="/signin">
-                      Sign in <FontAwesomeIcon icon={faSignInAlt} />
+                {/* creating a conditional rendering. If we have userInfo in state show user's name as a link else just render the sign in link */}
+                {userInfo ? (
+                  <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="#">
+                      {userInfo.name}
                     </Link>
-                  )}
-                </li>
+                    </li>
+                    <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      to="#signout"
+                      onClick={signoutHandler}
+                    >
+                      Sign Out
+                    </Link>
+                  </li>
+                  </>
+                ) : (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signin">
+                      Sign in
+                      <FontAwesomeIcon icon={faSignInAlt} />
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

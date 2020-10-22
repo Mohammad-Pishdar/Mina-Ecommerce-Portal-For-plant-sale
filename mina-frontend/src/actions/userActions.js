@@ -49,5 +49,7 @@ export const signout = () => async (dispatch) => {
     localStorage.removeItem('userInfo');
     //we should also remove shopping cart items from localStorage upon user logout
     localStorage.removeItem('cartItems');
-    dispatch({ type: USER_SIGNOUT});
+    dispatch({
+        type: USER_SIGNOUT
+    });
 }
