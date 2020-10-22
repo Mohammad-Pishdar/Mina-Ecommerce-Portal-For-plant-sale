@@ -115,7 +115,8 @@ export default function SignUpPage(props) {
                 </div>
                 <div className="card-footer">
                   <div className="d-flex justify-content-center links">
-                    Already have an account?<Link to="/signin">Sign In</Link>
+                    {/* adding redirect variable as a link address here takes the user to the page that is intened to go if they have to register an account along the way instead of taking them back to the home page */}
+                    Already have an account?<Link to={`/signin?redirect=${redirect}`}>Sign In</Link>
                   </div>
                 </div>
               </div>

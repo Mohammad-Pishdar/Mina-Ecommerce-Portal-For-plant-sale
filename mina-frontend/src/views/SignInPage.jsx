@@ -92,7 +92,7 @@ export default function SignInPage(props) {
             </div>
             <div className="card-footer">
               <div>
-                Don't have an account?<a href="/signup">Sign Up</a>
+                Don't have an account?<a href={`/signup?redirect=${redirect}`}>Sign Up</a>
               </div>
             </div>
           </div></div>
