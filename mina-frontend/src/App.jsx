@@ -70,22 +70,26 @@ function App() {
                 </li>
                 {/* creating a conditional rendering. If we have userInfo in state show user's name as a link else just render the sign in link */}
                 {userInfo ? (
-                  <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="#">
-                      {userInfo.name}
-                    </Link>
-                    </li>
+                  <div className="dropdown show">
                     <li className="nav-item">
-                    <Link
-                      className="nav-link"
-                      to="#signout"
-                      onClick={signoutHandler}
-                    >
-                      Sign Out
-                    </Link>
-                  </li>
-                  </>
+                      <Link className="nav-link text-warning dropdown-toggle" to="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {userInfo.name}
+                      </Link>
+                      <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
+                      <Link
+                        className="nav-link bg-dark text-white"
+                        to="#signout"
+                        onClick={signoutHandler}
+                      >
+                        Sign Out
+                        <FontAwesomeIcon className="ml-1" icon={faSignOutAlt} />
+                      </Link>
+                      </div>
+                    </li>
+                   
+                     
+                    
+                  </div>
                 ) : (
                   <li className="nav-item">
                     <Link className="nav-link" to="/signin">
