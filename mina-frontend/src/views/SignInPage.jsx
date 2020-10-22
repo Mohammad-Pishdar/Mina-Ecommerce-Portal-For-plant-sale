@@ -45,7 +45,7 @@ export default function SignInPage(props) {
       <div className="container mt-5 mb-5">
         <div className="d-flex justify-content-center h-100">
         <div className="col offset-md-4 ">
-          <h3 className="row" style={{ verticalAlign: 'center' }}>Sign In</h3>
+          
           <div className="row">
           {/* check loading and if it's true render the loading box */}
           {loading && <LoadingBox></LoadingBox>}
@@ -57,7 +57,7 @@ export default function SignInPage(props) {
 
   <div className="row"><div className="card sign-in-card">
             <div className="card-header">
-             
+            <h3 className="row" >Sign In</h3>
             </div>
             <div className="card-body">
               <form onSubmit={submitForm}>
