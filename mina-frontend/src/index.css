@@ -84,6 +84,8 @@ a:hover {
   .loading {
     margin-top: 70%;
     margin-bottom: 70%;
+    /* prvents the loading spinner to move around */
+    display: block !important;
   }
 }
 

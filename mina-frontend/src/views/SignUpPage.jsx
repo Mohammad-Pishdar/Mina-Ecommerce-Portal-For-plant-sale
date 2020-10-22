@@ -26,13 +26,18 @@ export default function SignUpPage(props) {
   const submitForm = (event) => {
     //preventing the page from being refreshed when user submits
     event.preventDefault();
-    //we dispatch sign in action when user submits form
+    if (password !== confirmedPassword) {
+      alert("The password you eneterd and the one you confirmed do not match");
+    } else {
+      //we dispatch sign up action when user submits form
     dispatch(signUp(name, email, password));
+    }
   };
   //creating react hooks for setEmail and setPassword
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmedPassword, setConfirmedPassword] = useState("");
 
   useEffect(() => {
     //So if the userInfo contains a value it means sign in was successful so we need to redirect user to the appropritae page. The dependency for useEffect here is userInfo since we want it to run whenever userOnfo changes
@@ -87,6 +92,16 @@ export default function SignUpPage(props) {
                         placeholder="Enter password"
                         required
                         onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                    <div className="input-group form-group">
+                      {/* usig the same onChange function to capture the entered password */}
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Confirm password"
+                        required
+                        onChange={(e) => setConfirmedPassword(e.target.value)}
                       />
                     </div>
                     <div className="form-group">

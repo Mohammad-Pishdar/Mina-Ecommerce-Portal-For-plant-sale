@@ -63,7 +63,6 @@ export const signUp = (name, email, password) => async (dispatch) => {
     dispatch({
         type: USER_SIGNUP_REQUEST,
         payload: {
-            name,
             email,
             password
         }
