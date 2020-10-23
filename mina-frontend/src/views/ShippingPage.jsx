@@ -1,5 +1,5 @@
 import React from 'react'
-import CheckoutSteps from '../components/checkoutSteps'
+import CheckoutSteps from '../components/CheckoutSteps'
 
 export default function ShippingPage() {
     return (
