@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { saveShippingAddress } from "../actions/shoppinCartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 
-export default function ShippingPage() {
+export default function ShippingPage(props) {
   //setting up a hook for full name
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
@@ -16,8 +17,11 @@ export default function ShippingPage() {
     event.preventDefault();
     //now we have to create a new action to save shipping address and dispatch it here
     dispatch(
-      saveShippingAddress(fullName, address, city, zipCode, state, country)
+        //we wrap the parameters here inside curly braces so we can later pass it as a single object called data in it's related action and reducer
+      saveShippingAddress({fullName, address, city, zipCode, state, country})
     );
+    //Now that we disatched shipping address it's time to rediret user to payment screen
+    props.history.push('/payment');
   };
   return (
     <>
