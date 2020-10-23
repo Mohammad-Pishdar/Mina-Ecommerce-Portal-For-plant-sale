@@ -7,9 +7,14 @@ export default function ShippingPage(props) {
   //accessing user info in state
   const signIn = useSelector((state) => state.signIn);
   const { userInfo } = signIn;
+  const shoppingCart = useSelector((state) => state.shoppingCart);
+  const {shoppingCartItems} = shoppingCart;
   //we use this information to send users back to sign in screen if they're not already signed in
   if(!userInfo) {
       props.history.push('/signin');
+  } else
+  if(shoppingCartItems.length === 0) {
+      props.history.push('/');
   }
   //setting up a hook for full name and other details for shipping
   const [fullName, setFullName] = useState("");
