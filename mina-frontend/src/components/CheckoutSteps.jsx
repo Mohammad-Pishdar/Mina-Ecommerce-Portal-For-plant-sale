@@ -53,7 +53,7 @@ export default function CheckoutSteps(props) {
               : "col-xs-3 bs-wizard-step disabled w-25"
           }
         >
-          <div className="text-center bs-wizard-stepnum">Place your order</div>
+          <div className="text-center bs-wizard-stepnum">Place order</div>
           <div className="progress">
             <div className="progress-bar"></div>
           </div>
