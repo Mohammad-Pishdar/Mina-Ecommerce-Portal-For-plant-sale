@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../actions/shoppinCartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function ShippingPage(props) {
-  //setting up a hook for full name
+  //accessing user info in state
+  const signIn = useSelector((state) => state.signIn);
+  const { userInfo } = signIn;
+  //we use this information to send users back to sign in screen if they're not already signed in
+  if(!userInfo) {
+      props.history.push('/signin');
+  }
+  //setting up a hook for full name and other details for shipping
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -17,11 +24,11 @@ export default function ShippingPage(props) {
     event.preventDefault();
     //now we have to create a new action to save shipping address and dispatch it here
     dispatch(
-        //we wrap the parameters here inside curly braces so we can later pass it as a single object called data in it's related action and reducer
-      saveShippingAddress({fullName, address, city, zipCode, state, country})
+      //we wrap the parameters here inside curly braces so we can later pass it as a single object called data in it's related action and reducer
+      saveShippingAddress({ fullName, address, city, zipCode, state, country })
     );
     //Now that we disatched shipping address it's time to rediret user to payment screen
-    props.history.push('/payment');
+    props.history.push("/payment");
   };
   return (
     <>
