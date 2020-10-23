@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function ShippingPage() {
-    //setting up a hook for full name
-    const [fullName, setFullName] = useState('');
+  //setting up a hook for full name
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+
   const submitHandler = (event) => {
     event.preventDefault();
     //now we have to create a new action to save shipping address and dispatch it here
@@ -15,7 +21,7 @@ export default function ShippingPage() {
       <form className="w-50 mx-auto mb-5 mt-1" onSubmit={submitHandler}>
         <h1>Shipping Address</h1>
         <div className="form-group">
-          <label for="fullName">Full Name</label>
+          <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
             className="form-control"
@@ -27,54 +33,66 @@ export default function ShippingPage() {
           />
         </div>
         <div className="form-group">
-          <label for="inputAddress">Address</label>
+          <label htmlFor="address">Address</label>
           <input
             type="text"
             className="form-control"
-            id="inputAddress"
-            placeholder="1234 Main St"
-          />
-        </div>
-        <div className="form-group">
-          <label for="inputAddress2">Address 2</label>
-          <input
-            type="text"
-            className="form-control"
-            id="inputAddress2"
-            placeholder="Apartment, studio, or floor"
+            id="address"
+            placeholder="Enter your address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
           />
         </div>
         <div className="form-row">
-          <div className="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" className="form-control" id="inputCity" />
+          <div className="form-group col-md-2">
+            <label htmlFor="inputCity">City</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputCity"
+              placeholder=""
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group col-md-3">
+            <label htmlFor="state">State</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputCity"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group col-md-3">
+            <label htmlFor="inputZip">Zip</label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputZip"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+              required
+            />
           </div>
           <div className="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" className="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div className="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" className="form-control" id="inputZip" />
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="form-check">
+            <label htmlFor="country">Country</label>
             <input
-              className="form-check-input"
-              type="checkbox"
-              id="gridCheck"
+              type="text"
+              className="form-control"
+              id="country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              required
             />
-            <label className="form-check-label" for="gridCheck">
-              Check me out
-            </label>
           </div>
         </div>
         <button type="submit" className="btn btn-primary">
-          Sign in
+          Continue
         </button>
       </form>
     </>
