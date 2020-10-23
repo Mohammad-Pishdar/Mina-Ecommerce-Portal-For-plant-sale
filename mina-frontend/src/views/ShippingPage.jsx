@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function ShippingPage() {
@@ -9,10 +10,14 @@ export default function ShippingPage() {
   const [zipCode, setZipCode] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
+  const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
     //now we have to create a new action to save shipping address and dispatch it here
+    dispatch(
+      saveShippingAddress(fullName, address, city, zipCode, state, country)
+    );
   };
   return (
     <>

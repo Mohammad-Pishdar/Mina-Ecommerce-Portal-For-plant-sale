@@ -1,10 +1,16 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../constants/shoppingCartConstants";
+import {
+    ADD_TO_CART,
+    REMOVE_FROM_CART,
+    SAVE_SHIPPING_ADDRESS
+} from "../constants/shoppingCartConstants";
 import Axios from "axios";
 
 // dispatch and getState are functions of redux thunk used to dipatch an action and also get the state of redux store
 export const addToCart = (itemId, quantity) => async (dispatch, getState) => {
     // sending an ajax request to the server to get information about this particular item
-    const {data} = await Axios.get(`/api/items/${itemId}`);
+    const {
+        data
+    } = await Axios.get(`/api/items/${itemId}`);
     //dispatching an action after getting data about that item. This action sends a request to redux store to add this payload to the shopping cart
     dispatch({
         type: ADD_TO_CART,
@@ -34,4 +40,15 @@ export const removeFromCart = (itemId) => (dispatch, getState) => {
     });
     //we update local storage after dispatching the remove action. We use getState to access cart items in redux store
     localStorage.setItem('cartItems', JSON.stringify(getState().shoppingCart.shoppingCartItems));
+}
+
+//creting a new action to save shipping address. The function takes the data regarding the shipping address and uses dispatch function from redux thunk.
+export const saveShippingAddress = (data) => (dispatch) => {
+    dispatch({
+        type: SAVE_SHIPPING_ADDRESS,
+        //the payload here is the shipping address data 
+        payload: data
+    });
+    //we also save the shipping address data in localStorage
+    localStorage.setItem('shippingAddress', JSON.stringify(data));
 }
