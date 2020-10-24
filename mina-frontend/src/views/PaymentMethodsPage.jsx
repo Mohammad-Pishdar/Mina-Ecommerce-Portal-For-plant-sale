@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../actions/shoppinCartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function PaymentMethodsPage(props) {
+    //We must insure that user only be able to view this screen if already completed the required fields on shipping adress screen
+    const shoppingCart = useSelector((state) => state.shoppingCart);
+    //we take out the shipping address from shoppingCart info on state
+    const {shippingAddress} = shoppingCart;
+    //now we check if the shippping address has been entered or not
+    if(!shippingAddress.address) {
+        //if there is no address entered redurect user to the shipping page
+        props.history.push('/shipping');
+    }
+
   //defining a react hook for set payment method
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
