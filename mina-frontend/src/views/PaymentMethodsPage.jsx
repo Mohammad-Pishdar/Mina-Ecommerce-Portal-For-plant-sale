@@ -5,7 +5,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function PaymentMethodsPage(props) {
   //defining a react hook for set payment method
-  const [paymentMethod, setpaymentMethod] = useState("PayPal");
+  const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
   //definig dispatch
   const dispatch = useDispatch();
@@ -21,22 +21,20 @@ export default function PaymentMethodsPage(props) {
     <div>
       {/* we set appropritae steps for each step as true values so our progress br will be updated. Here this is the third step so steps 1 through 3 should be set as true when we call the check out steps compnonet */}
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
-      <div class="container">
-        <div class="row">
-          <div class="paymentCont">
-            <div class="headingWrap">
-              <h3 class="headingTop text-center">Select Your Payment Method</h3>
-              <p class="text-center">
-                Created with bootsrap button and using radio button
-              </p>
+      <div className="container w-100 mx-auto mb-5 mt-1">
+        <div className="row">
+          <div className="paymentCont mx-auto">
+            <div className="headingWrap">
+              <h3 className="headingTop text-center">Select Your Payment Method</h3>
             </div>
-            <div class="paymentWrap">
+            <div className="row">
+            <div className="paymentWrap mx-auto">
               <div
-                class="btn-group paymentBtnGroup btn-group-justified"
+                className="btn-group paymentBtnGroup btn-group-justified"
                 data-toggle="buttons"
               >
-                <label class="btn paymentMethod" htmlFor="paypal">
-                  <div class="method paypal" onClick={clickHandler}></div>
+                <label className="btn paymentMethod" htmlFor="paypal">
+                  <div className="method paypal"></div>
                   {/* by marking this input field as checked we make it the default option to pay */}
                   <input
                     type="radio"
@@ -48,8 +46,8 @@ export default function PaymentMethodsPage(props) {
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   />
                 </label>
-                <label class="btn paymentMethod" htmlFor="creditCArd">
-                  <div class="method creditCArd" onClick={clickHandler}></div>
+                <label className="btn paymentMethod" htmlFor="creditCArd">
+                  <div className="method creditCArd"></div>
                   {/* by marking this input field as checked we make it the default option to pay */}
                   <input
                     type="radio"
@@ -63,13 +61,16 @@ export default function PaymentMethodsPage(props) {
                 </label>
               </div>
             </div>
-            <div class="footerNavWrap clearfix">
-              <div class="btn btn-success pull-left btn-fyi">
-                <button class="glyphicon glyphicon-chevron-left" type="submit" onSubmit={submitHandler}>
+            </div>
+            <div className="row">
+            <div className="footerNavWrap clearfix mx-auto">
+              <div className="btn btn-success pull-left btn-fyi">
+                <button className="glyphicon glyphicon-chevron-left" type="submit" onClick={submitHandler}>
                   CONTINUE
                 </button>
               </div>
             </div>
+            </div>     
           </div>
         </div>
       </div>
