@@ -1,6 +1,7 @@
 import {
     ADD_TO_CART,
     REMOVE_FROM_CART,
+    SAVE_PAYMENT_METHOD,
     SAVE_SHIPPING_ADDRESS
 } from "../constants/shoppingCartConstants";
 import Axios from "axios";
