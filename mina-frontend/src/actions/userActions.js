@@ -52,6 +52,8 @@ export const signout = () => async (dispatch) => {
     localStorage.removeItem('userInfo');
     //we should also remove shopping cart items from localStorage upon user logout
     localStorage.removeItem('cartItems');
+    //we also remove shipping address from localStorage upon signing out so our checks to show payment method page only after completing the shipping address page could work after signing out and prevents user from visiting our payment method page
+    localStorage.removeItem('shippingAddress');
     dispatch({
         type: USER_SIGNOUT
     });
