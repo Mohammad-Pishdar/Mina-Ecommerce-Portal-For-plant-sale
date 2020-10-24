@@ -38,7 +38,7 @@ const itemSchema = new mongoose.Schema({
 }, {
     //enabling timestamps for item schema
     timestamps: true,
-})
+});
 
 //creating item model based on the above Schema
 const Item = mongoose.model("Item", itemSchema);

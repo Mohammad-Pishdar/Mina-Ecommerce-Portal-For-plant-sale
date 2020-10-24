@@ -13,10 +13,20 @@ export default function PlaceOrderPage(props) {
   }
 
   //Adding logic to set shipping cost
-  const subtotal = Number(shoppingCartItems
-    .reduce((accumulator, item) => accumulator + item.price * item.quantity, 0)
-    .toFixed(2));
+  const subtotal = Number(
+    shoppingCartItems
+      .reduce(
+        (accumulator, item) => accumulator + item.price * item.quantity,
+        0
+      )
+      .toFixed(2)
+  );
   const shippingCost = subtotal > 100 ? 0 : 10;
+
+  //defining the place order handler functiona
+  const placeOrderHandler = () => {
+      //todo
+  };
 
   return (
     <div>
@@ -94,13 +104,16 @@ export default function PlaceOrderPage(props) {
                     </div>
                     <div className="summary-item">
                       <span className="text">Total</span>
-                      <span className="price">${subtotal + shippingCost}</span>
+                      <span className="price">
+                        <strong>${subtotal + shippingCost}</strong>
+                      </span>
                     </div>
                     <button
                       type="button"
                       className="btn btn-primary btn-lg btn-block"
+                      onClick={placeOrderHandler}
                     >
-                      Checkout
+                      Place Order
                     </button>
                   </div>
                 </div>
