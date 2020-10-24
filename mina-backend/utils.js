@@ -19,3 +19,35 @@ export const generateToken = (user) => {
         }
     );
 };
+
+//creating a middleware to authenticate user
+export const isAuthenticated = (req, res, next) => {
+    //First we get the authorization field from the header of this request
+    const authorization = req.headers.authorization;
+    //if authorization field exists
+    if (authorization) {
+        //we get token from authorization by slicing it from the 7th index which ensures that it only takes the token part from the captured authorization field
+        const token = authorization.slice(7, authorization.length);
+
+        //Now it's time to use json wen token to decrypt the encrypted token. We use JWT's verify function to do that
+        jwt.verify(token, process.env.JWT_SECRET || 'secureText', (err, decode) => {
+            if (err) {
+                req.status(401).send({
+                    message: 'Invalid token'
+                });
+            } else {
+                //since at this point the token is valid we fill req.user by decode which is the information for that specific user with that specific token created above when we used sign method of json web token to create that token(so its id, name, email and whether or not the user is an admin)
+                req.user = decode;
+                //now we pass this captured data about user to the next middleware
+                next();
+            }
+        })
+
+    }
+    //we can also send an error if authorization does not exist in the header of this request
+    else {
+        req.status(401).send({
+            message: 'There is no token'
+        });
+    }
+}
