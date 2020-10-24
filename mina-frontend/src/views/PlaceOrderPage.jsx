@@ -12,6 +12,12 @@ export default function PlaceOrderPage(props) {
     props.history.push("/payment");
   }
 
+  //Adding logic to set shipping cost
+  const subtotal = Number(shoppingCartItems
+    .reduce((accumulator, item) => accumulator + item.price * item.quantity, 0)
+    .toFixed(2));
+  const shippingCost = subtotal > 100 ? 0 : 10;
+
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -60,7 +66,6 @@ export default function PlaceOrderPage(props) {
                                   {cartItem.quantity}
                                 </div>
                                 <div className="col-md-3 price">
-                                    Subtotal: 
                                   <span className="ml-1">
                                     $
                                     {(
@@ -81,19 +86,15 @@ export default function PlaceOrderPage(props) {
                     <h3>Summary</h3>
                     <div className="summary-item">
                       <span className="text">Subtotal</span>
-                      <span className="price">$360</span>
-                    </div>
-                    <div className="summary-item">
-                      <span className="text">Discount</span>
-                      <span className="price">$0</span>
+                      <span className="price">${subtotal}</span>
                     </div>
                     <div className="summary-item">
                       <span className="text">Shipping</span>
-                      <span className="price">$0</span>
+                      <span className="price">${shippingCost}</span>
                     </div>
                     <div className="summary-item">
                       <span className="text">Total</span>
-                      <span className="price">$360</span>
+                      <span className="price">${subtotal + shippingCost}</span>
                     </div>
                     <button
                       type="button"
