@@ -6,6 +6,7 @@ import userRouter from "./routers/userRouter.js";
 import itemRouter from "./routers/itemRouter.js";
 //importing dotenv package to be able to use it to read the contents inside our .env file
 import dotenv from "dotenv";
+import orderRouter from "./routers/orderRouter.js";
 
 dotenv.config();
 
@@ -57,6 +58,7 @@ app.use((err, req, res, next) => {
 })
 
 app.use('/api/items', itemRouter);
+app.use('api/orders', orderRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {

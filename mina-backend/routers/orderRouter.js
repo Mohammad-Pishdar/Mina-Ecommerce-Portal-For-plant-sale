@@ -30,4 +30,6 @@ orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
         //we send a message to indicate that order was successfully added to the database and we pass the created order to the frontend
         res.status(201).send({message: 'Order created', order: createdOrder});
     }
-}))
+}));
+
+export default orderRouter;
