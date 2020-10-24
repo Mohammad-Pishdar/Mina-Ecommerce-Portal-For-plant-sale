@@ -21,7 +21,9 @@ const initialState = {
     //defining a default value for our shopping cart and read content of the local storage to populate our shopping cart if there is something in local storage upon each refresh of the page or make the shopping cart empty if there is not
     shoppingCart: {
         shoppingCartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
-        shippingAddress: localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
+        shippingAddress: localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {},
+        //here we set the default state for payment method in our shopping cart to PayPal
+        paymentMethod: 'PayPal'
     },
     //Doing exactly the same thing for user sign in info to retrieve data from local storage if there is any
     signIn: {
