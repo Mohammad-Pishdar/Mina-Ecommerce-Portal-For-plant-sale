@@ -54,7 +54,7 @@ export const shoppingCartReducer = (state = {
                 };
             case EMPTY_CART:
                 return {
-                    ...state, shoppigCartItems: []
+                    ...state, shoppingCartItems: []
                 };
             default:
                 return state;

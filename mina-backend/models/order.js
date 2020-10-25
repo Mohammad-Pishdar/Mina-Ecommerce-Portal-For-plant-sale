@@ -2,19 +2,19 @@ import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
     orderedItems: [{
-        itemName: {
+        name: {
             type: String,
             required: true
         },
-        itemQuantity: {
+        quantity: {
             type: Number,
             required: true
         },
-        itemImage: {
+        image: {
             type: String,
             required: true
         },
-        itemPrice: {
+        price: {
             type: Number,
             required: true
         },
@@ -63,7 +63,7 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    Total: {
+    total: {
         type: Number,
         required: true
     },

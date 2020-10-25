@@ -21,8 +21,8 @@ export default function PlaceOrderPage(props) {
   //then we extract all the fields inside this object since we need all of these variables
   const { loading, success, error, order } = createdOrder;
 
-  //Adding logic to set shipping cost
-  const subtotal = Number(
+  //Adding logic to set shipping cost, subtotal and total price and add them to the shopping cart in the state
+  shoppingCart.subTotal = Number(
     shoppingCartItems
       .reduce(
         (accumulator, item) => accumulator + item.price * item.quantity,
@@ -30,7 +30,8 @@ export default function PlaceOrderPage(props) {
       )
       .toFixed(2)
   );
-  const shippingCost = subtotal > 100 ? 0 : 10;
+  shoppingCart.shippingCost = shoppingCart.subTotal > 100 ? 0 : 10;
+  shoppingCart.total = shoppingCart.subTotal + shoppingCart.shippingCost;
 
   //defining the place order handler function
   const dispatch = useDispatch();
@@ -122,16 +123,16 @@ export default function PlaceOrderPage(props) {
                     <h3>Summary</h3>
                     <div className="summary-item">
                       <span className="text">Subtotal</span>
-                      <span className="price">${subtotal}</span>
+                      <span className="price">${shoppingCart.subTotal}</span>
                     </div>
                     <div className="summary-item">
                       <span className="text">Shipping</span>
-                      <span className="price">${shippingCost}</span>
+                      <span className="price">${shoppingCart.shippingCost}</span>
                     </div>
                     <div className="summary-item">
                       <span className="text">Total</span>
                       <span className="price">
-                        <strong>${subtotal + shippingCost}</strong>
+                        <strong>${shoppingCart.total}</strong>
                       </span>
                     </div>
                     <button
