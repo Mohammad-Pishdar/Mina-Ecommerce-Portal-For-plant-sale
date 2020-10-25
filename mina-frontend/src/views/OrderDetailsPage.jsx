@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { orderDetails } from "../actions/orderActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -9,6 +10,10 @@ import MessageBox from "../components/MessageBox";
 export default function OrderDetailsPage(props) {
   //getting order id from the url
   const orderId = props.match.params.id;
+  //fetching order details from redux store
+  const detailsofTheOrder = useSelector((state) => state.orderDetails);
+  //getting what we need from detailsofTheOrder defined above
+  const { order, loading, order } = detailsofTheOrder;
   //defining the place order handler function
   const dispatch = useDispatch();
   //In this screen we use useEffect to dipatch order details
@@ -16,37 +21,37 @@ export default function OrderDetailsPage(props) {
     dipatch(orderDetails(orderId));
   }, [dispatch, orderId]);
 
-  return (
+  return loading ? (
+    <LoadingBox></LoadingBox>
+  ) : error ? (
+    <MessageBox variant="danger">{error}</MessageBox>
+  ) : (
     <div>
-      <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+      <h1>Order {order._id}</h1>
       <main className="page">
         <section className="shopping-cart dark">
           <div className="container">
             <div className="block-heading">
               <h2>Shipping Address:</h2>
               <p>
-                <strong>Name:</strong> {shoppingCart.shippingAddress.fullName}{" "}
-                <br />
-                <strong>Address: </strong>{" "}
-                {shoppingCart.shippingAddress.address},
-                {shoppingCart.shippingAddress.city},{" "}
-                {shoppingCart.shippingAddress.zipCode},{" "}
-                {shoppingCart.shippingAddress.state},{" "}
-                {shoppingCart.shippingAddress.country}
+                <strong>Name:</strong> {order.shippingAddress.fullName} <br />
+                <strong>Address: </strong> {order.shippingAddress.address},
+                {order.shippingAddress.city}, {order.shippingAddress.zipCode},{" "}
+                {order.shippingAddress.state}, {order.shippingAddress.country}
               </p>
             </div>
             <div className="content">
               <div className="row">
                 <div className="col-md-12 col-lg-8">
                   <div className="items">
-                    {shoppingCartItems.map((cartItem) => (
-                      <div className="product" key={cartItem.item}>
+                    {order.orderedItems.map((item) => (
+                      <div className="product" key={item.item}>
                         <div className="row">
                           <div className="col-md-3">
                             <img
                               className="img-fluid mx-auto d-block image"
-                              src={cartItem.image}
-                              alt={cartItem.name}
+                              src={item.image}
+                              alt={item.name}
                             />
                           </div>
                           <div className="col-md-8">
@@ -54,21 +59,18 @@ export default function OrderDetailsPage(props) {
                               <div className="row">
                                 <div className="col-md-5 product-name">
                                   <div className="product-name">
-                                    <Link to={`/item/${cartItem.item}`}>
-                                      {cartItem.name}
+                                    <Link to={`/item/${item.item}`}>
+                                      {item.name}
                                     </Link>
                                   </div>
                                 </div>
                                 <div className="col-md-4 quantity">
                                   <p>Quantity:</p>
-                                  {cartItem.quantity}
+                                  {item.quantity}
                                 </div>
                                 <div className="col-md-3 price">
                                   <span className="ml-1">
-                                    $
-                                    {(
-                                      cartItem.quantity * cartItem.price
-                                    ).toFixed(2)}
+                                    ${(item.quantity * item.price).toFixed(2)}
                                   </span>
                                 </div>
                               </div>
@@ -84,28 +86,25 @@ export default function OrderDetailsPage(props) {
                     <h3>Summary</h3>
                     <div className="summary-item">
                       <span className="text">Subtotal</span>
-                      <span className="price">${shoppingCart.subTotal}</span>
+                      <span className="price">${order.subTotal}</span>
                     </div>
                     <div className="summary-item">
                       <span className="text">Shipping</span>
-                      <span className="price">${shoppingCart.shippingCost}</span>
+                      <span className="price">${order.shippingCost}</span>
                     </div>
                     <div className="summary-item">
                       <span className="text">Total</span>
                       <span className="price">
-                        <strong>${shoppingCart.total}</strong>
+                        <strong>${order.total}</strong>
                       </span>
                     </div>
-                    <button
+                    {/* <button
                       type="button"
                       className="btn btn-primary btn-lg btn-block"
                       onClick={placeOrderHandler}
                     >
                       Place Order
-                    </button>
-                    {/* we use loading and error we have extracted above here to determine wheather or not to show loading and error message boxes components we created earlier */}
-                    {loading && <LoadingBox></LoadingBox>}
-                    {error && <MessageBox variant="danger">{error}</MessageBox>}
+                    </button> */}
                   </div>
                 </div>
               </div>

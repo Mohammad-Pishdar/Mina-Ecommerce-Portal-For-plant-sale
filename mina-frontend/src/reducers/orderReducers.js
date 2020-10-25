@@ -37,10 +37,13 @@ export const orderReducer = (state = {}, action) => {
 }
 
 //Definig order details reducer. Here since we need to load data first we set the default value of laoding for the state to true
-export const orderDetailsReducer = (state = {
-    loading: true,
-    order = {}
-}, action) => {
+export const orderDetailsReducer = (
+    state = {
+        loading: true,
+        order: {}
+    },
+    action
+) => {
     switch (action.type) {
         case ORDER_DETAILS_REQUEST:
             return {
@@ -53,8 +56,8 @@ export const orderDetailsReducer = (state = {
         case ORDER_DETAILS_FAILURE:
             return {
                 loading: false, error: action.payload
-            }
-            default:
-                return state;
+            };
+        default:
+            return state;
     }
-}
+};
