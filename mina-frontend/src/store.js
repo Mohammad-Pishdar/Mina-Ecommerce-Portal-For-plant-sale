@@ -9,6 +9,7 @@ import {
     itemDetailsReducer,
     itemListReducer
 } from './reducers/itemsReducers';
+import { orderReducer } from './reducers/orderReducers';
 import {
     shoppingCartReducer
 } from './reducers/shoppingCartReducers';
@@ -39,6 +40,8 @@ const reducer = combineReducers({
     signIn: userSignInReducer,
     //adding user sign up reducer to the combined reducers
     signUp: userSignUpReducer,
+    //adding order reducer to the combined combined reducers
+    order: orderReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
