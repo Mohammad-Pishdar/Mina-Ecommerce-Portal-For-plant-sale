@@ -69,6 +69,16 @@ orderRouter.put('/:id/paid', isAuthenticated, expressAsyncHandler(async (req, re
             update_time: req.body.update_time,
             email_address: req.body.email_address
         };
+        //Now that we have updated the required values in order it's time to save the updated order back to database
+        const updatedOrder = await order.save();
+        res.send({
+            message: 'Order Paid',
+            updatedOrder
+        });
+    } else {
+        res.status(400).send({
+            message: 'Order Not Found'
+        });
     }
 }));
 
