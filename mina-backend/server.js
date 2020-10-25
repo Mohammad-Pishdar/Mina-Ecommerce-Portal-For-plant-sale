@@ -61,7 +61,7 @@ app.use('/api/items', itemRouter);
 app.use('/api/orders', orderRouter);
 
 //adding an API to send PayPal ID to frontend
-app.get(/api/config/paypal, (req, res) => {
+app.get('/api/config/paypal', (req, res) => {
     //send back PayPal client ID stored in our .env file. Sb here refers to word 'Sandbox'
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 })

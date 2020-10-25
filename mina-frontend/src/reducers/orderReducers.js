@@ -39,8 +39,7 @@ export const orderReducer = (state = {}, action) => {
 //Definig order details reducer. Here since we need to load data first we set the default value of laoding for the state to true
 export const orderDetailsReducer = (
     state = {
-        loading: true,
-        order: {}
+        loading: true
     },
     action
 ) => {
