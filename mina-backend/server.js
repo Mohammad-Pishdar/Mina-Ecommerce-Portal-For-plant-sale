@@ -60,7 +60,7 @@ app.use((err, req, res, next) => {
 app.use('/api/items', itemRouter);
 app.use('api/orders', orderRouter);
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`Server is listening on http://localhost:${port}`);
 });

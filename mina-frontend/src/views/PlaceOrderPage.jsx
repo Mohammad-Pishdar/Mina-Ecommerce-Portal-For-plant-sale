@@ -23,9 +23,11 @@ export default function PlaceOrderPage(props) {
   );
   const shippingCost = subtotal > 100 ? 0 : 10;
 
-  //defining the place order handler functiona
+  //defining the place order handler function
+  const dispatch = useDispatch();
   const placeOrderHandler = () => {
-      //todo
+    //here to dispatch what we need to our createOrder action which is to be implemented in shopping cart actions next, is to use all the fileds of shopping cart object in the state and replace shoppingCartItems with orderedItems in order for it to be used in our order model to create a new order
+      dispatch(createOrder({...shoppingCart, orderedItems: shoppingCart.shoppingCartItems}))
   };
 
   return (

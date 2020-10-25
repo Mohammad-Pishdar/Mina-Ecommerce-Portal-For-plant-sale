@@ -32,7 +32,7 @@ export const isAuthenticated = (req, res, next) => {
         //Now it's time to use json wen token to decrypt the encrypted token. We use JWT's verify function to do that
         jwt.verify(token, process.env.JWT_SECRET || 'secureText', (err, decode) => {
             if (err) {
-                req.status(401).send({
+                res.status(401).send({
                     message: 'Invalid token'
                 });
             } else {
@@ -46,7 +46,7 @@ export const isAuthenticated = (req, res, next) => {
     }
     //we can also send an error if authorization does not exist in the header of this request
     else {
-        req.status(401).send({
+        res.status(401).send({
             message: 'There is no token'
         });
     }
