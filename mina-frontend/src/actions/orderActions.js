@@ -3,7 +3,8 @@ import {
     ORDER_CREATE_REQUEST,
     ORDER_CREATE_SUCCESS,
     ORDER_DETAILS_FAILURE,
-    ORDER_DETAILS_REQUEST
+    ORDER_DETAILS_REQUEST,
+    ORDER_DETAILS_SUCCESS
 } from "../constants/orderConstants";
 import Axios from "axios";
 import {
@@ -73,7 +74,12 @@ export const orderDetails = (orderId) => async (dispatch, getState) => {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`
             }
-        })
+        });
+        //it's time to dispatch the data 
+        dispatch({
+            type: ORDER_DETAILS_SUCCESS,
+            payload: data
+        });
     } catch (err) {
         const message = err.response && err.response.data.message ? err.response.data.message : err.message;
         dispatch({
