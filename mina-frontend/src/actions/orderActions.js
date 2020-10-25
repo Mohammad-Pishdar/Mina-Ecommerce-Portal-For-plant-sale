@@ -1,7 +1,9 @@
 import {
     ORDER_CREATE_FAILURE,
     ORDER_CREATE_REQUEST,
-    ORDER_CREATE_SUCCESS
+    ORDER_CREATE_SUCCESS,
+    ORDER_DETAILS_FAILURE,
+    ORDER_DETAILS_REQUEST
 } from "../constants/orderConstants";
 import Axios from "axios";
 import {
@@ -51,7 +53,32 @@ export const createOrder = (order) => async (dispatch, getState) => {
     }
 };
 
-export const orderDetails = (orderId) => (dispatch, getState) => {
+export const orderDetails = (orderId) => async (dispatch, getState) => {
     //first we dispatch order details request so first we need to define it in our order constants file
-
+    dispatch({
+        type: ORDER_DETAILS_REQUEST,
+        payload: orderId
+    });
+    //we also get user info from state
+    const {
+        signIn: {
+            userInfo
+        }
+    } = getState();
+    //now we can send our ajax request
+    try {
+        const {
+            data
+        } = await Axios.get(`/api/orders/${orderId}`, {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        })
+    } catch (err) {
+        const message = err.response && err.response.data.message ? err.response.data.message : err.message;
+        dispatch({
+            type: ORDER_DETAILS_FAILURE,
+            payload: message
+        });
+    }
 }
