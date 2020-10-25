@@ -4,7 +4,10 @@ import {
     ORDER_CREATE_SUCCESS,
     ORDER_DETAILS_FAILURE,
     ORDER_DETAILS_REQUEST,
-    ORDER_DETAILS_SUCCESS
+    ORDER_DETAILS_SUCCESS,
+    ORDER_PAYMENT_SUCCESS,
+    ORDER_PAYMENT_FAILURE,
+    ORDER_PAYMENT_REQUEST
 } from "../constants/orderConstants";
 import Axios from "axios";
 import {
@@ -90,6 +93,33 @@ export const orderDetails = (orderId) => async (dispatch, getState) => {
 };
 
 export const orderPayment = (order, paymentResult) => async (dispatch, getState) => {
-    dispatch({type: ORDER_PAYMENT_REQUEST, payload: { order, paymentResult}});
+    dispatch({
+        type: ORDER_PAYMENT_REQUEST,
+        payload: {
+            order,
+            paymentResult
+        }
+    });
+    const {
+        signIn: {
+            userInfo
+        }
+    } = getState();
+    //and now we can send our ajax request
+    try {
+        const {
+            data
+        } = Axios.put(`/api/orders/${order._id}/paid`, paymentResult, {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        });
+        dispatch({type:ORDER_PAYMENT_SUCCESS, payload: data})
+    } catch (err) {
+        const message = err.response && err.response.data.message ? err.response.data.message : err.message;
+        dispatch({
+            type: ORDER_PAYMENT_FAILURE,
+            payload: message
+        });
+    }
 }
-
