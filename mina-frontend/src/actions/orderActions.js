@@ -50,3 +50,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
         });
     }
 };
+
+export const orderDetails = (orderId) => (dispatch, getState) => {
+    //first we dispatch order details request so first we need to define it in our order constants file
+
+}
