@@ -60,6 +60,12 @@ app.use((err, req, res, next) => {
 app.use('/api/items', itemRouter);
 app.use('/api/orders', orderRouter);
 
+//adding an API to send PayPal ID to frontend
+app.get(/api/config/paypal, (req, res) => {
+    //send back PayPal client ID stored in our .env file. Sb here refers to word 'Sandbox'
+    res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
+})
+
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log(`Server is listening on http://localhost:${port}`);
