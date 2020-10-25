@@ -16,6 +16,7 @@ import SignUpPage from "./views/SignUpPage";
 import ShippingPage from "./views/ShippingPage";
 import PaymentMethodsPage from "./views/PaymentMethodsPage";
 import PlaceOrderPage from "./views/PlaceOrderPage";
+import OrderDetailsPage from "./views/OrderDetailsPage";
 
 function App() {
   //accessing cart items from redux
@@ -130,6 +131,8 @@ function App() {
         <Route path="/payment" component={PaymentMethodsPage}></Route>
         {/* adding place order screen */}
         <Route path="/placeorder" component={PlaceOrderPage}></Route>
+        {/* adding order details screen */}
+        <Route path="/order/:id" component={OrderDetailsPage}></Route>
 
         <footer className="py-5 bg-dark">
           <div className="container">
