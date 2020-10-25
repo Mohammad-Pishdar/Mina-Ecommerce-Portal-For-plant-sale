@@ -51,6 +51,10 @@ export const shoppingCartReducer = (state = {
                 return {
                     ...state, paymentMethod: action.payload
                 };
+            case EMPTY_CART:
+                return {
+                    ...state, shoppigCartItems: []
+                };
             default:
                 return state;
     }
