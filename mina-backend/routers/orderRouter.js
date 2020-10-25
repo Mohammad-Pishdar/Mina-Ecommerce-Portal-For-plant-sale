@@ -53,4 +53,23 @@ orderRouter.get('/:id', isAuthenticated, expressAsyncHandler(async (req, res) =>
     }
 }));
 
+//here we define an API to update the status of the order payment so we use put. We need to also pass the isAuthenticated middelware to this route because only logged in users can make the payment
+orderRouter.put('/:id/paid', isAuthenticated, expressAsyncHandler(async (req, res) => {
+    //first we get the order in question from the database
+    const order = await Order.findById(req.params.id);
+    //if order exists update the order status
+    if (order) {
+        order.isPaid = true;
+        //also update payment date to current date
+        order.paidAt = Date.now();
+        //Also save some information from paypal as the order result and we should also update our order model to add them in there too
+        order.paymentResult = {
+            id: req.body.id,
+            status: req.body.status,
+            update_time: req.body.update_time,
+            email_address: req.body.email_address
+        };
+    }
+}));
+
 export default orderRouter;
