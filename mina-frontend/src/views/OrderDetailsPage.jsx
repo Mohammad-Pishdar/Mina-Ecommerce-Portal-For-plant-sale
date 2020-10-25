@@ -55,9 +55,9 @@ export default function OrderDetailsPage(props) {
     }
   }, [dispatch, order, orderId, sdkReday]);
 
-  //defining the function to handle successful payment
-  const successfulPaymentHandler = () => {
-
+  //defining the function to handle successful payment. Payment result here is the result of the payment reported back by Paypal
+  const successfulPaymentHandler = (paymentResult) => {
+    dispatch(orderPayment(order, paymentResult));
   }
 
   return loading ? (

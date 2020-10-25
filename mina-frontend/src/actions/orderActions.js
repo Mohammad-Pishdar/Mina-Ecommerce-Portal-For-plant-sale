@@ -87,4 +87,9 @@ export const orderDetails = (orderId) => async (dispatch, getState) => {
             payload: message
         });
     }
+};
+
+export const orderPayment = (order, paymentResult) => async (dispatch, getState) => {
+    dispatch({type: ORDER_PAYMENT_REQUEST, payload: { order, paymentResult}});
 }
+
