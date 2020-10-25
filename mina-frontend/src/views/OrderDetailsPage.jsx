@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { orderDetails } from "../actions/orderActions";
-import CheckoutSteps from "../components/CheckoutSteps";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
@@ -13,12 +12,12 @@ export default function OrderDetailsPage(props) {
   //fetching order details from redux store
   const detailsofTheOrder = useSelector((state) => state.orderDetails);
   //getting what we need from detailsofTheOrder defined above
-  const { order, loading, order } = detailsofTheOrder;
+  const { order, loading, error } = detailsofTheOrder;
   //defining the place order handler function
   const dispatch = useDispatch();
   //In this screen we use useEffect to dipatch order details
   useEffect(() => {
-    dipatch(orderDetails(orderId));
+    dispatch(orderDetails(orderId));
   }, [dispatch, orderId]);
 
   return loading ? (
@@ -39,6 +38,13 @@ export default function OrderDetailsPage(props) {
                 {order.shippingAddress.city}, {order.shippingAddress.zipCode},{" "}
                 {order.shippingAddress.state}, {order.shippingAddress.country}
               </p>
+              {order.isDelivered ? (
+                <MessageBox variant="success">
+                  Order delivered at {order.deliveredAt}
+                </MessageBox>
+              ) : (
+                <MessageBox variant="danger">Not delivered yet</MessageBox>
+              )}
             </div>
             <div className="content">
               <div className="row">

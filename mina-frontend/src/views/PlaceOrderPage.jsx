@@ -31,7 +31,7 @@ export default function PlaceOrderPage(props) {
       .toFixed(2)
   );
   shoppingCart.shippingCost = shoppingCart.subTotal > 100 ? 0 : 10;
-  shoppingCart.total = shoppingCart.subTotal + shoppingCart.shippingCost;
+  shoppingCart.total = (shoppingCart.subTotal + shoppingCart.shippingCost).toFixed(2);
 
   //defining the place order handler function
   const dispatch = useDispatch();
