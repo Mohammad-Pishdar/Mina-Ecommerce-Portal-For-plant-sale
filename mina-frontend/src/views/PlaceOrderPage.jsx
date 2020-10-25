@@ -1,8 +1,12 @@
 import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createOrder } from "../actions/orderActions";
 import CheckoutSteps from "../components/CheckoutSteps";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 
 export default function PlaceOrderPage(props) {
   //we need to import shopping cart from redux store to access data stored in there
@@ -12,6 +16,10 @@ export default function PlaceOrderPage(props) {
   if (!shoppingCart.paymentMethod) {
     props.history.push("/payment");
   }
+  //we then get the order object from redux store
+  const order = useSelector((state) => state.order);
+  //then we extract all the fields inside this object since we need all of these variables
+  const { loading, success, error, order } = order;
 
   //Adding logic to set shipping cost
   const subtotal = Number(
@@ -28,8 +36,23 @@ export default function PlaceOrderPage(props) {
   const dispatch = useDispatch();
   const placeOrderHandler = () => {
     //here to dispatch what we need to our createOrder action which is to be implemented in order actions next, is to use all the fileds of shopping cart object in the state and replace shoppingCartItems with orderedItems in order for it to be used in our order model to create a new order
-      dispatch(createOrder({...shoppingCart, orderedItems: shoppingCart.shoppingCartItems}))
+    dispatch(
+      createOrder({
+        ...shoppingCart,
+        orderedItems: shoppingCart.shoppingCartItems,
+      })
+    );
   };
+
+  //Now it's time to define our useEffect method. Like always it has two paraeters a function and a dependency list. Here we add success to its dependency list which means this function runs whenever success becomes true or whenever we added an order to our database successfully (we use success and order fields we have extracted earleir here in our useEffect)
+  useEffect(() => {
+    if (success) {
+      //if the order added to database successfully then we need to redirect user to order dtails page
+      props.history.push(`/order/${order._id}`);
+      //then we reset the order in the state
+      dispatch({ type: ORDER_CREATE_RESET });
+    }
+  }, [dispatch, order, props.history, success]);
 
   return (
     <div>
@@ -118,6 +141,9 @@ export default function PlaceOrderPage(props) {
                     >
                       Place Order
                     </button>
+                    {/* we use loading and error we have extracted above here to determine wheather or not to show loading and error message boxes components we created earlier */}
+                    {loading && <LoadingBox></LoadingBox>}
+                    {error && <MessageBox variant="danger">{error}</MessageBox>}
                   </div>
                 </div>
               </div>
