@@ -5,4 +5,6 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const SAVE_SHIPPING_ADDRESS = 'SAVE_SHIPPING_ADDRESS';
 //constant for saving the payment method
 export const SAVE_PAYMENT_METHOD = 'SAVE_PAYMENT_METHOD';
+//constant for emptying out the shopping cart
+export const EMPTY_CART = 'EMPTY_CART';
 
