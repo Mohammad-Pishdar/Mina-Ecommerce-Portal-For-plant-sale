@@ -1,4 +1,5 @@
-import React from "react";
+import Axios from "axios";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,6 +10,8 @@ import MessageBox from "../components/MessageBox";
 export default function OrderDetailsPage(props) {
   //getting order id from the url
   const orderId = props.match.params.id;
+  //defining a react hook to get the status of PayPal SDK
+  const [sdkReday, setSdkReady] = useState(false);
   //fetching order details from redux store
   const detailsofTheOrder = useSelector((state) => state.orderDetails);
   //getting what we need from detailsofTheOrder defined above
@@ -17,8 +20,38 @@ export default function OrderDetailsPage(props) {
   const dispatch = useDispatch();
   //In this screen we use useEffect to dipatch order details
   useEffect(() => {
-    dispatch(orderDetails(orderId));
-  }, [dispatch, orderId]);
+    //adding a function to add PayPal script
+    const addPayPalScript = async () => {
+      //sending a request to backend to get the client ID
+      const { data } = await Axios.get("/api/config/paypal");
+      //now data contains the PayPal client ID. Now we create an script element and set the source of this script element to paypal SDK
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+      script.async = true;
+      //now we set en event handler for the script. This is an onload handler which means it runs when this script is downloaded into your browser and is ready to use
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      //finally we add this script to the body of the html document. This will add this script as the last child to the body of our html document
+      document.body.appendChild(script);
+    };
+    //Now we can call the add paypal script function
+    if (!order._id) {
+      //so if the order id is not found load the order from backend
+      dispatch(orderDetails(orderId));
+    } else {
+      if ((!order, isPaid)) {
+        //check if we already loaded paypal is the order is not paid yet and if not call add paypal script function
+        if (!window.paypal) {
+          addPayPalScript();
+        } else {
+          //at this point we have an unpaid order and paypal is already loaded
+          sdkReday(true);
+        }
+      }
+    }
+  }, [dispatch, order, orderId, sdkReday]);
 
   return loading ? (
     <LoadingBox></LoadingBox>
