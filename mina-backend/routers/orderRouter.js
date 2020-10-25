@@ -21,9 +21,9 @@ orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
             paymentMethod: req.body.paymentMethod,
             subTotal: req.body.subTotal,
             shippingCost: req.body.shippingCost,
-            Total: req.body.total,
+            total: req.body.total,
             //here we also need to include the iformation about the user who created this order but at this point we don't have access to that inforation so we have to create a middelware in our utils.js file. We use _id here because we only need the id of this user in our Order model
-            user: req.user._id
+            user: req.user._id,
         });
         //and we save this order to the database
         const createdOrder = await order.save();

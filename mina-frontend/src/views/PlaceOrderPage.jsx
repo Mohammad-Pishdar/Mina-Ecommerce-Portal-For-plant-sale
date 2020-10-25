@@ -17,9 +17,9 @@ export default function PlaceOrderPage(props) {
     props.history.push("/payment");
   }
   //we then get the order object from redux store
-  const order = useSelector((state) => state.order);
+  const createdOrder = useSelector((state) => state.order);
   //then we extract all the fields inside this object since we need all of these variables
-  const { loading, success, error, order } = order;
+  const { loading, success, error, order } = createdOrder;
 
   //Adding logic to set shipping cost
   const subtotal = Number(
