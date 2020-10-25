@@ -1,7 +1,9 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/order.js';
-import { isAuthenticated } from '../utils.js';
+import {
+    isAuthenticated
+} from '../utils.js';
 
 const orderRouter = express.Router();
 
@@ -28,7 +30,26 @@ orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
         //and we save this order to the database
         const createdOrder = await order.save();
         //we send a message to indicate that order was successfully added to the database and we pass the created order to the frontend
-        res.status(201).send({message: 'Order created', order: createdOrder});
+        res.status(201).send({
+            message: 'Order created',
+            order: createdOrder
+        });
+    }
+}));
+
+//now we need to add a new route for the authenticated user to be able to see the order details page
+orderRouter.get('/:id', isAuthenticated, expressAsyncHandler(async (req, res) => {
+    //we get the order from our database
+    const order = await Order.findById(req.params.id);
+    //checking to see if such order exists
+    if (order) {
+        //if it exists we just send it back
+        res.send(order);
+    } else {
+        //otherwise we send an error 
+        res.status(404).send({
+            message: 'Order not found'
+        });
     }
 }));
 
