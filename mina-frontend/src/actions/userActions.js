@@ -9,7 +9,10 @@ import {
     USER_SIGNUP_SUCCESS,
     USER_DETAILS_REQUEST,
     USER_DETAILS_FAILURE,
-    USER_DETAILS_SUCCESS
+    USER_DETAILS_SUCCESS,
+    USER_UPDATE_PROFILE_REQUEST,
+    USER_UPDATE_PROFILE_SUCCESS,
+    USER_UPDATE_PROFILE_FAILURE
 } from "../constants/userConstants"
 
 //defining a sign-in action. Like all the other actions, this function also returns an async function and passes redux thunk dispatch function as its argument.
@@ -106,21 +109,76 @@ export const signUp = (name, email, password) => async (dispatch) => {
 };
 
 export const userDetails = (userId) => async (dispatch, getState) => {
-    dispatch({ type: USER_DETAILS_REQUEST, payload: userId });
+    dispatch({
+        type: USER_DETAILS_REQUEST,
+        payload: userId
+    });
     const {
-        signIn: { userInfo },
+        signIn: {
+            userInfo
+        },
     } = getState();
     try {
-      const { data } = await Axios.get(`/api/users/${userId}`, {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      });
-      dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+        const {
+            data
+        } = await Axios.get(`/api/users/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        });
+        dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: data
+        });
     } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      dispatch({ type: USER_DETAILS_FAILURE, payload: message });
+        const message =
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message;
+        dispatch({
+            type: USER_DETAILS_FAILURE,
+            payload: message
+        });
     }
-  };
+};
 
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+    dispatch({
+        type: USER_UPDATE_PROFILE_REQUEST,
+        payload: user
+    });
+    const {
+        signIn: {
+            userInfo
+        },
+    } = getState();
+    try {
+        const {
+            data
+        } = await Axios.put(`/api/users/profile`, user, {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        });
+        dispatch({
+            type: USER_UPDATE_PROFILE_SUCCESS,
+            payload: data
+        });
+        //here we also have to update user Sign In because we also show username in the navbar menu and that comes from user SignIn action
+        dispatch({
+            type: USER_SIGNIN_SUCCESS,
+            payload: data
+        });
+        //and we also have to update userInfo in localStorage with the new data
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message;
+        dispatch({
+            type: USER_UPDATE_PROFILE_FAILURE,
+            payload: message
+        });
+    }
+};
