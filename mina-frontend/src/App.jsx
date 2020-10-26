@@ -197,7 +197,7 @@ function App() {
         </nav>
 
         <Route path="/" component={HomePage} exact></Route>
-        <Route path="/item/:id" component={ItemSpecificPage}></Route>
+        <Route path="/item/:id" component={ItemSpecificPage} exact></Route>
         {/* adding another route this time for sign in page */}
         <Route path="/signin" component={SignInPage}></Route>
         <Route path="/shoppingcart/:id?" component={ShoppingCartPage}></Route>

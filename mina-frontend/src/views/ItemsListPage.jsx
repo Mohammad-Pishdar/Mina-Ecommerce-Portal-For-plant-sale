@@ -23,7 +23,7 @@ export default function ItemsListPage(props) {
   useEffect(() => {
     //check to see if we successfully created an item so we need to reset item create and redirect user to edit screen for created item
     if (successCreate) {
-      dispatch(ITEM_CREATE_RESET);
+      dispatch({ type: ITEM_CREATE_RESET });
       props.history.push(`/item/${createdItem._id}/edit`);
     }
     dispatch(listItems());
@@ -37,18 +37,16 @@ export default function ItemsListPage(props) {
 
   return (
     <div>
-      <div className="row">
-        <h1>Items</h1>
+        <h1 className="ml-2">Items</h1>
         <button
           type="button"
           onClick={() => {
             createHandler();
           }}
-          className="btn btn-danger ml-1"
+          className="btn btn-danger ml-1 mb-2"
         >
           Create New Item
         </button>
-      </div>
       <div className="table-responsive">
         {loadingCreate && <LoadingBox></LoadingBox>}
         {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
