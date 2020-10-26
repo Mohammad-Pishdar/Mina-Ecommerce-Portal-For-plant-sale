@@ -22,7 +22,8 @@ export default function ItemEditPage(props) {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!item.name) {
+    //adding the OR statement here prevents the page to load up with previous info upon returning to it for a second time
+    if (!item || item._id !== itemId) {
       //so if the product name is null it means that it's a new item and we should load it from the template for a new item from backend
       dispatch(getItemDetails(itemId));
     } else {
@@ -94,7 +95,9 @@ export default function ItemEditPage(props) {
               />
             </div>
             <div className="form-group">
-              <label htmFor="numberOfItemInInvetory">Number Available In Inventory</label>
+              <label htmFor="numberOfItemInInvetory">
+                Number Available In Inventory
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -103,7 +106,7 @@ export default function ItemEditPage(props) {
                 value={numberOfItemInInvetory}
                 onChange={(e) => setNumberOfItemInInvetory(e.target.value)}
               />
-            </div> 
+            </div>
             <div className="form-group">
               <label htmFor="description">Description</label>
               <textarea
@@ -115,7 +118,7 @@ export default function ItemEditPage(props) {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-            </div>      
+            </div>
             <button type="submit" className="btn btn-primary btn-block">
               Update
             </button>

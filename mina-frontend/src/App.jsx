@@ -28,6 +28,7 @@ import ProfilePage from "./views/ProfilePage";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import ItemsListPage from "./views/ItemsListPage";
+import ItemEditPage from "./views/ItemEditPage";
 
 function App() {
   //accessing cart items from redux
@@ -217,6 +218,8 @@ function App() {
         <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
         {/* adding admin's item list screen having a private route means only admin users can have access to this screen */}
         <AdminRoute path="/itemlist" component={ItemsListPage}></AdminRoute>
+        {/* adding admin's item edit screen */}
+        <Route path="/item/:id/edit" component={ItemEditPage} exact></Route>
 
         <footer className="py-5 bg-dark">
           <div className="container">
