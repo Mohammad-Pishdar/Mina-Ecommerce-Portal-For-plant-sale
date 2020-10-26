@@ -9,6 +9,9 @@ import {
     ITEM_LIST_FAILURE,
     ITEM_LIST_REQUEST,
     ITEM_LIST_SUCCESS,
+    ITEM_UPDATE_REQUEST,
+    ITEM_UPDATE_SUCCESS,
+    ITEM_UPDATE_FAILURE,
 } from "../constants/itemConstants";
 
 export const listItems = () => async (dispatch) => {
@@ -86,6 +89,40 @@ export const createItem = () => async (dispatch, getState) => {
         dispatch({
             type: ITEM_CREATE_FAILURE,
             payload: message
+        });
+    }
+};
+
+export const updateItem = (item) => async (dispatch, getState) => {
+    dispatch({
+        type: ITEM_UPDATE_REQUEST,
+        payload: item
+    });
+    const {
+        signIn: {
+            userInfo
+        },
+    } = getState();
+    try {
+        const {
+            data
+        } = await Axios.put(`/api/items/${item._id}`, item, {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            },
+        });
+        dispatch({
+            type: ITEM_UPDATE_SUCCESS,
+            payload: data
+        });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message;
+        dispatch({
+            type: ITEM_UPDATE_FAILURE,
+            error: message
         });
     }
 };
