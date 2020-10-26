@@ -4,7 +4,8 @@ import {
   faShoppingCart,
   faSignInAlt,
   faSignOutAlt,
-  faListAlt
+  faListAlt,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HomePage from "./views/HomePage";
@@ -19,6 +20,7 @@ import PaymentMethodsPage from "./views/PaymentMethodsPage";
 import PlaceOrderPage from "./views/PlaceOrderPage";
 import OrderDetailsPage from "./views/OrderDetailsPage";
 import OrderHistoryPage from "./views/OrderHistoryPage";
+import ProfilePage from "./views/ProfilePage";
 
 function App() {
   //accessing cart items from redux
@@ -97,11 +99,15 @@ function App() {
                           className="nav-link bg-dark text-white"
                           to="/orderhistory"
                         >
+                          User Profile
+                          <FontAwesomeIcon className="ml-1" icon={faUser} />
+                        </Link>
+                        <Link
+                          className="nav-link bg-dark text-white"
+                          to="/orderhistory"
+                        >
                           Order History
-                          <FontAwesomeIcon
-                            className="ml-1"
-                            icon={faListAlt}
-                          />
+                          <FontAwesomeIcon className="ml-1" icon={faListAlt} />
                         </Link>
                         <Link
                           className="nav-link bg-dark text-white"
@@ -147,6 +153,8 @@ function App() {
         <Route path="/order/:id" component={OrderDetailsPage}></Route>
         {/* adding order history screen */}
         <Route path="/orderhistory" component={OrderHistoryPage}></Route>
+        {/* adding profile screen */}
+        <Route path="/profile" component={ProfilePage}></Route>
 
         <footer className="py-5 bg-dark">
           <div className="container">
