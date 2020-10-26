@@ -1,12 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listMyOrders } from "../actions/orderActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
 export default function OrderHistoryPage(props) {
   //getting what we need from redux store
-  const myOrdersList = useSelector((state) => state.myOrdersList);
+  const myOrdersList = useSelector((state) => state.orderList);
   const { loading, error, orders } = myOrdersList;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+      dispatch(listMyOrders());
+  }, [dispatch]);
+
   return (
     <div>
       <h1>Order History</h1>
@@ -16,7 +23,7 @@ export default function OrderHistoryPage(props) {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table class="table table-striped">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -49,7 +56,7 @@ export default function OrderHistoryPage(props) {
                     onClick={() => {
                       props.history.push(`/order/${order._id}`);
                     }}
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                   >
                     Details
                   </button>

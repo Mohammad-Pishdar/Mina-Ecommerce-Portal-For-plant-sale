@@ -7,6 +7,15 @@ import {
 
 const orderRouter = express.Router();
 
+orderRouter.get(
+    '/myorders',
+    isAuthenticated,
+    expressAsyncHandler(async (req, res) => {
+      const orders = await Order.find({ user: req.user._id });
+      res.send(orders);
+    })
+  );
+
 //creating an API to post requests for registering an order in databse to /api/orders. Here we include isAuthenticated as a middleware we later defined in our utils.js to fill req.user with user information
 orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
     //first we check if orderedItems contains items or not
