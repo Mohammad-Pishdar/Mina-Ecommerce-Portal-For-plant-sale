@@ -7,7 +7,10 @@ import {
     ORDER_DETAILS_SUCCESS,
     ORDER_PAY_REQUEST,
     ORDER_PAY_SUCCESS,
-    ORDER_PAY_FAILURE
+    ORDER_PAY_FAILURE,
+    ORDER_LIST_REQUEST,
+    ORDER_LIST_FAILURE,
+    ORDER_LIST_SUCCESS
 } from "../constants/orderConstants";
 import Axios from "axios";
 import {
@@ -114,12 +117,50 @@ export const payOrder = (order, paymentResult) => async (dispatch, getState) => 
                 Authorization: `Bearer ${userInfo.token}`
             }
         });
-        dispatch({type:ORDER_PAY_SUCCESS, payload: data});
+        dispatch({
+            type: ORDER_PAY_SUCCESS,
+            payload: data
+        });
     } catch (err) {
         const message = err.response && err.response.data.message ? err.response.data.message : err.message;
         dispatch({
             type: ORDER_PAY_FAILURE,
             payload: message
         });
+    }
+}
+
+//defining an action that returnes a list of all the orders placed by a certain user
+export const listMyOrders = () => async (dispatch, getState) => {
+    //as always we first dispatch order list request. This action does not have any payloads
+    dispatch({
+        type: ORDER_LIST_REQUEST
+    });
+    //now we have to get user info from the state
+    const {
+        signIn: {
+            userInfo
+        }
+    } = getState();
+    //now we send an ajax request using try catch technique
+    try {
+        const {
+            data
+        } = await Axios.get('/api/orders/myorders', {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        });
+        //now that we have data it's time to dispatch success action
+        dispatch({
+            type: ORDER_LIST_SUCCESS,
+            payload: data
+        });
+    } catch (err) {
+        const message = err.response && err.response.data.message ? err.response.data.message : err.message;
+        dispatch({
+            type: ORDER_LIST_FAILURE,
+            payload: message
+        })
     }
 }
