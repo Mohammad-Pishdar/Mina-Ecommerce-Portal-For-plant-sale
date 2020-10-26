@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userDetails } from "../actions/userActions";
+import { updateUserProfile, userDetails } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 export default function ProfilePage() {
   //since we need to update databse with what user puts here in input fields we have to define state for them
@@ -18,11 +19,21 @@ export default function ProfilePage() {
   const detailsOfUser = useSelector((state) => state.userDetails);
   const { loading, error, user } = detailsOfUser;
 
+  //getting user update profile information from redux store. We rename error and update deconstructed here from state to avoid confusing vscode with similar name since we object decconstructed variables with the same names before in this file
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const {
+    success: sucessUpdate,
+    error: errorUpdate,
+    loading: loadingUpdate,
+  } = userUpdateProfile;
+
   const dispatch = useDispatch();
 
   //here we add user as a dependency to useEffect so when user changes from null to an object from backend (when we send ajax request to backend from our userDetails action) useEffect runs again. So if the user is null it will run and fill the input fields with data from backend else if the user is already filled it will fill name and email with data from backend
   useEffect(() => {
     if (!user) {
+      //we need to reset profile update when we open profile screen for the second time
+      dispatch({ type: USER_UPDATE_PROFILE_RESET });
       dispatch(userDetails(userInfo._id));
     } else {
       setName(user.name);
@@ -49,6 +60,13 @@ export default function ProfilePage() {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
+            {loadingUpdate && <LoadingBox></LoadingBox>}
+            {errorUpdate && (
+              <MessageBox variant="danger">{errorUpdate}</MessageBox>
+            )}
+            {sucessUpdate && (
+              <MessageBox variant="success">Profile Updated</MessageBox>
+            )}
             <div className="form-group">
               <label htmFor="name">Name</label>
               <input

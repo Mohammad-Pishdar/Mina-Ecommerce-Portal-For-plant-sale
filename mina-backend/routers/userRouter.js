@@ -5,7 +5,8 @@ import User from '../models/user.js';
 //we have to import bcryptjs so the authentication process works
 import bcrypt from 'bcryptjs';
 import {
-    generateToken
+    generateToken,
+    isAuthenticated
 } from '../utils.js';
 
 
@@ -86,6 +87,31 @@ userRouter.get(
         } else {
             res.status(404).send({
                 message: 'User Not Found'
+            });
+        }
+    })
+);
+
+userRouter.put(
+    '/profile',
+    isAuthenticated,
+    expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.user._id);
+        if (user) {
+            //the second case is for when the user sends an mepty string as a name in which case we use the name we already have in databse. The same goes for email.
+            user.name = req.body.name || user.name;
+            user.email = req.body.email || user.email;
+            if (req.body.password) {
+                //in case user also changed the password the new password should be encrypted
+                user.password = bcrypt.hashSync(req.body.password, 8);
+            }
+            const updatedUser = await user.save();
+            res.send({
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+                isAdmin: updatedUser.isAdmin,
+                token: generateToken(updatedUser),
             });
         }
     })
