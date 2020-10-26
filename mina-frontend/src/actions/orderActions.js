@@ -5,9 +5,9 @@ import {
     ORDER_DETAILS_FAILURE,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
-    ORDER_PAYMENT_SUCCESS,
-    ORDER_PAYMENT_FAILURE,
-    ORDER_PAYMENT_REQUEST
+    ORDER_PAY_REQUEST,
+    ORDER_PAY_SUCCESS,
+    ORDER_PAY_FAILURE
 } from "../constants/orderConstants";
 import Axios from "axios";
 import {
@@ -92,9 +92,9 @@ export const orderDetails = (orderId) => async (dispatch, getState) => {
     }
 };
 
-export const orderPayment = (order, paymentResult) => async (dispatch, getState) => {
+export const payOrder = (order, paymentResult) => async (dispatch, getState) => {
     dispatch({
-        type: ORDER_PAYMENT_REQUEST,
+        type: ORDER_PAY_REQUEST,
         payload: {
             order,
             paymentResult
@@ -103,22 +103,22 @@ export const orderPayment = (order, paymentResult) => async (dispatch, getState)
     const {
         signIn: {
             userInfo
-        }
+        },
     } = getState();
-    //and now we can send our ajax request
+    //and now we can send our ajax request. Hrere we request payload of this ajax call as paymentResult for its second parameter
     try {
         const {
             data
-        } = Axios.put(`/api/orders/${order._id}/paid`, paymentResult, {
+        } = Axios.put(`/api/orders/${order._id}/pay`, paymentResult, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`
             }
         });
-        dispatch({type:ORDER_PAYMENT_SUCCESS, payload: data})
+        dispatch({type:ORDER_PAY_SUCCESS, payload: data});
     } catch (err) {
         const message = err.response && err.response.data.message ? err.response.data.message : err.message;
         dispatch({
-            type: ORDER_PAYMENT_FAILURE,
+            type: ORDER_PAY_FAILURE,
             payload: message
         });
     }

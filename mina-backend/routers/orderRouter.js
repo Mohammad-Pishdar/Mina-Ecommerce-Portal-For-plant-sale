@@ -54,7 +54,7 @@ orderRouter.get('/:id', isAuthenticated, expressAsyncHandler(async (req, res) =>
 }));
 
 //here we define an API to update the status of the order payment so we use put. We need to also pass the isAuthenticated middelware to this route because only logged in users can make the payment
-orderRouter.put('/:id/paid', isAuthenticated, expressAsyncHandler(async (req, res) => {
+orderRouter.put('/:id/pay', isAuthenticated, expressAsyncHandler(async (req, res) => {
     //first we get the order in question from the database
     const order = await Order.findById(req.params.id);
     //if order exists update the order status
@@ -67,16 +67,16 @@ orderRouter.put('/:id/paid', isAuthenticated, expressAsyncHandler(async (req, re
             id: req.body.id,
             status: req.body.status,
             update_time: req.body.update_time,
-            email_address: req.body.email_address
+            email_address: req.body.payer.email_address
         };
         //Now that we have updated the required values in order it's time to save the updated order back to database
         const updatedOrder = await order.save();
         res.send({
             message: 'Order Paid',
-            updatedOrder
+            order: updatedOrder
         });
     } else {
-        res.status(400).send({
+        res.status(404).send({
             message: 'Order Not Found'
         });
     }

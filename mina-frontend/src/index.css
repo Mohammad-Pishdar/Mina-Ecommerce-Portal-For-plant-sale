@@ -66,6 +66,11 @@ a:hover {
   background-color: pink;
 }
 
+.alert-success {
+  color: green;
+  background-color: #eeffe0;
+}
+
 /* .loading {
   margin-top: 50vh;
   margin-bottom: 40vh;

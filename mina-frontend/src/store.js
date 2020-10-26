@@ -9,7 +9,7 @@ import {
     itemDetailsReducer,
     itemListReducer
 } from './reducers/itemsReducers';
-import { orderDetailsReducer, orderReducer } from './reducers/orderReducers';
+import { orderDetailsReducer, orderPayReducer, orderReducer } from './reducers/orderReducers';
 import {
     shoppingCartReducer
 } from './reducers/shoppingCartReducers';
@@ -43,7 +43,9 @@ const reducer = combineReducers({
     //adding order reducer to the combined combined reducers
     order: orderReducer,
     //adding order details reducer to the combined reducers
-    orderDetails: orderDetailsReducer
+    orderDetails: orderDetailsReducer,
+    //adding order payment reducer to the combined reducers
+    orderPay: orderPayReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

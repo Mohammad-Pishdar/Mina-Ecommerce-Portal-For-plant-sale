@@ -6,9 +6,10 @@ import {
     ORDER_DETAILS_FAILURE,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
-    ORDER_PAYMENT_FAILURE,
-    ORDER_PAYMENT_REQUEST,
-    ORDER_PAYMENT_SUCCESS
+    ORDER_PAY_FAILURE,
+    ORDER_PAY_REQUEST,
+    ORDER_PAY_RESET,
+    ORDER_PAY_SUCCESS
 } from "../constants/orderConstants";
 
 //here we set the default value of the state for order reducer as an empty object since we don't have anyorders yet
@@ -64,20 +65,22 @@ export const orderDetailsReducer = (
     }
 };
 
-export const orderPaymentReducer = (state = {}, action) => {
+export const orderPayReducer = (state = {}, action) => {
     switch (action.type) {
-        case ORDER_PAYMENT_REQUEST:
+        case ORDER_PAY_REQUEST:
             return {
                 loading: true
             };
-        case ORDER_PAYMENT_SUCCESS:
+        case ORDER_PAY_SUCCESS:
             return {
                 loading: false, success: true
             };
-        case ORDER_PAYMENT_FAILURE:
+        case ORDER_PAY_FAILURE:
             return {
                 loading: false, error: action.payload
             };
+        case ORDER_PAY_RESET:
+            return {};
         default:
             return state;
     }

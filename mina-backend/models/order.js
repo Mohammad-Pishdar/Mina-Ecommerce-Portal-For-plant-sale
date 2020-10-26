@@ -55,6 +55,12 @@ const orderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    paymentResult: {
+        id: String,
+        status: String,
+        update_time: String,
+        email_address: String
+    },
     subTotal: {
         type: Number,
         required: true
@@ -90,12 +96,6 @@ const orderSchema = new mongoose.Schema({
     //and the delivery date if it's delivered 
     deliveredAt: {
         type: Date
-    },
-    paymentResult: {
-        id: String,
-        status: String,
-        update_time: String,
-        email_address: String
     }
 }, {
     //this parameter makes sure that dates of placement or updates for each order are saved to database

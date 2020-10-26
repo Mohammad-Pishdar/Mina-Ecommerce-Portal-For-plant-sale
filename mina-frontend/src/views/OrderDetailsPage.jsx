@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { orderDetails } from "../actions/orderActions";
+import { orderDetails, payOrder } from "../actions/orderActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import {PayPalButton} from "react-paypal-button-v2";
+import { PayPalButton } from "react-paypal-button-v2";
+import { ORDER_PAY_RESET } from '../constants/orderConstants';
 
 export default function OrderDetailsPage(props) {
   //getting order id from the url
@@ -17,6 +18,13 @@ export default function OrderDetailsPage(props) {
   const detailsofTheOrder = useSelector((state) => state.orderDetails);
   //getting what we need from detailsofTheOrder defined above
   const { order, loading, error } = detailsofTheOrder;
+  //getting order payment info from redux store
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    error: errorPay,
+    success: successPay,
+    loading: loadingPay,
+  } = orderPay;
   //defining the place order handler function
   const dispatch = useDispatch();
 
@@ -39,7 +47,8 @@ export default function OrderDetailsPage(props) {
       document.body.appendChild(script);
     };
     //Now we can call the add paypal script function
-    if (!order) {
+    if (!order || successPay || (order && order._id !== orderId)) {
+      dispatch({type: ORDER_PAY_RESET})
       //so if the order id is not found load the order from backend
       dispatch(orderDetails(orderId));
     } else {
@@ -53,12 +62,12 @@ export default function OrderDetailsPage(props) {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReday]);
+  }, [dispatch, successPay, order, orderId, sdkReday]);
 
   //defining the function to handle successful payment. Payment result here is the result of the payment reported back by Paypal
-  const successfulPaymentHandler = (paymentResult) => {
-    dispatch(orderPayment(order, paymentResult));
-  }
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(payOrder(order, paymentResult));
+  };
 
   return loading ? (
     <LoadingBox></LoadingBox>
@@ -85,6 +94,13 @@ export default function OrderDetailsPage(props) {
               ) : (
                 <MessageBox variant="danger">Not delivered yet</MessageBox>
               )}
+              {order.isPaid ? (
+                  <MessageBox variant="success">
+                    Order paid
+                  </MessageBox>
+                ) : (
+                  <MessageBox variant="danger">Not Paid yet</MessageBox>
+                )}
             </div>
             <div className="content">
               <div className="row">
@@ -149,10 +165,18 @@ export default function OrderDetailsPage(props) {
                         {!sdkReday ? (
                           <LoadingBox></LoadingBox>
                         ) : (
-                          <PayPalButton
-                            amount={order.total}
-                            onSuccess={successfulPaymentHandler}
-                          ></PayPalButton>
+                          <>
+                            {errorPay && (
+                              <MessageBox variant="danger">
+                                {errorPay}
+                              </MessageBox>
+                            )}
+                            {loadingPay && <LoadingBox></LoadingBox>}
+                            <PayPalButton
+                              amount={order.total}
+                              onSuccess={successPaymentHandler}
+                            ></PayPalButton>
+                          </>
                         )}
                       </div>
                     )}
