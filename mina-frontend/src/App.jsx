@@ -214,7 +214,7 @@ function App() {
         <Route path="/order/:id" component={OrderDetailsPage}></Route>
         {/* adding order history screen */}
         <Route path="/orderhistory" component={OrderHistoryPage}></Route>
-        {/* adding profile screen */}
+        {/* adding profile screen having a private route means only signed in users can have access to this screen */}
         <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
 
         <footer className="py-5 bg-dark">
