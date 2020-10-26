@@ -28,9 +28,9 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/minaPlantSale',
     useCreateIndex: true
 })
 
-app.get("/", (req, res) => {
-    res.send("Server is ready");
-});
+// app.get("/", (req, res) => {
+//     res.send("Server is ready");
+// });
 
 //Now that we connected our database to our server.js file below, there is no need to use static data.js file to get the items data so we can cooment this out
 // app.get("/api/items", (req, res) => {
@@ -70,6 +70,8 @@ app.use((err, req, res, next) => {
 //making sure that images uploaded to the upload folder will be displayed in the app. So here for /upload route we're going to serve the files that are in uploads folder by joining the current directory name (__dirname) to the /uploads
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use(epress.static(path.join(__dirname, '/mina-frontend/build')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/mina-frontend/build/index.html')));
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
