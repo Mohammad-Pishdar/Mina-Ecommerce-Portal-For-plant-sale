@@ -1,5 +1,8 @@
 import Axios from "axios";
 import {
+    ITEM_CREATE_FAILURE,
+    ITEM_CREATE_REQUEST,
+    ITEM_CREATE_SUCCESS,
     ITEM_DETAILS_FAILURE,
     ITEM_DETAILS_REQUEST,
     ITEM_DETAILS_SUCCESS,
@@ -58,6 +61,7 @@ export const createItem = () => async (dispatch, getState) => {
     try {
       const { data } = await Axios.post(
         '/api/items',
+        //it doesn't accept any data as payload so it's an empty object
         {},
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -72,6 +76,6 @@ export const createItem = () => async (dispatch, getState) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message;
-      dispatch({ type: ITEM_CREATE_FAIL, payload: message });
+      dispatch({ type: ITEM_CREATE_FAILURE, payload: message });
     }
   };
