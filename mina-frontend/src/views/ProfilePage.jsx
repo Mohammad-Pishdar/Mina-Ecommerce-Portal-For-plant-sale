@@ -31,41 +31,41 @@ export default function ProfilePage() {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
-            <div class="form-group">
+            <div className="form-group">
               <label htmFor="name">Name</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="name"
                 placeholder="Enter Name"
                 value={user.name}
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmFor="email">Email</label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="email"
                 aria-describedby="emailHelp"
                 placeholder="Enter Your Email"
                 value={user.email}
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmFor="password">Password</label>
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="password"
                 placeholder="Enter Your Password"
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label htmFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="confirmPassword"
                 placeholder="Confirm Your Password"
               />
