@@ -61,4 +61,32 @@ itemRouter.post(
     })
 );
 
+productRouter.put(
+    '/:id',
+    isAuthenticated,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const itemId = req.params.id;
+        const item = await Item.findById(itemId);
+        //updating item by the data user entered in the frontend
+        if (item) {
+            item.name = req.body.name;
+            item.price = req.body.price;
+            item.image = req.body.image;
+            item.category = req.body.category;
+            item.numberOfItemInInvetory = req.body.numberOfItemInInvetory;
+            item.description = req.body.description;
+            const updatedItem = await item.save();
+            res.send({
+                message: 'Item Updated',
+                product: updatedItem
+            });
+        } else {
+            res.status(404).send({
+                message: 'Item Not Found'
+            });
+        }
+    })
+);
+
 export default itemRouter;
