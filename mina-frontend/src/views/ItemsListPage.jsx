@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createItem, listItems } from "../actions/itemActions";
+import { createItem, deleteItem, listItems } from "../actions/itemActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { ITEM_CREATE_RESET } from "../constants/itemConstants";
+import { ITEM_CREATE_RESET, ITEM_DELETE_RESET } from "../constants/itemConstants";
 
 export default function ItemsListPage(props) {
   //getting list of items from redux store
@@ -19,6 +19,14 @@ export default function ItemsListPage(props) {
     item: createdItem,
   } = itemCreate;
 
+  //getting data about deleted product from redux store
+  const deletedItem = useSelector((state) => state.itemDelete);
+  const {
+    loading: loadingDeleted,
+    error: errorDeleted,
+    success: successDeleted,
+  } = deletedItem;
+
   const dispatch = useDispatch();
   useEffect(() => {
     //check to see if we successfully created an item so we need to reset item create and redirect user to edit screen for created item
@@ -26,8 +34,11 @@ export default function ItemsListPage(props) {
       dispatch({ type: ITEM_CREATE_RESET });
       props.history.push(`/item/${createdItem._id}/edit`);
     }
+    if(successDeleted) {
+      dispatch({ type: ITEM_DELETE_RESET});
+    }
     dispatch(listItems());
-  }, [createdItem, dispatch, props.history, successCreate]);
+  }, [createdItem, dispatch, props.history, successCreate, successDeleted]);
 
   const deleteHandler = (item) => {
     dispatch(deleteItem(item._id));
@@ -39,19 +50,21 @@ export default function ItemsListPage(props) {
 
   return (
     <div>
-        <h1 className="ml-2">Items</h1>
-        <button
-          type="button"
-          onClick={() => {
-            createHandler();
-          }}
-          className="btn btn-danger ml-1 mb-2"
-        >
-          Create New Item
-        </button>
+      <h1 className="ml-2">Items</h1>
+      <button
+        type="button"
+        onClick={() => {
+          createHandler();
+        }}
+        className="btn btn-danger ml-1 mb-2"
+      >
+        Create New Item
+      </button>
       <div className="table-responsive">
         {loadingCreate && <LoadingBox></LoadingBox>}
         {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
+        {loadingDeleted && <LoadingBox></LoadingBox>}
+        {errorDeleted && <MessageBox variant="danger">{errorDeleted}</MessageBox>}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
