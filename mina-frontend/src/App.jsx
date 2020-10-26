@@ -97,7 +97,7 @@ function App() {
                       >
                         <Link
                           className="nav-link bg-dark text-white"
-                          to="/orderhistory"
+                          to="/profile"
                         >
                           User Profile
                           <FontAwesomeIcon className="ml-1" icon={faUser} />

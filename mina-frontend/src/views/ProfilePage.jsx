@@ -16,10 +16,15 @@ export default function ProfilePage() {
   useEffect(() => {
     dispatch(userDetails(userInfo._id));
   }, [dispatch, userInfo._id]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  }
+
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <div>User Profile</div>
+    <div className="row">
+      <form onSubmit={submitHandler} className="w-50 mx-auto mb-2 mt-2">
+        <div className="font-weight-bold">User Profile</div>
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
@@ -65,7 +70,7 @@ export default function ProfilePage() {
                 placeholder="Confirm Your Password"
               />
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" className="btn btn-primary btn-block">
               Update
             </button>
           </>
