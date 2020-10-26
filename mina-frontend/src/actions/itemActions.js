@@ -136,6 +136,7 @@ export const deleteItem = (itemId) => async (dispatch, getState) => {
       signIn: { userInfo },
     } = getState();
     try {
+      // eslint-disable-next-line no-unused-vars
       const { data } = Axios.delete(`/api/items/${itemId}`, {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
