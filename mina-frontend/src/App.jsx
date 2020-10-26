@@ -9,7 +9,7 @@ import {
   faChartLine,
   faLeaf,
   faBox,
-  faUsers
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HomePage from "./views/HomePage";
@@ -26,6 +26,8 @@ import OrderDetailsPage from "./views/OrderDetailsPage";
 import OrderHistoryPage from "./views/OrderHistoryPage";
 import ProfilePage from "./views/ProfilePage";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
+import ItemsListPage from "./views/ItemsListPage";
 
 function App() {
   //accessing cart items from redux
@@ -139,58 +141,55 @@ function App() {
                 {/* check to see if user is admin to render admin specific items */}
                 {userInfo && userInfo.isAdmin && (
                   <div className="dropdown show">
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link text-warning dropdown-toggle"
-                      to="#admin"
-                      id="dropdownMenuLink"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      Admin
-                    </Link>
-                    <div
-                      className="dropdown-menu bg-dark"
-                      aria-labelledby="dropdownMenuLink"
-                    >
+                    <li className="nav-item">
                       <Link
-                        className="nav-link bg-dark text-white"
-                        to="/dashboard"
+                        className="nav-link text-warning dropdown-toggle"
+                        to="#admin"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
                       >
-                        Dashboard {' '}
-                        <FontAwesomeIcon className="ml-1" icon={faChartLine} />
+                        Admin
                       </Link>
-                      <Link
-                        className="nav-link bg-dark text-white"
-                        to="/itemslist"
+                      <div
+                        className="dropdown-menu bg-dark"
+                        aria-labelledby="dropdownMenuLink"
                       >
-                        Items {' '}
-                        <FontAwesomeIcon className="ml-1" icon={faLeaf} />
-                      </Link>
-                      <Link
-                        className="nav-link bg-dark text-white"
-                        to="/orderlist"
-                      >
-                        Orders {' '}
-                        <FontAwesomeIcon
-                          className="ml-1"
-                          icon={faBox}
-                        />
-                      </Link>
-                      <Link
-                        className="nav-link bg-dark text-white"
-                        to="/userlist"
-                      >
-                        Users {' '}
-                        <FontAwesomeIcon
-                          className="ml-1"
-                          icon={faUsers}
-                        />
-                      </Link>
-                    </div>
-                  </li>
-                </div>
+                        <Link
+                          className="nav-link bg-dark text-white"
+                          to="/dashboard"
+                        >
+                          Dashboard{" "}
+                          <FontAwesomeIcon
+                            className="ml-1"
+                            icon={faChartLine}
+                          />
+                        </Link>
+                        <Link
+                          className="nav-link bg-dark text-white"
+                          to="/itemslist"
+                        >
+                          Items{" "}
+                          <FontAwesomeIcon className="ml-1" icon={faLeaf} />
+                        </Link>
+                        <Link
+                          className="nav-link bg-dark text-white"
+                          to="/orderlist"
+                        >
+                          Orders{" "}
+                          <FontAwesomeIcon className="ml-1" icon={faBox} />
+                        </Link>
+                        <Link
+                          className="nav-link bg-dark text-white"
+                          to="/userlist"
+                        >
+                          Users{" "}
+                          <FontAwesomeIcon className="ml-1" icon={faUsers} />
+                        </Link>
+                      </div>
+                    </li>
+                  </div>
                 )}
               </ul>
             </div>
@@ -216,6 +215,8 @@ function App() {
         <Route path="/orderhistory" component={OrderHistoryPage}></Route>
         {/* adding profile screen having a private route means only signed in users can have access to this screen */}
         <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
+        {/* adding admin's item list screen having a private route means only admin users can have access to this screen */}
+        <AdminRoute path="/itemlist" component={ItemsListPage}></AdminRoute>
 
         <footer className="py-5 bg-dark">
           <div className="container">
