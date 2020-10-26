@@ -6,6 +6,10 @@ import {
   faSignOutAlt,
   faListAlt,
   faUser,
+  faChartLine,
+  faLeaf,
+  faBox,
+  faUsers
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HomePage from "./views/HomePage";
@@ -131,6 +135,62 @@ function App() {
                       <FontAwesomeIcon icon={faSignInAlt} />
                     </Link>
                   </li>
+                )}
+                {/* check to see if user is admin to render admin specific items */}
+                {userInfo && userInfo.isAdmin && (
+                  <div className="dropdown show">
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link text-warning dropdown-toggle"
+                      to="#admin"
+                      id="dropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Admin
+                    </Link>
+                    <div
+                      className="dropdown-menu bg-dark"
+                      aria-labelledby="dropdownMenuLink"
+                    >
+                      <Link
+                        className="nav-link bg-dark text-white"
+                        to="/dashboard"
+                      >
+                        Dashboard {' '}
+                        <FontAwesomeIcon className="ml-1" icon={faChartLine} />
+                      </Link>
+                      <Link
+                        className="nav-link bg-dark text-white"
+                        to="/itemslist"
+                      >
+                        Items {' '}
+                        <FontAwesomeIcon className="ml-1" icon={faLeaf} />
+                      </Link>
+                      <Link
+                        className="nav-link bg-dark text-white"
+                        to="/orderlist"
+                      >
+                        Orders {' '}
+                        <FontAwesomeIcon
+                          className="ml-1"
+                          icon={faBox}
+                        />
+                      </Link>
+                      <Link
+                        className="nav-link bg-dark text-white"
+                        to="/userlist"
+                      >
+                        Users {' '}
+                        <FontAwesomeIcon
+                          className="ml-1"
+                          icon={faUsers}
+                        />
+                      </Link>
+                    </div>
+                  </li>
+                </div>
                 )}
               </ul>
             </div>
