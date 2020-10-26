@@ -8,7 +8,11 @@ import {
     USER_SIGNOUT,
     USER_SIGNUP_FAILURE,
     USER_SIGNUP_REQUEST,
-    USER_SIGNUP_SUCCESS
+    USER_SIGNUP_SUCCESS,
+    USER_UPDATE_PROFILE_FAILURE,
+    USER_UPDATE_PROFILE_REQUEST,
+    USER_UPDATE_PROFILE_RESET,
+    USER_UPDATE_PROFILE_SUCCESS
 } from "../constants/userConstants";
 
 //definign the reducer for user sign in. As laways reducer function accepts two parameters. We set the state parameter to be an empty object. 
@@ -73,6 +77,21 @@ export const userDetailsReducer = (state = { loading: true }, action) => {
         return { loading: false, user: action.payload };
       case USER_DETAILS_FAILURE:
         return { loading: false, error: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  export const userUpdateProfileReducer = (state = {}, action) => {
+    switch (action.type) {
+      case USER_UPDATE_PROFILE_REQUEST:
+        return { loading: true };
+      case USER_UPDATE_PROFILE_SUCCESS:
+        return { loading: false, success: true };
+      case USER_UPDATE_PROFILE_FAILURE:
+        return { loading: false, error: action.payload };
+      case USER_UPDATE_PROFILE_RESET:
+        return {};
       default:
         return state;
     }
