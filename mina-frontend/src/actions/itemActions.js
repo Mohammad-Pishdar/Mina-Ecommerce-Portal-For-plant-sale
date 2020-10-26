@@ -49,3 +49,29 @@ export const getItemDetails = (itemID) => async (dispatch) => {
         });
     }
 };
+
+export const createItem = () => async (dispatch, getState) => {
+    dispatch({ type: ITEM_CREATE_REQUEST });
+    const {
+      signIn: { userInfo },
+    } = getState();
+    try {
+      const { data } = await Axios.post(
+        '/api/items',
+        {},
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+      dispatch({
+        type: ITEM_CREATE_SUCCESS,
+        payload: data.item,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: ITEM_CREATE_FAIL, payload: message });
+    }
+  };

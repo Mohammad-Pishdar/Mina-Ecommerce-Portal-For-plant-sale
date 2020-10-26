@@ -16,9 +16,24 @@ export default function ItemsListPage(props) {
 
   const deleteHandler = () => {};
 
+  const createHandler = () => {
+    dispatch(createItem());
+  };
+
   return (
     <div>
-      <h1>Items</h1>
+      <div className="row">
+        <h1>Items</h1>
+        <button
+          type="button"
+          onClick={() => {
+            createHandler();
+          }}
+          className="btn btn-danger ml-1"
+        >
+          Create New Item
+        </button>
+      </div>
       <div className="table-responsive">
         {loading ? (
           <LoadingBox></LoadingBox>
