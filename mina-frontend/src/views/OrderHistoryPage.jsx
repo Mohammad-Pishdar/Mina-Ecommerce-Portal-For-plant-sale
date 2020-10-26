@@ -11,12 +11,13 @@ export default function OrderHistoryPage(props) {
 
   const dispatch = useDispatch();
   useEffect(() => {
-      dispatch(listMyOrders());
+    dispatch(listMyOrders());
   }, [dispatch]);
 
   return (
     <div>
       <h1>Order History</h1>
+      <div className="table-responsive">
       {/* here we first check loading */}
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -38,14 +39,14 @@ export default function OrderHistoryPage(props) {
             {/* we're looping over orders here and show them in table rows */}
             {orders.map((order) => (
               <tr key={order._id}>
-                <th scope="row">1</th>
-                <td>{order._id}</td>
+                <th scope="row">{order._id}</th>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.total}</td>
                 <td>
                   {order.isPaid ? order.paidAt.substring(0, 10) : "Not Paid"}
                 </td>
                 <td>
+                  {" "}
                   {order.isDelivered
                     ? order.deliveredAt.substring(0, 10)
                     : "Not Delivered Yet"}
@@ -66,6 +67,7 @@ export default function OrderHistoryPage(props) {
           </tbody>
         </table>
       )}
+      </div>
     </div>
   );
 }
