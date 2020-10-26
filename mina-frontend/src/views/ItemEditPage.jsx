@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getItemDetails } from "../actions/itemActions";
+import { getItemDetails, updateItem } from "../actions/itemActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import { ITEM_UPDATE_RESET } from "../constants/itemConstants";
 
 export default function ItemEditPage(props) {
   //getting item id from the URL
@@ -20,10 +21,22 @@ export default function ItemEditPage(props) {
   const itemDetails = useSelector((state) => state.itemDetails);
   const { loading, error, item } = itemDetails;
 
+  //getting data about item updates from redux store
+  const itemUpdate = useSelector((state) => state.itemUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: sucessUpdate,
+  } = itemUpdate;
+
   const dispatch = useDispatch();
   useEffect(() => {
+    if (sucessUpdate) {
+      props.history.push("/itemlist");
+    }
     //adding the OR statement here prevents the page to load up with previous info upon returning to it for a second time
-    if (!item || item._id !== itemId) {
+    if (!item || item._id !== itemId || sucessUpdate) {
+      dispatch({ type: ITEM_UPDATE_RESET });
       //so if the product name is null it means that it's a new item and we should load it from the template for a new item from backend
       dispatch(getItemDetails(itemId));
     } else {
@@ -34,7 +47,7 @@ export default function ItemEditPage(props) {
       setDescription(item.description);
       setNumberOfItemInInvetory(item.numberOfItemInInvetory);
     }
-  }, [dispatch, item, itemId]);
+  }, [dispatch, item, itemId, props.history, sucessUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -61,6 +74,10 @@ export default function ItemEditPage(props) {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
+            {loadingUpdate && <LoadingBox></LoadingBox>}
+            {errorUpdate && (
+              <MessageBox variant="danger">{errorUpdate}</MessageBox>
+            )}
             <div className="form-group">
               <label htmFor="name">Name</label>
               <input
