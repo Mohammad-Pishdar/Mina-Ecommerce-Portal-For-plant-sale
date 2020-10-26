@@ -87,26 +87,18 @@ export const orderPayReducer = (state = {}, action) => {
         default:
             return state;
     }
-}
+};
 
 //For this reducer we set the default value to an empty array that needs to be filled with orders
-export const orderListReducer = (state = {
-    orders: []
-}, action) => {
+export const orderListReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
-        case ORDER_LIST_REQUEST:
-            return {
-                loading: true
-            };
-        case ORDER_LIST_SUCCESS:
-            return {
-                loading: false, orders: action.payload
-            };
-        case ORDER_LIST_FAILURE:
-            return {
-                loading: false, error: action.payload
-            };
-        default:
-            return state;
+      case ORDER_LIST_REQUEST:
+        return { loading: true };
+      case ORDER_LIST_SUCCESS:
+        return { loading: false, orders: action.payload };
+      case ORDER_LIST_FAILURE:
+        return { loading: false, error: action.payload };
+      default:
+        return state;
     }
-}
+  };
