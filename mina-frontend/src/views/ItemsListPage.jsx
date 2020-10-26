@@ -1,18 +1,33 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listItems } from "../actions/itemActions";
+import { createItem, listItems } from "../actions/itemActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import { ITEM_CREATE_RESET } from "../constants/itemConstants";
 
 export default function ItemsListPage(props) {
   //getting list of items from redux store
   const itemsList = useSelector((state) => state.itemList);
   const { loading, error, items } = itemsList;
 
+  //getting data from itemCreate in redux store
+  const itemCreate = useSelector((state) => state.itemCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    item: createdItem,
+  } = itemCreate;
+
   const dispatch = useDispatch();
   useEffect(() => {
+    //check to see if we successfully created an item so we need to reset item create and redirect user to edit screen for created item
+    if (successCreate) {
+      dispatch(ITEM_CREATE_RESET);
+      props.history.push(`/item/${createdItem._id}/edit`);
+    }
     dispatch(listItems());
-  }, [dispatch]);
+  }, [createdItem, dispatch, props.history, successCreate]);
 
   const deleteHandler = () => {};
 
@@ -35,6 +50,8 @@ export default function ItemsListPage(props) {
         </button>
       </div>
       <div className="table-responsive">
+        {loadingCreate && <LoadingBox></LoadingBox>}
+        {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
