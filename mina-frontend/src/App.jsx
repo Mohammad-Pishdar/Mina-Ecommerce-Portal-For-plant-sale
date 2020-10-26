@@ -21,6 +21,7 @@ import PlaceOrderPage from "./views/PlaceOrderPage";
 import OrderDetailsPage from "./views/OrderDetailsPage";
 import OrderHistoryPage from "./views/OrderHistoryPage";
 import ProfilePage from "./views/ProfilePage";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   //accessing cart items from redux
@@ -154,7 +155,7 @@ function App() {
         {/* adding order history screen */}
         <Route path="/orderhistory" component={OrderHistoryPage}></Route>
         {/* adding profile screen */}
-        <Route path="/profile" component={ProfilePage}></Route>
+        <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
 
         <footer className="py-5 bg-dark">
           <div className="container">
