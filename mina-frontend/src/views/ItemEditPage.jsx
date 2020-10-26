@@ -38,6 +38,17 @@ export default function ItemEditPage(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateItem({
+        _id: itemId,
+        name,
+        category,
+        image,
+        price,
+        description,
+        numberOfItemInInvetory,
+      })
+    );
   };
 
   return (

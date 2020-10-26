@@ -61,7 +61,7 @@ itemRouter.post(
     })
 );
 
-productRouter.put(
+itemRouter.put(
     '/:id',
     isAuthenticated,
     isAdmin,
