@@ -1,4 +1,7 @@
 import {
+    USER_DETAILS_FAILURE,
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
     USER_SIGNIN_FAILURE,
     USER_SIGNIN_REQUEST,
     USER_SIGNIN_SUCCESS,
@@ -60,3 +63,17 @@ export const userSignUpReducer = (state = {}, action) => {
             return state;
     }
 };
+
+//since we get user details at the beginning of our profile page laoding we set loading: true as the default state here
+export const userDetailsReducer = (state = { loading: true }, action) => {
+    switch (action.type) {
+      case USER_DETAILS_REQUEST:
+        return { loading: true };
+      case USER_DETAILS_SUCCESS:
+        return { loading: false, user: action.payload };
+      case USER_DETAILS_FAILURE:
+        return { loading: false, error: action.payload };
+      default:
+        return state;
+    }
+  };
