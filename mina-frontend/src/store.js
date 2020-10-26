@@ -7,6 +7,7 @@ import {
 import thunk from 'redux-thunk';
 import {
     ItemCreateReducer,
+    itemDeleteReducer,
     itemDetailsReducer,
     itemListReducer,
     itemUpdateReducer
@@ -60,6 +61,8 @@ const reducer = combineReducers({
     itemCreate: ItemCreateReducer,
     //adding item update reducer to the combined reducers
     itemUpdate: itemUpdateReducer,
+    //adding item delete reducer to the combined reducers
+    itemDelete: itemDeleteReducer,
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
