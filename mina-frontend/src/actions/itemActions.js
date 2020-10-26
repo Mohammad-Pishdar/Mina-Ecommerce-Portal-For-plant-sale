@@ -54,28 +54,38 @@ export const getItemDetails = (itemID) => async (dispatch) => {
 };
 
 export const createItem = () => async (dispatch, getState) => {
-    dispatch({ type: ITEM_CREATE_REQUEST });
+    dispatch({
+        type: ITEM_CREATE_REQUEST
+    });
     const {
-      signIn: { userInfo },
+        signIn: {
+            userInfo
+        },
     } = getState();
     try {
-      const { data } = await Axios.post(
-        '/api/items',
-        //it doesn't accept any data as payload so it's an empty object
-        {},
-        {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({
-        type: ITEM_CREATE_SUCCESS,
-        payload: data.item,
-      });
+        const {
+            data
+        } = await Axios.post(
+            '/api/items',
+            //it doesn't accept any data as payload so it's an empty object
+            {}, {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}`
+                },
+            }
+        );
+        dispatch({
+            type: ITEM_CREATE_SUCCESS,
+            payload: data.item,
+        });
     } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      dispatch({ type: ITEM_CREATE_FAILURE, payload: message });
+        const message =
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message;
+        dispatch({
+            type: ITEM_CREATE_FAILURE,
+            payload: message
+        });
     }
-  };
+};

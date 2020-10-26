@@ -4,7 +4,11 @@ const {
     ITEM_LIST_FAILURE,
     ITEM_DETAILS_REQUEST,
     ITEM_DETAILS_SUCCESS,
-    ITEM_DETAILS_FAILURE
+    ITEM_DETAILS_FAILURE,
+    ITEM_CREATE_REQUEST,
+    ITEM_CREATE_SUCCESS,
+    ITEM_CREATE_FAILURE,
+    ITEM_CREATE_RESET
 } = require("../constants/itemConstants")
 
 export const itemListReducer = (state = {
@@ -27,7 +31,7 @@ export const itemListReducer = (state = {
         default:
             return state;
     }
-}
+};
 
 export const itemDetailsReducer = (state = {
     item: {},
@@ -49,4 +53,25 @@ export const itemDetailsReducer = (state = {
         default:
             return state;
     }
-}
+};
+
+export const ItemCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ITEM_CREATE_REQUEST:
+            return {
+                loading: true
+            };
+        case ITEM_CREATE_SUCCESS:
+            return {
+                loading: false, success: true, item: action.payload
+            };
+        case ITEM_CREATE_FAILURE:
+            return {
+                loading: false, error: action.payload
+            };
+        case ITEM_CREATE_RESET:
+            return {};
+        default:
+            return state;
+    }
+};
