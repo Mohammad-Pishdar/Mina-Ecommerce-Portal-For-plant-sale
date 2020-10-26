@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { createItem, deleteItem, listItems } from "../actions/itemActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { ITEM_CREATE_RESET, ITEM_DELETE_RESET } from "../constants/itemConstants";
+import {
+  ITEM_CREATE_RESET,
+  ITEM_DELETE_RESET,
+} from "../constants/itemConstants";
 
 export default function ItemsListPage(props) {
   //getting list of items from redux store
@@ -34,14 +37,16 @@ export default function ItemsListPage(props) {
       dispatch({ type: ITEM_CREATE_RESET });
       props.history.push(`/item/${createdItem._id}/edit`);
     }
-    if(successDeleted) {
-      dispatch({ type: ITEM_DELETE_RESET});
+    if (successDeleted) {
+      dispatch({ type: ITEM_DELETE_RESET });
     }
     dispatch(listItems());
   }, [createdItem, dispatch, props.history, successCreate, successDeleted]);
 
   const deleteHandler = (item) => {
-    dispatch(deleteItem(item._id));
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      dispatch(deleteItem(item._id));
+    }
   };
 
   const createHandler = () => {
@@ -64,7 +69,9 @@ export default function ItemsListPage(props) {
         {loadingCreate && <LoadingBox></LoadingBox>}
         {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
         {loadingDeleted && <LoadingBox></LoadingBox>}
-        {errorDeleted && <MessageBox variant="danger">{errorDeleted}</MessageBox>}
+        {errorDeleted && (
+          <MessageBox variant="danger">{errorDeleted}</MessageBox>
+        )}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
