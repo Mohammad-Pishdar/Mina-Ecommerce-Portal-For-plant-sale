@@ -2,6 +2,10 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import data from '../data.js';
 import Item from '../models/item.js';
+import {
+    isAdmin,
+    isAuthenticated
+} from '../utils.js';
 
 const itemRouter = express.Router();
 
@@ -32,5 +36,29 @@ itemRouter.get('/:id', expressAsyncHandler(async (req, res) => {
         });
     }
 }));
+
+itemRouter.post(
+    '/',
+    isAuthenticated,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const item = new Item({
+            //here we just enter sample data
+            name: 'sample name ' + Date.now(),
+            image: '/images/p1.jpg',
+            price: 0,
+            category: 'sample category',
+            numberOfItemInInvetory: 0,
+            rating: 0,
+            reviews: 0,
+            description: 'sample description',
+        });
+        const createdItem = await item.save();
+        res.send({
+            message: 'Item Created',
+            item: createdItem
+        });
+    })
+);
 
 export default itemRouter;

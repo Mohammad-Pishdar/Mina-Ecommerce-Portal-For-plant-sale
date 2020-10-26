@@ -12,7 +12,7 @@ export default function ItemsListPage(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listItems());
-  });
+  }, [dispatch]);
 
   const deleteHandler = () => {};
 
@@ -58,7 +58,7 @@ export default function ItemsListPage(props) {
                       onClick={() => {
                         deleteHandler(item);
                       }}
-                      className="btn btn-primary"
+                      className="btn btn-danger ml-1"
                     >
                       Delete
                     </button>

@@ -168,7 +168,7 @@ function App() {
                         </Link>
                         <Link
                           className="nav-link bg-dark text-white"
-                          to="/itemslist"
+                          to="/itemlist"
                         >
                           Items{" "}
                           <FontAwesomeIcon className="ml-1" icon={faLeaf} />
