@@ -20,7 +20,7 @@
   
   Here is a screenshot of the app:
   
-  ![alt text](https://github.com/Mohammad-Pishdar/Online-Offline-Budget-Trackers/blob/master/public/screenshots/Screenshot%202020-09-21%20153157.jpg)
+  ![alt text](https://github.com/Mohammad-Pishdar/Mina-Ecommerce-Portal-For-plant-sale/blob/main/ReadmeImages/5.jpg?raw=true)
 
   ## Usage
 
