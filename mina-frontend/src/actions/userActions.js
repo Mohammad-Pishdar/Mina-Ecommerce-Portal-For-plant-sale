@@ -6,7 +6,10 @@ import {
     USER_SIGNOUT,
     USER_SIGNUP_FAILURE,
     USER_SIGNUP_REQUEST,
-    USER_SIGNUP_SUCCESS
+    USER_SIGNUP_SUCCESS,
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_FAILURE,
+    USER_DETAILS_SUCCESS
 } from "../constants/userConstants"
 
 //defining a sign-in action. Like all the other actions, this function also returns an async function and passes redux thunk dispatch function as its argument.
@@ -44,7 +47,7 @@ export const signIn = (email, password) => async (dispatch) => {
                 error.response.data.message : error.message,
         })
     }
-}
+};
 
 //Defining signout action 
 export const signout = () => async (dispatch) => {
@@ -57,7 +60,7 @@ export const signout = () => async (dispatch) => {
     dispatch({
         type: USER_SIGNOUT
     });
-}
+};
 
 //copy pasting sign in action to create the sign up action
 export const signUp = (name, email, password) => async (dispatch) => {
@@ -100,4 +103,24 @@ export const signUp = (name, email, password) => async (dispatch) => {
                 error.response.data.message : error.message,
         })
     }
-}
+};
+
+export const userDetails = (userId) => async (dispatch, getState) => {
+    dispatch({ type: USER_DETAILS_REQUEST, payload: userId });
+    const {
+        signIn: { userInfo },
+    } = getState();
+    try {
+      const { data } = await Axios.get(`/api/users/${userId}`, {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      });
+      dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: USER_DETAILS_FAILURE, payload: message });
+    }
+  };
+
