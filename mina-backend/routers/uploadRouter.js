@@ -23,6 +23,7 @@ const upload = multer({
     storage
 });
 
+//in second parameter of this function we're telling multer that we're expecting a single file and the name of file in the request is image
 uploadRouter.post('/', isAuthenticated, upload.single('image'), (req, res) => {
     res.send(`/${req.file.path}`);
 });

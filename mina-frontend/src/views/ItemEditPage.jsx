@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Axios from "axios";
 import { getItemDetails, updateItem } from "../actions/itemActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -64,6 +65,62 @@ export default function ItemEditPage(props) {
     );
   };
 
+  const [loadingUpload, setLoadingUpload] = useState(false);
+  const [errorUpload, setErrorUpload] = useState("");
+  const userInformation = useSelector((state) => state.signIn);
+  const { userInfo } = userInformation;
+
+  // const uploadFileHandler = async (e) => {
+  //   console.log(userInfo.token);
+  //   //we get the file from the event. Ensure to only upload the first selected file
+  //   const file = e.target.files[0];
+  //   //when we want to send an ajax request to upload a file we need to create an object from this class
+  //   const bodyFormData = new FormData();
+  //   //appending the file to that instance of formData. The key of this append function is image and the value is the content of the selected file
+  //   bodyFormData.append("image", file);
+  //   setLoadingUpload(true);
+  //   //sending the ajax request
+  //   try {
+  //     const { data } = await Axios.post("/api/uploads", bodyFormData, {
+  //       //adding this line helps backend to understand the request and get and uploads the file in the uploads folder
+  //       "Content-Type": "multipart/form-data",
+  //       //making sure only autheticated users can upload images to this server
+  //       Authorization: `Bearer ${userInfo.token}`,
+  //     });
+  //     setImage(data);
+  //     setLoadingUpload(false);
+  //   } catch (error) {
+  //     setErrorUpload(error.message);
+  //     setLoadingUpload(false);
+  //   }
+  // };
+
+  const uploadFileHandler = async (e) => {
+    //we get the file from the event. Ensure to only upload the first selected file
+    const file = e.target.files[0];
+    //when we want to send an ajax request to upload a file we need to create an object from this class
+    const bodyFormData = new FormData();
+    //appending the file to that instance of formData. The key of this append function is image and the value is the content of the selected file
+    bodyFormData.append('image', file);
+    setLoadingUpload(true);
+    //sending the ajax request
+    try {
+      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+        headers: {
+          //adding this line helps backend to understand the request and get and uploads the file in the uploads folder
+          'Content-Type': 'multipart/form-data',
+          //making sure only autheticated users can upload images to this server
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+      setImage(data);
+      setLoadingUpload(false);
+    } catch (error) {
+      setErrorUpload(error.message);
+      setLoadingUpload(false);
+    }
+  };
+
   return (
     <div className="row">
       <form onSubmit={submitHandler} className="w-50 mx-auto mb-2 mt-2">
@@ -79,7 +136,7 @@ export default function ItemEditPage(props) {
               <MessageBox variant="danger">{errorUpdate}</MessageBox>
             )}
             <div className="form-group">
-              <label htmFor="name">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -90,7 +147,7 @@ export default function ItemEditPage(props) {
               />
             </div>
             <div className="form-group">
-              <label htmFor="category">Category</label>
+              <label htmlFor="category">Category</label>
               <input
                 type="text"
                 className="form-control"
@@ -101,7 +158,7 @@ export default function ItemEditPage(props) {
               />
             </div>
             <div className="form-group">
-              <label htmFor="image">Image</label>
+              <label htmlFor="image">Image</label>
               <input
                 type="text"
                 className="form-control"
@@ -112,7 +169,21 @@ export default function ItemEditPage(props) {
               />
             </div>
             <div className="form-group">
-              <label htmFor="price">Price</label>
+              <label htmlFor="imageFile">Image File</label>
+              <input
+                type="file"
+                className="form-control"
+                id="imageFile"
+                label="Choose Image"
+                onChange={uploadFileHandler}
+              />
+              {loadingUpload && <LoadingBox></LoadingBox>}
+              {errorUpload && (
+                <MessageBox variant="danger">{errorUpload}</MessageBox>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="price">Price</label>
               <input
                 type="text"
                 className="form-control"
@@ -123,7 +194,7 @@ export default function ItemEditPage(props) {
               />
             </div>
             <div className="form-group">
-              <label htmFor="numberOfItemInInvetory">
+              <label htmlFor="numberOfItemInInvetory">
                 Number Available In Inventory
               </label>
               <input
@@ -136,7 +207,7 @@ export default function ItemEditPage(props) {
               />
             </div>
             <div className="form-group">
-              <label htmFor="description">Description</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 type="text"
                 className="form-control"

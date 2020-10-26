@@ -49,8 +49,16 @@ app.get("/", (req, res) => {
 //     }
 // });
 
+app.use('/api/uploads', uploadRouter);
 //we use our userRouter here 
 app.use('/api/users', userRouter);
+app.use('/api/items', itemRouter);
+app.use('/api/orders', orderRouter);
+//adding an API to send PayPal ID to frontend
+app.get('/api/config/paypal', (req, res) => {
+    //send back PayPal client ID stored in our .env file. Sb here refers to word 'Sandbox'
+    res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
+});
 
 //Now that we imported express async handler in our userRouter and wrapped the whole call back function of it inside that function we can use the following middleware as an error catcher
 app.use((err, req, res, next) => {
@@ -58,17 +66,6 @@ app.use((err, req, res, next) => {
         message: err.message
     });
 })
-
-app.use('/api/items', itemRouter);
-app.use('/api/orders', orderRouter);
-
-//adding an API to send PayPal ID to frontend
-app.get('/api/config/paypal', (req, res) => {
-    //send back PayPal client ID stored in our .env file. Sb here refers to word 'Sandbox'
-    res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
-});
-
-app.use('/api/uploads', uploadRouter);
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
