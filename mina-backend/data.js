@@ -12,7 +12,7 @@ const data = {
         name: 'Toby',
         email: 'toby@example.com',
         password: bcrypt.hashSync('1234', 8),
-        isAdmin: true,
+        isAdmin: false,
     }],
     items: [{
             //Now that we have created a model for an item and defined the route to populate the item list using that model we can comment out the _id of the items since it will be created automatically by mongoDB
