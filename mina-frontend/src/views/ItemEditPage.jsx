@@ -70,31 +70,6 @@ export default function ItemEditPage(props) {
   const userInformation = useSelector((state) => state.signIn);
   const { userInfo } = userInformation;
 
-  // const uploadFileHandler = async (e) => {
-  //   console.log(userInfo.token);
-  //   //we get the file from the event. Ensure to only upload the first selected file
-  //   const file = e.target.files[0];
-  //   //when we want to send an ajax request to upload a file we need to create an object from this class
-  //   const bodyFormData = new FormData();
-  //   //appending the file to that instance of formData. The key of this append function is image and the value is the content of the selected file
-  //   bodyFormData.append("image", file);
-  //   setLoadingUpload(true);
-  //   //sending the ajax request
-  //   try {
-  //     const { data } = await Axios.post("/api/uploads", bodyFormData, {
-  //       //adding this line helps backend to understand the request and get and uploads the file in the uploads folder
-  //       "Content-Type": "multipart/form-data",
-  //       //making sure only autheticated users can upload images to this server
-  //       Authorization: `Bearer ${userInfo.token}`,
-  //     });
-  //     setImage(data);
-  //     setLoadingUpload(false);
-  //   } catch (error) {
-  //     setErrorUpload(error.message);
-  //     setLoadingUpload(false);
-  //   }
-  // };
-
   const uploadFileHandler = async (e) => {
     //we get the file from the event. Ensure to only upload the first selected file
     const file = e.target.files[0];

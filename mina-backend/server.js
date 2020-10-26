@@ -67,6 +67,7 @@ app.use((err, req, res, next) => {
     });
 })
 
+//making sure that images uploaded to the upload folder will be displayed in the app. So here for /upload route we're going to serve the files that are in uploads folder by joining the current directory name (__dirname) to the /uploads
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
