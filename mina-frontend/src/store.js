@@ -8,7 +8,8 @@ import thunk from 'redux-thunk';
 import {
     ItemCreateReducer,
     itemDetailsReducer,
-    itemListReducer
+    itemListReducer,
+    itemUpdateReducer
 } from './reducers/itemsReducers';
 import { orderDetailsReducer, orderListReducer, orderPayReducer, orderReducer } from './reducers/orderReducers';
 import {
@@ -57,6 +58,8 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     //adding item create reducer to the combined reducers
     itemCreate: ItemCreateReducer,
+    //adding item update reducer to the combined reducers
+    itemUpdate: itemUpdateReducer,
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
