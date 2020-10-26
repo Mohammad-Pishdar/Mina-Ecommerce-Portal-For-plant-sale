@@ -12,6 +12,9 @@ import {
     ITEM_UPDATE_REQUEST,
     ITEM_UPDATE_SUCCESS,
     ITEM_UPDATE_FAILURE,
+    ITEM_DELETE_REQUEST,
+    ITEM_DELETE_SUCCESS,
+    ITEM_DELETE_FAILURE,
 } from "../constants/itemConstants";
 
 export const listItems = () => async (dispatch) => {
@@ -127,21 +130,21 @@ export const updateItem = (item) => async (dispatch, getState) => {
     }
 };
 
-export const deleteItem = (productId) => async (dispatch, getState) => {
-    dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
+export const deleteItem = (itemId) => async (dispatch, getState) => {
+    dispatch({ type: ITEM_DELETE_REQUEST, payload: itemId });
     const {
-      userSignin: { userInfo },
+      signIn: { userInfo },
     } = getState();
     try {
-      const { data } = Axios.delete(`/api/products/${productId}`, {
+      const { data } = Axios.delete(`/api/items/${itemId}`, {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
-      dispatch({ type: PRODUCT_DELETE_SUCCESS });
+      dispatch({ type: ITEM_DELETE_SUCCESS });
     } catch (error) {
       const message =
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message;
-      dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
+      dispatch({ type: ITEM_DELETE_FAILURE, payload: message });
     }
   };
