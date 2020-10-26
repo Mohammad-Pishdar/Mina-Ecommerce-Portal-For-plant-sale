@@ -7,6 +7,8 @@ import itemRouter from "./routers/itemRouter.js";
 //importing dotenv package to be able to use it to read the contents inside our .env file
 import dotenv from "dotenv";
 import orderRouter from "./routers/orderRouter.js";
+import uploadRouter from "./routers/uploadRouter.js";
+import path from 'path';
 
 dotenv.config();
 
@@ -64,7 +66,12 @@ app.use('/api/orders', orderRouter);
 app.get('/api/config/paypal', (req, res) => {
     //send back PayPal client ID stored in our .env file. Sb here refers to word 'Sandbox'
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
-})
+});
+
+app.use('/api/uploads', uploadRouter);
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
