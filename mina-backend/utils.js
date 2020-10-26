@@ -50,4 +50,13 @@ export const isAuthenticated = (req, res, next) => {
             message: 'There is no token'
         });
     }
-}
+};
+
+//here is another middleware to make sure whatever the user is trying to access will only be available if the user is an admin
+export const isAdmin = (req, res, next) => {
+    if (req.user && req.user.isAdmin) {
+      next();
+    } else {
+      res.status(401).send({ message: 'Invalid Admin Token' });
+    }
+  };
