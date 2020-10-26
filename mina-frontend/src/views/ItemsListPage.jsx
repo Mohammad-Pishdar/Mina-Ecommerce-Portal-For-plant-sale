@@ -29,7 +29,9 @@ export default function ItemsListPage(props) {
     dispatch(listItems());
   }, [createdItem, dispatch, props.history, successCreate]);
 
-  const deleteHandler = () => {};
+  const deleteHandler = (item) => {
+    dispatch(deleteItem(item._id));
+  };
 
   const createHandler = () => {
     dispatch(createItem());
