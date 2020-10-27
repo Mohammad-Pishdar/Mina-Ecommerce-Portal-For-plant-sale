@@ -20,11 +20,11 @@
   
   Here is a screenshot of the app:
   
-  ![alt text](https://github.com/Mohammad-Pishdar/Online-Offline-Budget-Trackers/blob/master/public/screenshots/Screenshot%202020-09-21%20153157.jpg)
+  ![alt text](https://github.com/Mohammad-Pishdar/Mina-Ecommerce-Portal-For-plant-sale/blob/main/ReadmeImages/5.jpg?raw=true)
 
   ## Usage
 
-  The user will be able to add expenses and deposits to their budget with or without a connection. When entering transactions offline, they should populate the total when brought back online.
+As a client, you can choose the items you want, set the quantity of the items you want and pay for them using PayPal. You can also view your profile and edit your information in there and update them including your password. You can also view your oder history and whether or not you have paid for the orders you have placed or they have been delivered or not. Future improvements to client section will include adding the ability to write reviews and rate products. As an admin though, you have access to extra features including the ability to see the entire inventory of item, edit the items in server databse, create new items and add them to the databse and delete items from databse. Admin section is a work in progress and currently supports the mentioned capabilities. Other improvements will be added to admin section incuding a dashboard to give analytical insight, a list of clients already signed up to the website and a list of all the orders placed and theur payment and delivery status.  
 
   ## License
 
@@ -32,7 +32,7 @@
 
   ## Contributing
 
-  This project was written by me as a homework activity for my Web Development Coding Bootcamp at the University of Sydney.
+  This project was written by me as the final project for 2020 Web Development Coding Bootcamp at the University of Sydney.
 
   ## Questions
 
