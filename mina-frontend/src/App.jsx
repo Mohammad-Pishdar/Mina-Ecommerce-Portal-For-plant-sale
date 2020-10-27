@@ -51,7 +51,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <div style={{ paddingBottom: "10%" }}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div className="container">
             {/* repalcing anchors with Links form react-router-dom throughount app.js and changing href attributes to 'to's */}
@@ -221,7 +221,7 @@ function App() {
         {/* adding admin's item edit screen */}
         <Route path="/item/:id/edit" component={ItemEditPage} exact></Route>
 
-        <footer className="py-5 bg-dark">
+        <footer className="py-5 bg-dark fixed-bottom">
           <div className="container">
             <p className="m-0 text-center text-white">
               Dedicated to my Mina joon &hearts;
