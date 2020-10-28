@@ -129,7 +129,7 @@ export default function ItemSpecificPage(props) {
           <div className="row">
             <div className="col">
               <h2>Write a customer review</h2>
-              <form className="form-horizontal" role="form">
+              <form className="form-horizontal">
                 <div className="form-group">
                   <label>Rating:</label>
                   <select className="form-control">

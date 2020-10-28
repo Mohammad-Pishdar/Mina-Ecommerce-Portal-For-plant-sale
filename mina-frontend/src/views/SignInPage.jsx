@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 //importing the link to be used in our links on the page
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../actions/userActions";
 import { useEffect } from "react";
