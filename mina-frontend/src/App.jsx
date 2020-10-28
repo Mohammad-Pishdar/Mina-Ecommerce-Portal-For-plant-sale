@@ -51,7 +51,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div style={{ paddingBottom: "10%" }}>
+      <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div className="container">
             {/* repalcing anchors with Links form react-router-dom throughount app.js and changing href attributes to 'to's */}
@@ -196,38 +196,39 @@ function App() {
             </div>
           </div>
         </nav>
+        <div className="flex-wrapper">
+          <Route path="/" component={HomePage} exact></Route>
+          <Route path="/item/:id" component={ItemSpecificPage} exact></Route>
+          {/* adding another route this time for sign in page */}
+          <Route path="/signin" component={SignInPage}></Route>
+          <Route path="/shoppingcart/:id?" component={ShoppingCartPage}></Route>
+          {/* adding another route this time for sign up page */}
+          <Route path="/signup" component={SignUpPage}></Route>
+          {/* new route this time for shipping page */}
+          <Route path="/shipping" component={ShippingPage}></Route>
+          {/* adding payment method screen  */}
+          <Route path="/payment" component={PaymentMethodsPage}></Route>
+          {/* adding place order screen */}
+          <Route path="/placeorder" component={PlaceOrderPage}></Route>
+          {/* adding order details screen */}
+          <Route path="/order/:id" component={OrderDetailsPage}></Route>
+          {/* adding order history screen */}
+          <Route path="/orderhistory" component={OrderHistoryPage}></Route>
+          {/* adding profile screen having a private route means only signed in users can have access to this screen */}
+          <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
+          {/* adding admin's item list screen having a private route means only admin users can have access to this screen */}
+          <AdminRoute path="/itemlist" component={ItemsListPage}></AdminRoute>
+          {/* adding admin's item edit screen */}
+          <Route path="/item/:id/edit" component={ItemEditPage} exact></Route>
 
-        <Route path="/" component={HomePage} exact></Route>
-        <Route path="/item/:id" component={ItemSpecificPage} exact></Route>
-        {/* adding another route this time for sign in page */}
-        <Route path="/signin" component={SignInPage}></Route>
-        <Route path="/shoppingcart/:id?" component={ShoppingCartPage}></Route>
-        {/* adding another route this time for sign up page */}
-        <Route path="/signup" component={SignUpPage}></Route>
-        {/* new route this time for shipping page */}
-        <Route path="/shipping" component={ShippingPage}></Route>
-        {/* adding payment method screen  */}
-        <Route path="/payment" component={PaymentMethodsPage}></Route>
-        {/* adding place order screen */}
-        <Route path="/placeorder" component={PlaceOrderPage}></Route>
-        {/* adding order details screen */}
-        <Route path="/order/:id" component={OrderDetailsPage}></Route>
-        {/* adding order history screen */}
-        <Route path="/orderhistory" component={OrderHistoryPage}></Route>
-        {/* adding profile screen having a private route means only signed in users can have access to this screen */}
-        <PrivateRoute path="/profile" component={ProfilePage}></PrivateRoute>
-        {/* adding admin's item list screen having a private route means only admin users can have access to this screen */}
-        <AdminRoute path="/itemlist" component={ItemsListPage}></AdminRoute>
-        {/* adding admin's item edit screen */}
-        <Route path="/item/:id/edit" component={ItemEditPage} exact></Route>
-
-        <footer className="py-5 bg-dark fixed-bottom">
-          <div className="container">
-            <p className="m-0 text-center text-white">
-              Dedicated to my Mina joon &hearts;
-            </p>
-          </div>
-        </footer>
+          <footer className="py-5 bg-dark footer">
+            <div className="container">
+              <p className="m-0 text-center text-white">
+                Dedicated to my Mina joon &hearts;
+              </p>
+            </div>
+          </footer>
+        </div>
       </div>
     </BrowserRouter>
   );
