@@ -112,7 +112,9 @@ a span {
 .shoppingCartBadge {
   background-color: green;
   color: white;
-  padding: 0.2rem 0.7rem;
+  padding: 0.5rem 0.7rem;
+  margin-top: 1.7rem;
+  position: static;
 }
 
 /* shopping cart page styles */

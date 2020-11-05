@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cd mina-frontend && npm install && npm run build",
-    "start": "nodemon --watch backend --exec node --experimental-modules mina-backend/server.js"
+    "start": "nodemon --watch mina-backend --exec node --experimental-modules mina-backend/server.js"
   },
   "repository": {
     "type": "git",

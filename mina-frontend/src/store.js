@@ -63,7 +63,7 @@ const reducer = combineReducers({
     itemUpdate: itemUpdateReducer,
     //adding item delete reducer to the combined reducers
     itemDelete: itemDeleteReducer,
-})
+});
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, initialState, composeEnhancer(applyMiddleware(thunk)));

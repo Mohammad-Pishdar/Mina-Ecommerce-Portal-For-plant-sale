@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/minaPlantSale',
 //     res.send("Server is ready");
 // });
 
-//Now that we connected our database to our server.js file below, there is no need to use static data.js file to get the items data so we can cooment this out
+//Now that we connected our database to our server.js file below, there is no need to use static data.js file to get the items data so we can comment this out
 // app.get("/api/items", (req, res) => {
 //     res.send(data.items);
 // });

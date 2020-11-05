@@ -73,7 +73,7 @@ function App() {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/shoppingcart">
+                  <Link className="nav-link mr-1" to="/shoppingcart">
                     Cart <FontAwesomeIcon icon={faShoppingCart} />
                     {
                       /* creating a conditional rendering section here */

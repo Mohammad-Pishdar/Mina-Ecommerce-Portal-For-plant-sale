@@ -11,7 +11,7 @@ export default function ItemSpecificPage(props) {
   const itemId = props.match.params.id;
   const itemDetails = useSelector((state) => state.itemDetails);
   const { loading, error, item } = itemDetails;
-  const [quantity, setQunatity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const addToShoopingCart = () => {
     props.history.push(`/shoppingcart/${itemId} ? quantity = ${quantity}`);
   };
@@ -73,7 +73,7 @@ export default function ItemSpecificPage(props) {
                           <select
                             className="form-control"
                             value={quantity}
-                            onChange={(e) => setQunatity(e.target.value)}
+                            onChange={(e) => setQuantity(e.target.value)}
                           >
                             {[...Array(item.numberOfItemInInvetory).keys()].map(
                               (x) => (
