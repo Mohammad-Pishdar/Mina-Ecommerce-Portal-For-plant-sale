@@ -20,7 +20,7 @@ orderRouter.get(
 orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
     //first we check if orderedItems contains items or not
     if (req.body.orderedItems.length === 0) {
-        //if there is nothing inside the ordered items we send back a 400 error because it's a clinet or validation error
+        //if there is nothing inside the ordered items we send back a 400 error because it's a client or validation error
         res.status(400).send({
             message: 'Your shopping cart is empty'
         });
