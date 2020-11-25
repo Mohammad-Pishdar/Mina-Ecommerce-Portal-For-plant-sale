@@ -3,7 +3,7 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Mohammad-Pishdar/employee_summary_template_engine/blob/master/LICENSE)
 
   ## Description
-  This is a prototype of a real-word online store that not only let clients to buy itmes online and pay using PayPal, but also have admin features that gives the admin full control over all aspects of this online store including the creation, update and deletion of items from the database on the server. The app was created using the full capabilities of MERN stack and uses MongoDB as its databse, Express JS as its server, React as its Javascript library to build its UI and Node.js as its backend environment as core technologies. I have also used various npm packages including bcryptjs, json web token and express async handler. The css styling is based on bootstrap.
+  This is a prototype of a real-word online store that not only lets clients buy items online and pay using PayPal, but also have admin features that gives the admin full control over all aspects of this online store including the creation, update and deletion of items from the database on the server. The app was created using the full capabilities of MERN stack and uses MongoDB as its database, Express JS as its server, React as its Javascript library to build its UI and Node.js as its backend environment as core technologies. I have also used various npm packages including bcryptjs, json web token and express async handler. The css styling is based on bootstrap.
 
   ## Table of contents
   
