@@ -25,7 +25,7 @@ orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
             message: 'Your shopping cart is empty'
         });
     } else {
-        //we craete an order
+        //we create an order
         const order = new Order({
             orderedItems: req.body.orderedItems,
             shippingAddress: req.body.shippingAddress,
@@ -33,7 +33,7 @@ orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
             subTotal: req.body.subTotal,
             shippingCost: req.body.shippingCost,
             total: req.body.total,
-            //here we also need to include the iformation about the user who created this order but at this point we don't have access to that inforation so we have to create a middelware in our utils.js file. We use _id here because we only need the id of this user in our Order model
+            //here we also need to include the iformation about the user who created this order but at this point we don't have access to that information, so we have to create a middelware in our utils.js file. We use _id here because we only need the id of this user in our Order model
             user: req.user._id,
         });
         //and we save this order to the database

@@ -29,14 +29,14 @@ export const isAuthenticated = (req, res, next) => {
         //we get token from authorization by slicing it from the 7th index which ensures that it only takes the token part from the captured authorization field
         const token = authorization.slice(7, authorization.length);
 
-        //Now it's time to use json wen token to decrypt the encrypted token. We use JWT's verify function to do that
+        //Now it's time to use json web token to decrypt the encrypted token. We use JWT's verify function to do that
         jwt.verify(token, process.env.JWT_SECRET || 'secureText', (err, decode) => {
             if (err) {
                 res.status(401).send({
                     message: 'Invalid token'
                 });
             } else {
-                //since at this point the token is valid we fill req.user by decode which is the information for that specific user with that specific token created above when we used sign method of json web token to create that token(so its id, name, email and whether or not the user is an admin)
+                //since at this point the token is valid we fill req.user by decode which is the information for that specific user with that specific token created above when we used sign method of json web token to create that token(so it is id, name, email and whether or not the user is an admin)
                 req.user = decode;
                 //now we pass this captured data about user to the next middleware
                 next();
