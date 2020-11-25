@@ -13,7 +13,7 @@ export const shoppingCartReducer = (state = {
     //like all the reducer functions we need a switch statement in the body to compare type of action with constants
     switch (action.type) {
         case ADD_TO_CART:
-            //we get the item created in payload of the add to cart action
+            //we get the item in payload of the add to cart action
             const item = action.payload
             //comparing the id of the item to be added with the ids of items that may be present in the shopping cart items array above
             const itemAlreadyExists = state.shoppingCartItems.find(x => x.item === item.item);
@@ -26,10 +26,10 @@ export const shoppingCartReducer = (state = {
                     shoppingCartItems: state.shoppingCartItems.map(x => x.item === itemAlreadyExists.item ? item : x)
                 };
             } else {
-                //otherwise if it does not exist in cart already add th newly added item to the cart itemsReducers
+                //otherwise if it does not exist in cart already add the newly added item to the cart itemsReducers
                 return {
                     ...state,
-                    //just concatenate cart items with the new item retured by payload above
+                    //just concatenate cart items with the new item returned by payload above
                     shoppingCartItems: [...state.shoppingCartItems, item]
                 };
             }

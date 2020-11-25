@@ -25,10 +25,10 @@ export default function ShoppingCartPage(props) {
 
   //defining the function to be used as an event listener function on remove button
   const removeFromCartHandler = (id) => {
-    //now that we created a constant for remove from cart, defined an action and implemented a rducer it's time to complete this functiona. We use dispatch to access the appropriate reducer here
+    //now that we created a constant for remove from cart, defined an action and implemented a reducer, it's time to complete this function. We use dispatch to access the appropriate reducer here
     dispatch(removeFromCart(id));
   };
-  //defining the function that redirects the user to the checkout page after clicking the checkout button. This function takes the user to the sign in page and after sign in will redirect them to the shipping page
+  //defining the function that redirects the user to the checkout page after clicking the checkout button. This function takes the user to the sign in page and after signing in will redirect them to the shipping page
   const goToCheckout = () => {
     props.history.push("/signin?redirect=shipping");
   };
@@ -92,7 +92,7 @@ export default function ShoppingCartPage(props) {
                       )
                     }
                   >
-                    {/* we copy the same logic used in items details page to render options avaialble in the drop dwon menu based on the available amount of that specific item in the inventory */}
+                    {/* we copy the same logic used in items details page to render options available in the drop down menu based on the available amount of that specific item in the inventory */}
                     {[...Array(cartItem.numberOfItemInInvetory).keys()].map(
                       (x) => (
                         <option key={x + 1} value={x + 1}>

@@ -4,20 +4,20 @@ import { savePaymentMethod } from "../actions/shoppinCartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function PaymentMethodsPage(props) {
-    //We must insure that user only be able to view this screen if already completed the required fields on shipping adress screen
+    //We must ensure that user only be able to view this screen if already completed the required fields on shipping adress screen
     const shoppingCart = useSelector((state) => state.shoppingCart);
     //we take out the shipping address from shoppingCart info on state
     const {shippingAddress} = shoppingCart;
     //now we check if the shippping address has been entered or not
     if(!shippingAddress.address) {
-        //if there is no address entered redurect user to the shipping page
+        //if there is no address entered redirect user to the shipping page
         props.history.push('/shipping');
     }
 
   //defining a react hook for set payment method
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
-  //definig dispatch
+  //defining dispatch
   const dispatch = useDispatch();
   //defining our submit handler
   const submitHandler = (e) => {
@@ -29,7 +29,7 @@ export default function PaymentMethodsPage(props) {
   };
   return (
     <div>
-      {/* we set appropritae steps for each step as true values so our progress br will be updated. Here this is the third step so steps 1 through 3 should be set as true when we call the check out steps compnonet */}
+      {/* we set appropritae steps for each step as true values so our progress bar will be updated. Here this is the third step so steps 1 through 3 should be set as true when we call the check out steps compnonet */}
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
       <form className="form" onSubmit={submitHandler}>
       <div>

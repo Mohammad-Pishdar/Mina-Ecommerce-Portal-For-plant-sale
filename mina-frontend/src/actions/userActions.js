@@ -39,7 +39,7 @@ export const signIn = (email, password) => async (dispatch) => {
             type: USER_SIGNIN_SUCCESS,
             payload: data
         });
-        //Now we save user data inside localStorage. That's because we want to keep the user signed in even if they close the browser and pen it again later.
+        //Now we save user data inside localStorage. That's because we want to keep the user signed in even if they close the browser and open it again later.
         localStorage.setItem('userInfo', JSON.stringify(data));
 
     } catch (error) {
@@ -58,7 +58,7 @@ export const signout = () => async (dispatch) => {
     localStorage.removeItem('userInfo');
     //we should also remove shopping cart items from localStorage upon user logout
     localStorage.removeItem('cartItems');
-    //we also remove shipping address from localStorage upon signing out so our checks to show payment method page only after completing the shipping address page could work after signing out and prevents user from visiting our payment method page
+    //we also remove shipping address from localStorage upon signing out 
     localStorage.removeItem('shippingAddress');
     dispatch({
         type: USER_SIGNOUT
@@ -67,7 +67,7 @@ export const signout = () => async (dispatch) => {
 
 //copy pasting sign in action to create the sign up action
 export const signUp = (name, email, password) => async (dispatch) => {
-    //First we dispatch user sign in request. We also have to import the appropriate action at the top. The payload for this request is the email and password entered by the user.
+    //First we dispatch user sign-up request. We also have to import the appropriate action at the top. The payload for this request is the email and password entered by the user.
     dispatch({
         type: USER_SIGNUP_REQUEST,
         payload: {
@@ -77,7 +77,7 @@ export const signUp = (name, email, password) => async (dispatch) => {
     })
     //Now we're sending an ajax request and we use try catch technique to catch any potential errors.
     try {
-        //sending an ajax request. We use a post request here in our ajax call because the sign in API works with a post request. The first parameter here is the URL address of the API and the second one is the data we use to send the request.
+        //sending an ajax request. We use a post request here in our ajax call because the sign-up API works with a post request. The first parameter here is the URL address of the API and the second one is the data we use to send the request.
         const {
             data
         } = await Axios.post('/api/users/signup', {
@@ -85,17 +85,17 @@ export const signUp = (name, email, password) => async (dispatch) => {
             email,
             password
         });
-        //So when we get to this line it means the entered email and password are correct and data contains user information and token. So it's time to dipatch user sign in success action. The payload here is the data that the server sends back.
+        //So when we get to this line it means the entered name, email and password are successguly stored in database and data contains user information and token. So it's time to dipatch user sign-up success action. The payload here is the data that the server sends back.
         dispatch({
             type: USER_SIGNUP_SUCCESS,
             payload: data
         });
-        //we duplicate the dispatch block above and just change its type to user sign in success. We need this to update the redux store based on user sign in because in our app.js file we read user sign in fro the state to authenticate user
+        //we duplicate the dispatch block above and just change its type to user sign in success. We need this to update the redux store based on user sign in because in our app.js file we read user sign in from the state to authenticate user
         dispatch({
             type: USER_SIGNIN_SUCCESS,
             payload: data
         });
-        //Now we save user data inside localStorage. That's because we want to keep the user signed in even if they close the browser and pen it again later.
+        //Now we save user data inside localStorage. That's because we want to keep the user signed in even if they close the browser and open it again later.
         localStorage.setItem('userInfo', JSON.stringify(data));
 
     } catch (error) {

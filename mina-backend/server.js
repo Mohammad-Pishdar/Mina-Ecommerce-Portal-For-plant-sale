@@ -37,7 +37,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/minaPlantSale',
 //     res.send(data.items);
 // });
 
-//The same goes for this route. We don't this anymore either since we want to implement these routes using the routers we created so we comment this out too
+//The same goes for this route. We don't need this anymore either since we want to implement these routes using the routers we created so we comment this out too
 // app.get("/api/items/:id", (req, res) => {
 //     const item = data.items.find((item) => item._id === req.params.id);
 //     if (item) {

@@ -40,7 +40,7 @@ function App() {
   //object-destructure user info from the signIn branch in state
   const { userInfo } = userSignInInfo;
 
-  //definign dispatch to be used by our handler function
+  //defining dispatch to be used by our handler function
   const dispatch = useDispatch();
 
   //defining signout handler function

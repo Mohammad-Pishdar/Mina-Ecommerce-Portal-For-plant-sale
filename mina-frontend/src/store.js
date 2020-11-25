@@ -39,29 +39,29 @@ const initialState = {
 const reducer = combineReducers({
     itemList: itemListReducer,
     itemDetails: itemDetailsReducer,
-    //adding shooping cart reducer here 
+    //adding shopping cart reducer here 
     shoppingCart: shoppingCartReducer,
-    //adding user sign in reducer to the combined reducers
+    //adding user sign in reducer to the combine reducers
     signIn: userSignInReducer,
-    //adding user sign up reducer to the combined reducers
+    //adding user sign up reducer to the combine reducers
     signUp: userSignUpReducer,
-    //adding order reducer to the combined combined reducers
+    //adding order reducer to the combine reducers
     order: orderReducer,
-    //adding order details reducer to the combined reducers
+    //adding order details reducer to the combine reducers
     orderDetails: orderDetailsReducer,
-    //adding order payment reducer to the combined reducers
+    //adding order payment reducer to the combine reducers
     orderPay: orderPayReducer,
-    //adding order list reducer to the combined reducers
+    //adding order list reducer to the combine reducers
     orderList: orderListReducer,
-    //adding user details reducer to the combined reducers
+    //adding user details reducer to the combine reducers
     userDetails: userDetailsReducer,
-    //adding user update profile reducer to the combined reducers
+    //adding user update profile reducer to the combine reducers
     userUpdateProfile: userUpdateProfileReducer,
-    //adding item create reducer to the combined reducers
+    //adding item create reducer to the combine reducers
     itemCreate: ItemCreateReducer,
-    //adding item update reducer to the combined reducers
+    //adding item update reducer to the combine reducers
     itemUpdate: itemUpdateReducer,
-    //adding item delete reducer to the combined reducers
+    //adding item delete reducer to the combine reducers
     itemDelete: itemDeleteReducer,
 });
 

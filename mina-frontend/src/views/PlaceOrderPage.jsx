@@ -12,7 +12,7 @@ export default function PlaceOrderPage(props) {
   //we need to import shopping cart from redux store to access data stored in there
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const { shoppingCartItems } = shoppingCart;
-  //again like all the other pages in checkout process we should see that the user can access this page only if they have enetered the required info on previous page which is payment method and if they don't they will be redirected to payment screen
+  //again like all the other pages in checkout process we should see that the user can access this page only if they have entered the required info on previous page which is payment method and if they don't they will be redirected to payment screen
   if (!shoppingCart.paymentMethod) {
     props.history.push("/payment");
   }

@@ -32,10 +32,10 @@ export default function ShippingPage(props) {
     event.preventDefault();
     //now we have to create a new action to save shipping address and dispatch it here
     dispatch(
-      //we wrap the parameters here inside curly braces so we can later pass it as a single object called data in it's related action and reducer
+      //we wrap the parameters here inside curly braces so we can later pass it as a single object called data in its related action and reducer
       saveShippingAddress({ fullName, address, city, zipCode, state, country })
     );
-    //Now that we disatched shipping address it's time to rediret user to payment screen
+    //Now that we dispatched shipping address it's time to redirect user to payment screen
     props.history.push("/payment");
   };
   return (

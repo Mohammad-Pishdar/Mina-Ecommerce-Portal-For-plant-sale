@@ -13,7 +13,7 @@ import {
 //we use express.router() to make our code modular instead of creating all the routes inside the server.js
 const userRouter = express.Router();
 
-//now we have to define a get method for our seeding API. We wrap the whole sync callback function inside an expressAsyncHandler fumction that comes from an npm pacage with the same name that needs to be installed and imported. We use this packeage to show potential errors for our routers to the users by adding code in our server.js file.
+//now we have to define a get method for our seeding API. We wrap the whole sync callback function inside an expressAsyncHandler fumction that comes from a npm pacage with the same name that needs to be installed and imported. We use this packeage to show potential errors for our routers to the users by adding code in our server.js file.
 userRouter.get(
     '/seed',
     expressAsyncHandler(async (req, res) => {
@@ -55,13 +55,13 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
 
 }));
 
-//creating a new user route to register new users. Again since we want to create new users in our databse we should use a post method here.
+//creating a new user route to register new users. Again since we want to create new users in our database we should use a post method here.
 userRouter.post('/signup', expressAsyncHandler(async (req, res) => {
     //we create a new user here and use whatever user enters into the input boxes in frontend for all the info needed to create a new user based on user model
     const user = new User({
         name: req.body.name,
         email: req.body.email,
-        // for the password it's a bit tricky since we don't want to save the plain text password into our database and we have to convert it to the hashed password. So we use bycrypt package to do so.
+        // for the password it's a bit tricky since we don't want to save the plain text password into our database and we have to convert it to the hashed password. So we use bcrypt package to do so.
         password: bcrypt.hashSync(req.body.password, 8),
     });
     //Now we save the newly created user in our database
