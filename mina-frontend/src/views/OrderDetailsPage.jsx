@@ -28,7 +28,7 @@ export default function OrderDetailsPage(props) {
   //defining the place order handler function
   const dispatch = useDispatch();
 
-  //In this screen we use useEffect to dipatch order details
+  //In this screen we use useEffect to dispatch order details
   useEffect(() => {
     //adding a function to add PayPal script
     const addPayPalScript = async () => {
