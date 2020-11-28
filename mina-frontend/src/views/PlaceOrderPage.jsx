@@ -36,7 +36,7 @@ export default function PlaceOrderPage(props) {
   //defining the place order handler function
   const dispatch = useDispatch();
   const placeOrderHandler = () => {
-    //here to dispatch what we need to our createOrder action which is to be implemented in order actions next, is to use all the fileds of shopping cart object in the state and replace shoppingCartItems with orderedItems in order for it to be used in our order model to create a new order
+    //here to dispatch what we need to our createOrder action which is to be implemented in order actions next, we use all the fileds of shopping cart object in the state and replace shoppingCartItems with orderedItems in order for it to be used in our order model to create a new order
     dispatch(
       createOrder({
         ...shoppingCart,
@@ -45,7 +45,7 @@ export default function PlaceOrderPage(props) {
     );
   };
 
-  //Now it's time to define our useEffect method. Like always it has two paraeters a function and a dependency list. Here we add success to its dependency list which means this function runs whenever success becomes true or whenever we added an order to our database successfully (we use success and order fields we have extracted earleir here in our useEffect)
+  //Now it's time to define our useEffect method. Like always it has two parameters a function and a dependency list. Here we add success to its dependency list which means this function runs whenever success becomes true or whenever we added an order to our database successfully (we use success and order fields we have extracted earleir here in our useEffect)
   useEffect(() => {
     if (success) {
       //if the order added to database successfully then we need to redirect user to order dtails page

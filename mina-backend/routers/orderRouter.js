@@ -16,7 +16,7 @@ orderRouter.get(
     })
   );
 
-//creating an API to post requests for registering an order in databse to /api/orders. Here we include isAuthenticated as a middleware we later defined in our utils.js to fill req.user with user information
+//creating an API to post requests for registering an order in databse to /api/orders. Here we include isAuthenticated as a middleware we later define in our utils.js to fill req.user with user information
 orderRouter.post('/', isAuthenticated, expressAsyncHandler(async (req, res) => {
     //first we check if orderedItems contains items or not
     if (req.body.orderedItems.length === 0) {

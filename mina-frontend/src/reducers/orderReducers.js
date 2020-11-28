@@ -15,7 +15,7 @@ import {
     ORDER_PAY_SUCCESS
 } from "../constants/orderConstants";
 
-//here we set the default value of the state for order reducer as an empty object since we don't have anyorders yet
+//here we set the default value of the state for order reducer as an empty object since we don't have any orders yet
 export const orderReducer = (state = {}, action) => {
     switch (action.type) {
         case ORDER_CREATE_REQUEST:

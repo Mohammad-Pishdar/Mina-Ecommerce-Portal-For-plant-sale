@@ -26,13 +26,13 @@ export const createOrder = (order) => async (dispatch, getState) => {
         payload: order
     });
     try {
-        //getting userInfo from redux store. Here getState returens the whole redux store for us and we choose what we want to get here from the whole redux store (which is the state) by object destructuring them.
+        //getting userInfo from redux store. Here getState returns the whole redux store for us and we choose what we want to get here from the whole redux store (which is the state) by object destructuring them.
         const {
             signIn: {
                 userInfo
             }
         } = getState();
-        //second parameter in this ajax request is to request the ayload which is the order and the third parameter is options and in the oprtions we're setiing the headers and fill the Authorization filed with the token that comes from userInfo
+        //second parameter in this ajax request is to request the payload which is the order and the third parameter is options and in the options we're setting the headers and fill the Authorization field with the token that comes from userInfo
         const {
             data
         } = await Axios.post('/api/orders', order, {
@@ -40,12 +40,12 @@ export const createOrder = (order) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             }
         });
-        //Now that we have data that contains the order we can dispatch ORDER_CREATE_SUCCESS and set it's payload to the data we have just recieved
+        //Now that we have data that contains the order we can dispatch ORDER_CREATE_SUCCESS and set its payload to the data we have just recieved
         dispatch({
             type: ORDER_CREATE_SUCCESS,
             payload: data.order
         });
-        //after adding the order successfully to our database it's time to remove items from the shopping cart
+        //after adding the order successfully to our database, it's time to remove items from the shopping cart
         dispatch({
             type: EMPTY_CART
         });
