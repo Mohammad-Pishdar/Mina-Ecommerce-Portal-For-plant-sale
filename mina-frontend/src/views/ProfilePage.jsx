@@ -68,7 +68,7 @@ export default function ProfilePage() {
               <MessageBox variant="success">Profile Updated</MessageBox>
             )}
             <div className="form-group">
-              <label htmFor="name">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -79,7 +79,7 @@ export default function ProfilePage() {
               />
             </div>
             <div className="form-group">
-              <label htmFor="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 className="form-control"
@@ -91,7 +91,7 @@ export default function ProfilePage() {
               />
             </div>
             <div className="form-group">
-              <label htmFor="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 className="form-control"
@@ -101,7 +101,7 @@ export default function ProfilePage() {
               />
             </div>
             <div className="form-group">
-              <label htmFor="confirmPassword">Confirm Password</label>
+              <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
                 className="form-control"

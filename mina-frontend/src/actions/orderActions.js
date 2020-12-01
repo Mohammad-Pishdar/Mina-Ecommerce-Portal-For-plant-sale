@@ -130,7 +130,7 @@ export const payOrder = (order, paymentResult) => async (dispatch, getState) => 
     }
 }
 
-//defining an action that returnes a list of all the orders placed by a certain user
+//defining an action that returns a list of all the orders placed by a certain user
 export const listMyOrders = () => async (dispatch, getState) => {
     //as always we first dispatch order list request. This action does not have any payloads
     dispatch({
