@@ -27,16 +27,16 @@ export default function ItemEditPage(props) {
   const {
     loading: loadingUpdate,
     error: errorUpdate,
-    success: sucessUpdate,
+    success: successUpdate,
   } = itemUpdate;
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (sucessUpdate) {
+    if (successUpdate) {
       props.history.push("/itemlist");
     }
     //adding the OR statement here prevents the page to load up with previous info upon returning to it for a second time
-    if (!item || item._id !== itemId || sucessUpdate) {
+    if (!item || item._id !== itemId || successUpdate) {
       dispatch({ type: ITEM_UPDATE_RESET });
       //so if the product name is null it means that it's a new item and we should load it from the template for a new item from backend
       dispatch(getItemDetails(itemId));
@@ -48,7 +48,7 @@ export default function ItemEditPage(props) {
       setDescription(item.description);
       setNumberOfItemInInvetory(item.numberOfItemInInvetory);
     }
-  }, [dispatch, item, itemId, props.history, sucessUpdate]);
+  }, [dispatch, item, itemId, props.history, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
